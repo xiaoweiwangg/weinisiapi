@@ -1,40 +1,35 @@
 let db = require("../module/db")
+//日期时间处理模块
 let time = require("../module/time")
-let mm = require("moment")
+//token模块
+let token=require("../token/settoken")
 
-
-let jwt = require("jwt-simple")
-let jwtpwd = "wangerwei"
-
-let token = null
-// let u=jwt.decode("","wangerwei")
-// console.log(u.exp>Date.now());
-
-
+//全局路由中间件
 exports.use = function (req, res, next) {
-  if (req.url != "/logoin" && req.url != "/registry"||req.url=="/") {
+  
+  if (req.url != "/logoin" && req.url != "/registry"&&req.url!="/"&&req.url!="/fuser") {
     if(!req.headers.token){
-      console.log("没有令牌");
+      res.sendStatus(401)
+    }else{
+      next()
     }
+  }else{
     next()
   }
 }
-
+//查询公告模块
 exports.gonggao = function (req, res) {
-
   db.findgg((x) => {
     res.json(x)
   })
 }
-//插入用户信息
+//插入用户信息模块
 exports.inuser = function (req, res) {
   let userinfo = req.body
   userinfo.level = 1
   userinfo.rigtime = time.time().datetime
-  console.log(userinfo);
   db.finduser(userinfo, function (x) {
     if (x.length > 0) {
-      console.log("用户名已存在");
       res.json({ msg: "no" })
     } else {
       db.inuser(userinfo, function (x) {
@@ -51,9 +46,7 @@ exports.fuser = function (req, res) {
       let usermsg = {}
       db.finduser(userinfo, function (x) {
         usermsg.userinfo = x[0];
-        let jwttime = mm().add(3, 'minutes').valueOf()
-        token = jwt.encode({ name: usermsg.userinfo.name, exp: jwttime }, jwtpwd)
-        usermsg.token = token
+        usermsg.token =  token.settoken(usermsg.userinfo.name,3)
         usermsg.msg = "ok"
         res.json(usermsg)
       })
