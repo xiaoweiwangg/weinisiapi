@@ -21,12 +21,12 @@ create table if not exists playhistory(
 
 create table if not exists levelchld(
   name varchar(45)  not null unique,
-  list varcahr(1000),
+  list varchar(1000)
 ) engine=innodb charset=utf8;
 
 create table if not exists record(
   name varchar(45)  not null unique,
-  history varcahr(45)
+  history varchar(45)
 ) engine=innodb charset=utf8; 
 
 create table if not exists gassckjinfo(
