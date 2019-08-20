@@ -55,7 +55,7 @@ exports.inuser=function(data,fn){
   })
   connext.end()
 }
-//******************************************************* *****/查询用户数据
+//******************** *****/查询用户数据
 exports.finduser=function(data,fn){
   let connext = mysql.createConnection(config)
   sql = `
