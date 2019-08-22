@@ -40,7 +40,7 @@ exports.inuser = function (req, res) {
             db.inuser(userinfo, function (y) {
                 delete userinfo.password
                 userinfo.balance=0.00
-                res.json({ msg: "ok",token:token.settoken(userinfo.username,3),userinfo:userinfo })
+                res.json({ msg: "ok",token:token.settoken(userinfo.name,3),userinfo:userinfo })
             })
         }
     })
