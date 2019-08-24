@@ -47,7 +47,7 @@ exports.inuser=function(data,fn){
   let connext = mysql.createConnection(config)
   sql = `
   insert into userinfo(name,password,rigtime,level,phone)
-  values("${data.username}","${data.password}","${data.rigtime}","${data.level}","${data.phone}");
+  values("${data.name}","${data.password}","${data.rigtime}","${data.level}","${data.phone}");
   `;
   connext.query(sql, (err, data, fled) => {
     if (err) { throw err }

@@ -19,9 +19,8 @@ setInterval(() => {
     gadt.playdate=t.time().date+"期"
     gadt.playnum=getssc(...config)
     gadt.playtime=`${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${_.random(0,59)}`
-    console.log(gadt)
     db.insert("gassckjinfo",gadt,function(x){
-      console.log(x);
+      //这里设定查询用户中奖信息
     })
   }
 }, 1000)
@@ -30,17 +29,20 @@ setInterval(() => {
   if (t.time().s == 40 && (t.time().m-10) % 20 == 4) {
     request("https://kjh.55128.cn/history_chongqingssc.aspx", function (err, data, body) {
       let $ = cheerio.load(body)
-      let playtime = $("#table tr td").html()
-      let playdate = $("#table tr td").eq(1).html()
-      let $1 = cheerio.load($("#table tr td").eq(2).html())
-      let playnum = ""
-      for (let i = 0; i < 5; i++) {
-        playnum += $1("span").eq(i).html()
+      //开奖号码获取
+      let num = $(".kaij-cartoon span")
+      let str=""
+      for(let i=0;i<num.length;i++){
+        str+=num.eq(i).text()
       }
+     let playnum=str
+      //开奖期数获取
+      let playdate=$(".kaij-qs").html();
+      // 开奖时间获取
       let cqdt = {}
       cqdt.playname = "cqssc"
       cqdt.playdate = playdate + "期"
-      cqdt.playtime = playtime
+      cqdt.playtime = t.time().datetime
       cqdt.playnum = playnum
       db.insert("cqssckjinfo",cqdt, function (x) {
         console.log(x);

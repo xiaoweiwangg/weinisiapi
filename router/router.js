@@ -33,6 +33,8 @@ exports.inuser = function (req, res) {
     let userinfo = req.body
     userinfo.level = 1
     userinfo.rigtime = time.time().datetime
+    console.log(userinfo);
+    
     db.finduser(userinfo, function (x) {
         if (x.length > 0) {
             res.json({ msg: "no" })

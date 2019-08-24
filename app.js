@@ -1,6 +1,13 @@
 let exp = require("express")
 let path = require("path")
 let app = exp()
+let http=require("http").Server(app)
+//socket.io
+let io=require("socket.io")(http)
+io.on("connection",x=>{
+    console.log("a user connection....");
+    
+})
 //处理post请求
 let body = require("body-parser")
 app.use(body.urlencoded({ extended: false }))
