@@ -1,13 +1,8 @@
 let exp = require("express")
+let db=require("./module/db")
 let path = require("path")
 let app = exp()
-let http=require("http").Server(app)
-//socket.io
-let io=require("socket.io")(http)
-io.on("connection",x=>{
-    console.log("a user connection....");
-    
-})
+
 //处理post请求
 let body = require("body-parser")
 app.use(body.urlencoded({ extended: false }))
@@ -16,7 +11,7 @@ app.use(body.json())
 app.use(exp.static(__dirname + "/dist"))
 //引入并执行game模块
 let game = require("./game/game")
-//设置允许跨域
+//设置允许跨域 
 var allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', 'http://localhost:63342');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');

@@ -27,7 +27,18 @@ exports.insert = function (tb,data, fn) {
   })
   connext.end()
 }
-
+//======================查询最新彩票数据
+exports.flottor = function (fn) {
+  let connext = mysql.createConnection(config)
+  sql = `
+  select * from gassckjinfo where playtime=(select max(playtime) from gassckjinfo);
+  `;
+  connext.query(sql, (err, data, fled) => {
+    if (err) { throw err }
+    fn(data)
+  })
+  connext.end()
+}
 //-------------------------插入公告通知
 exports.gg=function(tb,data, fn) {
   let connext = mysql.createConnection(config)
