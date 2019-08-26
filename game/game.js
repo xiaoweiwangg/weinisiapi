@@ -11,18 +11,25 @@ let app = exp()
 let http = require("http").Server(app)
 let io = require("socket.io")(http)
 io.on('connection', function (socket) {
-  //接收数据
+  setInterval(() => {
+    if (t.time().s == 10 && t.time().m % 5 == 0) {
+      db.flottor(function (x) {
+        socket.emit('relogin', {
+          msg: x[0],
+          code: 200
+        });
+        socket.emit('timer', {
+          m:t.time().m,
+          s:t.time().s,
+        });
+      })
+    }
+  },1000)
   socket.on('login', function (obj) {
-    setInterval(() => {
-      if (t.time().s == 10 && t.time().m % 5 == 0) {
-        db.flottor(function (x) {
-          socket.emit('relogin', {
-            msg: x[0],
-            code: 200
-          });
-        })
-      }
-    },1000)
+    socket.emit('timer', {
+      m:t.time().m,
+      s:t.time().s,
+    });
     // 发送数据
     db.flottor(function (x) {
       socket.emit('relogin', {
