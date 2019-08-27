@@ -28,10 +28,43 @@ exports.insert = function (tb,data, fn) {
   connext.end()
 }
 //======================查询最新彩票数据
-exports.flottor = function (fn) {
+exports.fgalottor = function (fn) {
   let connext = mysql.createConnection(config)
   sql = `
   select * from gassckjinfo where playtime=(select max(playtime) from gassckjinfo);
+  `;
+  connext.query(sql, (err, data, fled) => {
+    if (err) { throw err }
+    fn(data)
+  })
+  connext.end()
+}
+exports.fcqlottor = function (fn) {
+  let connext = mysql.createConnection(config)
+  sql = `
+  select * from cqssckjinfo where playtime=(select max(playtime) from cqssckjinfo);
+  `;
+  connext.query(sql, (err, data, fled) => {
+    if (err) { throw err }
+    fn(data)
+  })
+  connext.end()
+}
+exports.ftjlottor = function (fn) {
+  let connext = mysql.createConnection(config)
+  sql = `
+  select * from tjssckjinfo where playtime=(select max(playtime) from tjssckjinfo);
+  `;
+  connext.query(sql, (err, data, fled) => {
+    if (err) { throw err }
+    fn(data)
+  })
+  connext.end()
+}
+exports.fxjlottor = function (fn) {
+  let connext = mysql.createConnection(config)
+  sql = `
+  select * from xjssckjinfo where playtime=(select max(playtime) from xjssckjinfo);
   `;
   connext.query(sql, (err, data, fled) => {
     if (err) { throw err }

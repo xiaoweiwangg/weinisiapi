@@ -11,28 +11,107 @@ let app = exp()
 let http = require("http").Server(app)
 let io = require("socket.io")(http)
 io.on('connection', function (socket) {
+  //定时发送数据
   setInterval(() => {
+    //---------------gassc
     if (t.time().s == 10 && t.time().m % 5 == 0) {
-      db.flottor(function (x) {
-        socket.emit('relogin', {
+      db.fgalottor(function (x) {
+        socket.emit('gassc', {
           msg: x[0],
           code: 200
         });
         socket.emit('timer', {
-          m:t.time().m,
-          s:t.time().s,
+          m: t.time().m,
+          s: t.time().s,
         });
       })
     }
-  },1000)
-  socket.on('login', function (obj) {
-    socket.emit('timer', {
-      m:t.time().m,
-      s:t.time().s,
+    //----------------cqssc
+  if (t.time().s == 40 && (t.time().m - 10) % 20 == 3) {
+    db.fcqlottor(function (x) {
+      socket.emit('cqssc', {
+        msg: x[0],
+        code: 200
+      });
+      socket.emit('timer', {
+        m: t.time().m+10,
+        s: t.time().s,
+      });
+    })
+  }
+  }, 1000)
+  //-----------------tjssc
+  if (t.time().h<=23&&t.time().h>=9&&t.time().s == 20 && t.time().m  % 20 == 2) {
+    socket.on('xjssc', function (obj) {
+      socket.emit('timer', {
+        kj: {js:20,jm:2},
+        m: t.time().m,
+        s: t.time().s,
+      });
+      db.fxjlottor(function (x) {
+        socket.emit('xjssc', {
+          msg: x[0],
+          code: 200
+        });
+      })
     });
-    // 发送数据
-    db.flottor(function (x) {
-      socket.emit('relogin', {
+    socket.on('tjssc', function (obj) {
+      socket.emit('timer', {
+        m: t.time().m,
+        s: t.time().s,
+      });
+      db.ftjlottor(function (x) {
+        socket.emit('tjssc', {
+          msg: x[0],
+          code: 200
+        });
+      })
+    });
+  }
+  //----------------初始化发送数据
+  socket.on('gassc', function (obj) {
+    socket.emit('timer', {
+      m: t.time().m,
+      s: t.time().s,
+    });
+    db.fgalottor(function (x) {
+      socket.emit('gassc', {
+        msg: x[0],
+        code: 200
+      });
+    })
+  });
+  socket.on('cqssc', function (obj) {
+    socket.emit('timer', {
+      m: t.time().m + 10,
+      s: t.time().s,
+    });
+    db.fcqlottor(function (x) {
+      socket.emit('cqssc', {
+        msg: x[0],
+        code: 200
+      });
+    })
+  });
+  socket.on('tjssc', function (obj) {
+    socket.emit('timer', {
+      m: t.time().m,
+      s: t.time().s,
+    });
+    db.ftjlottor(function (x) {
+      socket.emit('tjssc', {
+        msg: x[0],
+        code: 200
+      });
+    })
+  });
+  socket.on('xjssc', function (obj) {
+    socket.emit('timer', {
+      m: t.time().m,
+      s: t.time().s,
+    });
+    db.fxjlottor(function (x) {
+      socket.emit('xjssc', {
         msg: x[0],
         code: 200
       });
@@ -40,7 +119,7 @@ io.on('connection', function (socket) {
   });
 });
 http.listen(8090)//监听端口不能和主端口一致 
-
+//----------------------------------------gassc---------------------
 function getssc(a, b, c, d, e) {
   let ssc = ''
   return ssc += _.random(...a) + '' + _.random(...a) + '' + _.random(...a) + '' + _.random(...a) + '' + _.random(...a)
@@ -63,12 +142,12 @@ setInterval(() => {
     })
   }
 }, 1000)
-//******************************************************************************* */
+//*************************************cqssc****************************************** */
 setInterval(() => {
-  if (t.time().s == 40 && (t.time().m - 10) % 20 == 4) {
+  if (t.time().h>7&&t.time().s == 30 && (t.time().m - 10) % 20 == 3) {
     request("https://kjh.55128.cn/history_chongqingssc.aspx", function (err, data, body) {
       let $ = cheerio.load(body)
-      //开奖号码获取
+      //开奖号码获取 
       let num = $(".kaij-cartoon span")
       let str = ""
       for (let i = 0; i < num.length; i++) {
@@ -84,6 +163,54 @@ setInterval(() => {
       cqdt.playtime = t.time().datetime
       cqdt.playnum = playnum
       db.insert("cqssckjinfo", cqdt, function (x) {
+        console.log(x);
+      })
+    })
+  }
+  //----------------------------------tjssc---------------------------------
+  if (t.time().h<=23&&t.time().h>=9&&t.time().s == 10 && t.time().m  % 20 == 2) {
+    request("https://kjh.55128.cn/history_tjssc.aspx", function (err, data, body) {
+      let $ = cheerio.load(body)
+      //开奖号码获取
+      let num = $(".kaij-cartoon span")
+      let str = ""
+      for (let i = 0; i < num.length; i++) {
+        str += num.eq(i).text()
+      }
+      let playnum = str
+      //开奖期数获取
+      let playdate = $(".kaij-qs").html();
+      // 开奖时间获取
+      let cqdt = {}
+      cqdt.playname = "tjssc"
+      cqdt.playdate = playdate + "期"
+      cqdt.playtime = t.time().datetime
+      cqdt.playnum = playnum
+      db.insert("tjssckjinfo", cqdt, function (x) {
+        console.log(x);
+      })
+    })
+  }
+  //----------------------------------xjssc---------------------------------
+  if (t.time().h<=23&&t.time().h>=9&&t.time().s == 10 && t.time().m  % 20 == 2) {
+    request("https://kjh.55128.cn/history_xjssc.aspx", function (err, data, body) {
+      let $ = cheerio.load(body)
+      //开奖号码获取
+      let num = $(".kaij-cartoon span")
+      let str = ""
+      for (let i = 0; i < num.length; i++) {
+        str += num.eq(i).text()
+      }
+      let playnum = str
+      //开奖期数获取
+      let playdate = $(".kaij-qs").html();
+      // 开奖时间获取
+      let cqdt = {}
+      cqdt.playname = "xjssc"
+      cqdt.playdate = playdate + "期"
+      cqdt.playtime = t.time().datetime
+      cqdt.playnum = playnum
+      db.insert("xjssckjinfo", cqdt, function (x) {
         console.log(x);
       })
     })

@@ -36,7 +36,21 @@ create table if not exists gassckjinfo(
   playnum varchar(45)
 )engine=innodb charset=utf8;
 
+create table if not exists xjssckjinfo(
+  playname varchar(45) not null,
+  playdate varchar(45) not null,
+  playtime datetime ,
+  playnum varchar(45)
+)engine=innodb charset=utf8;
+
 create table if not exists cqssckjinfo(
+  playname varchar(45) not null,
+  playdate varchar(45) not null,
+  playtime datetime ,
+  playnum varchar(45)
+)engine=innodb charset=utf8;
+
+create table if not exists tjssckjinfo(
   playname varchar(45) not null,
   playdate varchar(45) not null,
   playtime datetime ,
