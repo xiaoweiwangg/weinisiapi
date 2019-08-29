@@ -72,6 +72,28 @@ exports.fxjlottor = function (fn) {
   })
   connext.end()
 }
+exports.fynlottor = function (fn) {
+  let connext = mysql.createConnection(config)
+  sql = `
+  select * from ynssckjinfo where playtime=(select max(playtime) from ynssckjinfo);
+  `;
+  connext.query(sql, (err, data, fled) => {
+    if (err) { throw err }
+    fn(data)
+  })
+  connext.end()
+}
+exports.ffc3dlottor = function (fn) {
+  let connext = mysql.createConnection(config)
+  sql = `
+  select * from fc3dkjinfo where playtime=(select max(playtime) from fc3dkjinfo);
+  `;
+  connext.query(sql, (err, data, fled) => {
+    if (err) { throw err }
+    fn(data)
+  })
+  connext.end()
+}
 //-------------------------插入公告通知
 exports.gg=function(tb,data, fn) {
   let connext = mysql.createConnection(config)
