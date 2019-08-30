@@ -26,6 +26,8 @@ app.use(router.use)
 app.get("/gonggao", router.gonggao)
 app.post("/inuser", router.inuser)
 app.post("/fuser", router.fuser)
+app.post("/shopcar", router.shopcar)
+app.get("/active", router.active)
 
 //端口监听
 app.listen(80)

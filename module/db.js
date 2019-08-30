@@ -14,6 +14,24 @@ exports.findgg = function (fn) {
   })
   connext.end()
 }
+//-------------------------------查询活动通知
+exports.findactive = function (fn) {
+  let connext = mysql.createConnection(config)
+  connext.query("select * from active;", (err, data, fled) => {
+    if (err) { throw err }
+    fn(data)
+  })
+  connext.end()
+}
+//-------------------------------查询用户余额
+exports.findbalance = function (data,fn) {
+  let connext = mysql.createConnection(config)
+  connext.query(`select balance from userinfo where name='${data.username}';`, (err, data, fled) => {
+    if (err) { throw err }
+    fn(data)
+  })
+  connext.end()
+}
 //======================插入彩票数据
 exports.insert = function (tb,data, fn) {
   let connext = mysql.createConnection(config)
@@ -94,6 +112,17 @@ exports.ffc3dlottor = function (fn) {
   })
   connext.end()
 }
+exports.ftcpl5lottor = function (fn) {
+  let connext = mysql.createConnection(config)
+  sql = `
+  select * from tcpl5kjinfo where playtime=(select max(playtime) from tcpl5kjinfo);
+  `;
+  connext.query(sql, (err, data, fled) => {
+    if (err) { throw err }
+    fn(data)
+  })
+  connext.end()
+}
 //-------------------------插入公告通知
 exports.gg=function(tb,data, fn) {
   let connext = mysql.createConnection(config)
@@ -108,6 +137,19 @@ exports.gg=function(tb,data, fn) {
   connext.end()
 }
 
+//---------------------------插入用户订单数据
+exports.inshop=function(data,fn){
+  let connext = mysql.createConnection(config)
+  sql = `
+  insert into shopcar(username,playgame,playname,playdate,userinput,buytime,buydet,price,iskj)
+  values("${data.username}","${data.playgame}","${data.playname}","${data.playdate}",'${data.userinput}',"${data.buytime}",'${data.buydet}',"${data.price}","${data.iskj}");
+  `;
+  connext.query(sql, (err, data, fled) => { 
+    if (err) { throw err }
+    fn(data)
+  })
+  connext.end()
+}
 //---------------------------插入用户数据
 exports.inuser=function(data,fn){
   let connext = mysql.createConnection(config)
@@ -140,6 +182,15 @@ exports.fuser=function(data,fn){
   select name,phone from userinfo where name="${data.username}" and password="${data.password}";
   `;
   connext.query(sql, (err, data, fled) => {
+    if (err) { throw err }
+    fn(data)
+  })
+  connext.end()
+}
+//-----------------常用操作封装
+exports.set=function(sq,fn){
+  let connext = mysql.createConnection(config)
+  connext.query(sq, (err, data, fled) => {
     if (err) { throw err }
     fn(data)
   })

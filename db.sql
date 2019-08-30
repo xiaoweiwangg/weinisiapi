@@ -57,6 +57,13 @@ create table if not exists fc3dkjinfo(
   playnum varchar(45)
 )engine=innodb charset=utf8;
 
+create table if not exists tcpl5kjinfo(
+  playname varchar(45) not null,
+  playdate varchar(45) not null,
+  playtime datetime ,
+  playnum varchar(45)
+)engine=innodb charset=utf8;
+
 create table if not exists cqssckjinfo(
   playname varchar(45) not null,
   playdate varchar(45) not null,
@@ -84,9 +91,23 @@ create table if not exists gonggao(
   time datetime
 )engine=innodb charset=utf8;
 
+create table if not exists shopcar(
+  id int(45) auto_increment key,
+  username varchar(255) not null,
+  playgame varchar(255) not null,
+  playname varchar(255) not null,
+  playdate varchar(255) not null,
+  userinput varchar(255) not null,
+  buytime datetime,
+  buydet text(500000) not null,
+  price float(255) Default(0.00),
+  iskj tinyint(1) not null
+)engine=innodb charset=utf8;
+
 create table if not exists active(
   id int(45) auto_increment key,
-  cont varchar(2000) not null,
-  time datetime
+  title varchar(2000) not null,
+  time datetime,
+  detail text(10000) 
 )engine=innodb charset=utf8;
 
