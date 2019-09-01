@@ -30,11 +30,14 @@ function fname(x) {
   if (x.includes("三") && x.includes("直选")) {
     return "sxzhx"
   }
+  if (x.includes("三") && x.includes("组选")) {
+    return "sxzxz6"
+  }
   if (x.includes("三") && x.includes("组六")) {
-    return "sxzx6"
+    return "sxzxz6"
   }
   if (x.includes("三") && x.includes("组三")) {
-    return "sxzx3"
+    return "sxzxz3"
   }
   if (x.includes("三") && x.includes("一码不定位")) {
     return "sx1mbdw"
@@ -64,9 +67,6 @@ function fname(x) {
     return "wx3mbdw"
   }
 }
-
-// console.log(fname("前三组选组三"));
-
 function chek(x, kj) {
   if (x.playname.includes("一星直选复式")) {
     let obj = JSON.parse(x.userinput).data
@@ -601,6 +601,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
+
     if (obj[0].includes(kj[0]) && obj[0].includes(kj[1]) && obj[0].includes(kj[2])) {
       console.log("中了", x.playname, "09")
       db.set(
@@ -716,14 +717,18 @@ function chek(x, kj) {
     let obj = JSON.parse(x.buydet).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
+    let nm=fname(x.playname)
+    if (kj[0] == kj[1] || kj[0] == kj[2] || kj[2] == kj[3]) {
+      nm="sxzxz3"
+    }
     if (obj.includes(kj[0] + "" + kj[1] + "" + kj[2]) || obj.includes(kj[0] + "" + kj[2] + "" + kj[1]) || obj.includes(kj[1] + "" + kj[2] + "" + kj[0]) || obj.includes(kj[1] + "" + kj[0] + "" + kj[2]) || obj.includes(kj[2] + "" + kj[1] + "" + kj[0]) || obj.includes(kj[2] + "" + kj[0] + "" + kj[1])) {
       console.log("中了", x.playname, "09")
       db.set(
-        `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
+        `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
-          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          console.log(v[0][nm] * x.playmode * x.playratel);
           db.set(
-            `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
+            `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
             }
           )
@@ -735,14 +740,18 @@ function chek(x, kj) {
     let obj = JSON.parse(x.buydet).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
+    let nm=fname(x.playname)
+    if (kj[1] == kj[2] || kj[1] == kj[3] || kj[2] == kj[3]) {
+      nm="sxzxz3"
+    }
     if (obj.includes(kj[3] + "" + kj[1] + "" + kj[2]) || obj.includes(kj[3] + "" + kj[2] + "" + kj[1]) || obj.includes(kj[1] + "" + kj[2] + "" + kj[3]) || obj.includes(kj[1] + "" + kj[3] + "" + kj[2]) || obj.includes(kj[2] + "" + kj[1] + "" + kj[3]) || obj.includes(kj[2] + "" + kj[3] + "" + kj[1])) {
       console.log("中了", x.playname, "09")
       db.set(
-        `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
+        `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
-          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          console.log(v[0][nm] * x.playmode * x.playratel);
           db.set(
-            `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
+            `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
             }
           )
@@ -754,14 +763,18 @@ function chek(x, kj) {
     let obj = JSON.parse(x.buydet).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
+    let nm=fname(x.playname)
+    if (kj[2] == kj[3] || kj[2] == kj[4] || kj[3] == kj[4]) {
+      nm="sxzxz3"
+    }
     if (obj.includes(kj[2] + "" + kj[3] + "" + kj[4]) || obj.includes(kj[2] + "" + kj[4] + "" + kj[3]) || obj.includes(kj[3] + "" + kj[2] + "" + kj[4]) || obj.includes(kj[3] + "" + kj[4] + "" + kj[2]) || obj.includes(kj[4] + "" + kj[3] + "" + kj[2]) || obj.includes(kj[4] + "" + kj[2] + "" + kj[3])) {
       console.log("中了", x.playname, "09")
       db.set(
-        `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
+        `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
-          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          console.log(v[0][nm] * x.playmode * x.playratel);
           db.set(
-            `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
+            `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
             }
           )
@@ -774,33 +787,42 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
+    let nm=fname(x.playname)
+    if (kj[0] == kj[1] || kj[0] == kj[2] || kj[1] == kj[2]) {
+      nm="sxzxz3"
+    }
     if (obj[0].includes(kj[0] + kj[1] + kj[2])) {
       console.log("中了", x.playname, "09")
-      db.set(
-        `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
-        function (v) {
-          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
-          db.set(
-            `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
-            function (z) {
-            }
-          )
-        }
-      )
+        db.set(
+          `select ${nm} from jjinfo where name="${x.playgame}";`,
+          function (v) {
+            console.log(v[0][nm] * x.playmode * x.playratel);
+            db.set(
+              `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
+              function (z) {
+              }
+            )
+          }
+        )
+      
     }
   }
   if (x.playname.includes("中三组选和值")) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
+    let nm=fname(x.playname)
+    if (kj[1] == kj[2] || kj[1] == kj[3] || kj[2] == kj[3]) {
+      nm="sxzxz3"
+    }
     if (obj[0].includes(kj[3] + kj[1] + kj[2])) {
       console.log("中了", x.playname, "09")
       db.set(
-        `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
+        `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
-          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          console.log(v[0][nm] * x.playmode * x.playratel);
           db.set(
-            `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
+            `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
             }
           )
@@ -812,14 +834,18 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
+    let nm=fname(x.playname)
+    if (kj[2] == kj[3] || kj[2] == kj[4] || kj[3] == kj[4]) {
+      nm="sxzxz3"
+    }
     if (obj[0].includes(kj[4] + kj[3] + kj[2])) {
       console.log("中了", x.playname, "09")
       db.set(
-        `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
+        `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
-          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          console.log(v[0][nm] * x.playmode * x.playratel);
           db.set(
-            `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
+            `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
             }
           )
@@ -911,7 +937,7 @@ function chek(x, kj) {
   }
   if (x.playname.includes("前三二码不定位")) {
     let obj = JSON.parse(x.userinput).data
-    kj = kj.split("").map(t => Number(t)).slice(0,3)
+    kj = kj.split("").map(t => Number(t)).slice(0, 3)
     console.log("obj:", obj[0], kj);
     let n = 0;
     for (let i = 0; i < obj[0].length; i++) {
@@ -936,7 +962,7 @@ function chek(x, kj) {
   }
   if (x.playname.includes("中三二码不定位")) {
     let obj = JSON.parse(x.userinput).data
-    kj = kj.split("").map(t => Number(t)).slice(1,3)
+    kj = kj.split("").map(t => Number(t)).slice(1, 3)
     console.log("obj:", obj[0], kj);
     let n = 0;
     for (let i = 0; i < obj[0].length; i++) {
@@ -961,7 +987,7 @@ function chek(x, kj) {
   }
   if (x.playname.includes("后三二码不定位")) {
     let obj = JSON.parse(x.userinput).data
-    kj = kj.split("").map(t => Number(t)).slice(2,3)
+    kj = kj.split("").map(t => Number(t)).slice(2, 3)
     console.log("obj:", obj[0], kj);
     let n = 0;
     for (let i = 0; i < obj[0].length; i++) {
@@ -988,7 +1014,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    if (obj[0].includes(kj[0])&&obj[1].includes(kj[1])&&obj[2].includes(kj[2])&&obj[3].includes(kj[3])) {
+    if (obj[0].includes(kj[0]) && obj[1].includes(kj[1]) && obj[2].includes(kj[2]) && obj[3].includes(kj[3])) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -1007,7 +1033,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.buydet).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    if (obj.includes(kj[0]+""+kj[1]+""+kj[2]+""+kj[3])) {
+    if (obj.includes(kj[0] + "" + kj[1] + "" + kj[2] + "" + kj[3])) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -1024,9 +1050,9 @@ function chek(x, kj) {
   }
   if (x.playname.includes("四星一码不定位")) {
     let obj = JSON.parse(x.userinput).data
-    kj = kj.split("").map(t => Number(t)).splice(0,4)
+    kj = kj.split("").map(t => Number(t)).splice(0, 4)
     console.log("obj:", obj, kj);
-    if (obj[0].includes(kj[0])||obj[0].includes(kj[1])||obj[0].includes(kj[2])||obj[0].includes(kj[3])) {
+    if (obj[0].includes(kj[0]) || obj[0].includes(kj[1]) || obj[0].includes(kj[2]) || obj[0].includes(kj[3])) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -1043,15 +1069,15 @@ function chek(x, kj) {
   }
   if (x.playname.includes("四星二码不定位")) {
     let obj = JSON.parse(x.userinput).data
-    kj = kj.split("").map(t => Number(t)).splice(1,4)
+    kj = kj.split("").map(t => Number(t)).splice(1, 4)
     console.log("obj:", obj, kj);
-    let n=0
-    for(let i=0;i<obj[0].length;i++){
-      if(kj.includes(obj[0][i])){
+    let n = 0
+    for (let i = 0; i < obj[0].length; i++) {
+      if (kj.includes(obj[0][i])) {
         n++
       }
     }
-    if (n>=2) {
+    if (n >= 2) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -1070,7 +1096,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    if (obj[0].includes(kj[0])&&obj[1].includes(kj[1])&&obj[2].includes(kj[2])&&obj[3].includes(kj[3])&&obj[4].includes(kj[4])) {
+    if (obj[0].includes(kj[0]) && obj[1].includes(kj[1]) && obj[2].includes(kj[2]) && obj[3].includes(kj[3]) && obj[4].includes(kj[4])) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -1089,7 +1115,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.buydet).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    if (obj.includes(kj[0]+""+kj[1]+""+kj[2]+""+kj[3]+""+kj[4])) {
+    if (obj.includes(kj[0] + "" + kj[1] + "" + kj[2] + "" + kj[3] + "" + kj[4])) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -1108,7 +1134,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    if (obj[0].includes(kj[0])||obj[0].includes(kj[1])||obj[0].includes(kj[2])||obj[0].includes(kj[3])||obj[0].includes(kj[4])) {
+    if (obj[0].includes(kj[0]) || obj[0].includes(kj[1]) || obj[0].includes(kj[2]) || obj[0].includes(kj[3]) || obj[0].includes(kj[4])) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -1127,13 +1153,13 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    let n=0
-    for(let i=0;i<obj[0].length;i++){
-      if(kj.includes(obj[0][i])){
+    let n = 0
+    for (let i = 0; i < obj[0].length; i++) {
+      if (kj.includes(obj[0][i])) {
         n++
       }
     }
-    if (n>=2) {
+    if (n >= 2) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -1153,13 +1179,13 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    let n=0
-    for(let i=0;i<obj[0].length;i++){
-      if(kj.includes(obj[0][i])){
+    let n = 0
+    for (let i = 0; i < obj[0].length; i++) {
+      if (kj.includes(obj[0][i])) {
         n++
       }
     }
-    if (n>=3) {
+    if (n >= 3) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -1190,7 +1216,7 @@ io.on('connection', function (socket) {
 
   //定时发送数据
   setInterval(() => {
-    if (t.time().h == 21) {
+  if (t.time().h = 20 && t.time().m == 50&&t.time().s==30) {
       db.ffc3dlottor(function (x) {
         db.set(
           `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
@@ -1198,7 +1224,6 @@ io.on('connection', function (socket) {
             if (m.length > 0) {
               for (let i = 0; i < m.length; i++) {
                 socket.emit(m[i].username, {
-
                   msg: "ok"
                 })
               }
@@ -1501,7 +1526,7 @@ setInterval(() => {
                   chek(m[i], x[0].playnum)
                 }
                 console.log("合计投入" + price);
-  
+
               }
             }
           )
@@ -1541,7 +1566,7 @@ setInterval(() => {
                   chek(m[i], x[0].playnum)
                 }
                 console.log("合计投入" + price);
-  
+
               }
             }
           )
@@ -1579,7 +1604,7 @@ setInterval(() => {
                   chek(m[i], x[0].playnum)
                 }
                 console.log("合计投入" + price);
-  
+
               }
             }
           )
@@ -1619,7 +1644,7 @@ setInterval(() => {
                   chek(m[i], x[0].playnum)
                 }
                 console.log("合计投入" + price);
-  
+
               }
             }
           )
@@ -1628,7 +1653,7 @@ setInterval(() => {
     })
   }
   //----------------------------------fc3d---------------------------------
-  if (t.time().h >= 21 && t.time().h <= 22 && t.time().h == 20 && t.time().m == 50) {
+  if (t.time().h = 20 && t.time().m == 50&&t.time().s==30) {
     request("https://kjh.55128.cn/history_sd.aspx", function (err, data, body) {
       let $ = cheerio.load(body)
       //开奖号码获取
@@ -1659,7 +1684,7 @@ setInterval(() => {
                   chek(m[i], x[0].playnum)
                 }
                 console.log("合计投入" + price);
-  
+
               }
             }
           )
@@ -1699,7 +1724,7 @@ setInterval(() => {
                   chek(m[i], x[0].playnum)
                 }
                 console.log("合计投入" + price);
-  
+
               }
             }
           )
