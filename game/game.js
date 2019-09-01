@@ -468,7 +468,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    if (obj[0].map(p => Number(p)).includes(kj[2] + kj[3] + kj[4])) {
+    if (obj[0].includes(kj[2] + kj[3] + kj[4])) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -487,7 +487,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    if (obj[0].map(p => Number(p)).includes(Math.max(kj[0], kj[1], kj[2]) - Math.min(kj[0], kj[1], kj[2]))) {
+    if (obj[0].includes(Math.max(kj[0], kj[1], kj[2]) - Math.min(kj[0], kj[1], kj[2]))) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -506,7 +506,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    if (obj[0].map(p => Number(p)).includes(Math.max(kj[1], kj[2], kj[3]) - Math.min(kj[1], kj[2], kj[3]))) {
+    if (obj[0].includes(Math.max(kj[1], kj[2], kj[3]) - Math.min(kj[1], kj[2], kj[3]))) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -525,7 +525,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    if (obj[0].map(p => Number(p)).includes(Math.max(kj[2], kj[3], kj[4]) - Math.min(kj[2], kj[3], kj[4]))) {
+    if (obj[0].includes(Math.max(kj[2], kj[3], kj[4]) - Math.min(kj[2], kj[3], kj[4]))) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -774,7 +774,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
-    if (obj[0].includes.map(c => Number(c)).includes(kj[0] + kj[1] + kj[2])) {
+    if (obj[0].includes(kj[0] + kj[1] + kj[2])) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -793,7 +793,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
-    if (obj[0].includes.map(c => Number(c)).includes(kj[3] + kj[1] + kj[2])) {
+    if (obj[0].includes(kj[3] + kj[1] + kj[2])) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -812,7 +812,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
-    if (obj[0].includes.map(c => Number(c)).includes(kj[4] + kj[3] + kj[2])) {
+    if (obj[0].includes(kj[4] + kj[3] + kj[2])) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -831,7 +831,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
-    if (obj[0].includes.includes(kj[0] + "") || obj[0].includes.includes(kj[1] + "") || obj[0].includes.includes(kj[2] + "")) {
+    if (obj[0].includes(kj[0]) || obj[0].includes(kj[1]) || obj[0].includes(kj[2])) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -850,7 +850,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
-    if (obj[0].includes.includes(kj[1] + "") || obj[0].includes.includes(kj[2] + "") || obj[0].includes.includes(kj[3] + "")) {
+    if (obj[0].includes(kj[1]) || obj[0].includes(kj[2]) || obj[0].includes(kj[3])) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -869,7 +869,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
-    if (obj[0].includes.includes(kj[2] + "") || obj[0].includes.includes(kj[3] + "") || obj[0].includes.includes(kj[4] + "")) {
+    if (obj[0].includes(kj[2]) || obj[0].includes(kj[3]) || obj[0].includes(kj[4])) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
