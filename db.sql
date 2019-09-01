@@ -91,6 +91,25 @@ create table if not exists gonggao(
   time datetime
 )engine=innodb charset=utf8;
 
+create table if not exists jjinfo(
+  name varchar(255) not null,
+  yxzhix decimal(20,2) Default(19.60),
+  exzhx decimal(20,2) Default(196.00),
+  exzx decimal(20,2) Default(98.00),
+  sxzhx decimal(20,2) Default(1960.00),
+  sxzxz6 decimal(20,2) Default(326.00),
+  sxzxz3 decimal(20,2) Default(653.00),
+  sx1mbdw decimal(20,2) Default(7.23),
+  sx2mbdw decimal(20,2) Default(36.29),
+  sixzhx decimal(20,2) Default(19600.00),
+  six1mbdw decimal(20,2) Default(5.69),
+  six2mbdw decimal(20,2) Default(20.12),
+  wxzhx decimal(20,2) Default(196000.00),
+  wx1mbdw decimal(20,2) Default(4.78),
+  wx2mbdw decimal(20,2) Default(13.36),
+  wx3mbdw decimal(20,2) Default(45.05)
+)engine=innodb charset=utf8;
+
 create table if not exists shopcar(
   id int(45) auto_increment key,
   username varchar(255) not null,
@@ -99,6 +118,8 @@ create table if not exists shopcar(
   playdate varchar(255) not null,
   userinput varchar(255) not null,
   buytime datetime,
+  playmode float(255) Default(1.00),
+  playratel int(255) Default(1),
   buydet text(500000) not null,
   price float(255) Default(0.00),
   iskj tinyint(1) not null

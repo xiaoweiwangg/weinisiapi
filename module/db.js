@@ -141,8 +141,8 @@ exports.gg=function(tb,data, fn) {
 exports.inshop=function(data,fn){
   let connext = mysql.createConnection(config)
   sql = `
-  insert into shopcar(username,playgame,playname,playdate,userinput,buytime,buydet,price,iskj)
-  values("${data.username}","${data.playgame}","${data.playname}","${data.playdate}",'${data.userinput}',"${data.buytime}",'${data.buydet}',"${data.price}","${data.iskj}");
+  insert into shopcar(username,playgame,playname,playdate,userinput,buytime,buydet,price,iskj,playmode,playratel)
+  values("${data.username}","${data.playgame}","${data.playname}","${data.playdate}",'${data.userinput}',"${data.buytime}",'${data.buydet}',"${data.price}","${data.iskj}","${data.playmode}","${data.playratel}");
   `;
   connext.query(sql, (err, data, fled) => { 
     if (err) { throw err }

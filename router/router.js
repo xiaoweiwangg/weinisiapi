@@ -6,7 +6,7 @@ let token = require("../token/settoken")
 
 //全局路由中间件
 exports.use = function (req, res, next) {
-    console.log(req.headers['user-agent']);
+    // console.log(req.headers['user-agent']);
     if ((req.method.toLowerCase()) == "post") {
         if (req.url != "/fuser" && req.url != "/inuser") {
             if (!req.headers.token) {
@@ -24,6 +24,14 @@ exports.use = function (req, res, next) {
 //查询公告模块
 exports.gonggao = function (req, res) {
     db.findgg((x) => {
+        res.json(x)
+    })
+}
+//查询历史订单模块
+exports.findhistory = function (req, res) {
+    db.set(
+        `select playgame,playname,playdate,buytime,buydet,userinput,price,iskj from shopcar where username="${req.body.username}" `,
+        (x) => {
         res.json(x)
     })
 }

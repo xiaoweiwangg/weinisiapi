@@ -5,8 +5,9 @@ let app = exp()
 
 //处理post请求
 let body = require("body-parser")
-app.use(body.urlencoded({ extended: false }))
-app.use(body.json())
+app.use(body.urlencoded({limit:'50mb', extended: false }))  
+app.use(body.json({limit:'50mb'}))
+
 //静态文件处理
 app.use(exp.static(__dirname + "/dist"))
 //引入并执行game模块
@@ -27,6 +28,7 @@ app.get("/gonggao", router.gonggao)
 app.post("/inuser", router.inuser)
 app.post("/fuser", router.fuser)
 app.post("/shopcar", router.shopcar)
+app.post("/history", router.findhistory)
 app.get("/active", router.active)
 
 //端口监听
