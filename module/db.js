@@ -25,6 +25,8 @@ exports.findactive = function (fn) {
 }
 //-------------------------------查询用户余额
 exports.findbalance = function (data,fn) {
+  console.log(data);
+  
   let connext = mysql.createConnection(config)
   connext.query(`select balance from userinfo where name='${data.username}';`, (err, data, fled) => {
     if (err) { throw err }
@@ -167,7 +169,7 @@ exports.inuser=function(data,fn){
 exports.finduser=function(data,fn){
   let connext = mysql.createConnection(config)
   sql = `
-  select name,rigtime,level,phone,balance from userinfo where name="${data.username}";
+  select name,rigtime,level,phone,balance from userinfo where name="${data.name}";
   `;
   connext.query(sql, (err, data, fled) => {
     if (err) { throw err }
@@ -177,6 +179,8 @@ exports.finduser=function(data,fn){
 }
 //******************************************************* */查询用户名和密码
 exports.fuser=function(data,fn){
+  console.log(data,"1010");
+  
   let connext = mysql.createConnection(config)
   sql = `
   select name,phone from userinfo where name="${data.username}" and password="${data.password}";
@@ -184,6 +188,8 @@ exports.fuser=function(data,fn){
   connext.query(sql, (err, data, fled) => {
     if (err) { throw err }
     fn(data)
+    console.log(data,"2020");
+    
   })
   connext.end()
 }

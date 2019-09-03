@@ -487,7 +487,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    if (obj[0].includes(Math.max(kj[0], kj[1], kj[2]) - Math.min(kj[0], kj[1], kj[2]))) {
+    if (obj[0].includes(Math.abs(Math.max(kj[0], kj[1], kj[2]) - Math.min(kj[0], kj[1], kj[2])))) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -506,7 +506,7 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    if (obj[0].includes(Math.max(kj[1], kj[2], kj[3]) - Math.min(kj[1], kj[2], kj[3]))) {
+    if (obj[0].includes(Math.abs(Math.max(kj[1], kj[2], kj[3]) - Math.min(kj[1], kj[2], kj[3])))) {
       console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -717,9 +717,9 @@ function chek(x, kj) {
     let obj = JSON.parse(x.buydet).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    let nm=fname(x.playname)
+    let nm = fname(x.playname)
     if (kj[0] == kj[1] || kj[0] == kj[2] || kj[2] == kj[3]) {
-      nm="sxzxz3"
+      nm = "sxzxz3"
     }
     if (obj.includes(kj[0] + "" + kj[1] + "" + kj[2]) || obj.includes(kj[0] + "" + kj[2] + "" + kj[1]) || obj.includes(kj[1] + "" + kj[2] + "" + kj[0]) || obj.includes(kj[1] + "" + kj[0] + "" + kj[2]) || obj.includes(kj[2] + "" + kj[1] + "" + kj[0]) || obj.includes(kj[2] + "" + kj[0] + "" + kj[1])) {
       console.log("中了", x.playname, "09")
@@ -740,9 +740,9 @@ function chek(x, kj) {
     let obj = JSON.parse(x.buydet).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    let nm=fname(x.playname)
+    let nm = fname(x.playname)
     if (kj[1] == kj[2] || kj[1] == kj[3] || kj[2] == kj[3]) {
-      nm="sxzxz3"
+      nm = "sxzxz3"
     }
     if (obj.includes(kj[3] + "" + kj[1] + "" + kj[2]) || obj.includes(kj[3] + "" + kj[2] + "" + kj[1]) || obj.includes(kj[1] + "" + kj[2] + "" + kj[3]) || obj.includes(kj[1] + "" + kj[3] + "" + kj[2]) || obj.includes(kj[2] + "" + kj[1] + "" + kj[3]) || obj.includes(kj[2] + "" + kj[3] + "" + kj[1])) {
       console.log("中了", x.playname, "09")
@@ -763,9 +763,9 @@ function chek(x, kj) {
     let obj = JSON.parse(x.buydet).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
-    let nm=fname(x.playname)
+    let nm = fname(x.playname)
     if (kj[2] == kj[3] || kj[2] == kj[4] || kj[3] == kj[4]) {
-      nm="sxzxz3"
+      nm = "sxzxz3"
     }
     if (obj.includes(kj[2] + "" + kj[3] + "" + kj[4]) || obj.includes(kj[2] + "" + kj[4] + "" + kj[3]) || obj.includes(kj[3] + "" + kj[2] + "" + kj[4]) || obj.includes(kj[3] + "" + kj[4] + "" + kj[2]) || obj.includes(kj[4] + "" + kj[3] + "" + kj[2]) || obj.includes(kj[4] + "" + kj[2] + "" + kj[3])) {
       console.log("中了", x.playname, "09")
@@ -787,33 +787,33 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
-    let nm=fname(x.playname)
+    let nm = fname(x.playname)
     if (kj[0] == kj[1] || kj[0] == kj[2] || kj[1] == kj[2]) {
-      nm="sxzxz3"
+      nm = "sxzxz3"
     }
     if (obj[0].includes(kj[0] + kj[1] + kj[2])) {
       console.log("中了", x.playname, "09")
-        db.set(
-          `select ${nm} from jjinfo where name="${x.playgame}";`,
-          function (v) {
-            console.log(v[0][nm] * x.playmode * x.playratel);
-            db.set(
-              `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
-              function (z) {
-              }
-            )
-          }
-        )
-      
+      db.set(
+        `select ${nm} from jjinfo where name="${x.playgame}";`,
+        function (v) {
+          console.log(v[0][nm] * x.playmode * x.playratel);
+          db.set(
+            `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
+            function (z) {
+            }
+          )
+        }
+      )
+
     }
   }
   if (x.playname.includes("中三组选和值")) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
-    let nm=fname(x.playname)
+    let nm = fname(x.playname)
     if (kj[1] == kj[2] || kj[1] == kj[3] || kj[2] == kj[3]) {
-      nm="sxzxz3"
+      nm = "sxzxz3"
     }
     if (obj[0].includes(kj[3] + kj[1] + kj[2])) {
       console.log("中了", x.playname, "09")
@@ -834,9 +834,9 @@ function chek(x, kj) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
-    let nm=fname(x.playname)
+    let nm = fname(x.playname)
     if (kj[2] == kj[3] || kj[2] == kj[4] || kj[3] == kj[4]) {
-      nm="sxzxz3"
+      nm = "sxzxz3"
     }
     if (obj[0].includes(kj[4] + kj[3] + kj[2])) {
       console.log("中了", x.playname, "09")
@@ -1216,7 +1216,7 @@ io.on('connection', function (socket) {
 
   //定时发送数据
   setInterval(() => {
-  if (t.time().h = 20 && t.time().m == 50&&t.time().s==30) {
+    if (t.time().h = 20 && t.time().m == 50 && t.time().s == 30) {
       db.ffc3dlottor(function (x) {
         db.set(
           `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
@@ -1447,8 +1447,9 @@ io.on('connection', function (socket) {
     })
   });
   socket.on("user", function (x) {
+    console.log(x);
     db.findbalance(x, function (data) {
-      console.log(data);
+      console.log(data,"7899");
       socket.emit("balance", data)
 
     })
@@ -1464,7 +1465,7 @@ function tg(str) {
   str = str.replace(/(\\u)(\w{1,4})/gi, function ($0) { return (String.fromCharCode(parseInt((escape($0).replace(/(%5Cu)(\w{1,4})/g, "$2")), 16))); }); str = str.replace(/(&#x)(\w{1,4});/gi, function ($0) { return String.fromCharCode(parseInt(escape($0).replace(/(%26%23x)(\w{1,4})(%3B)/g, "$2"), 16)); }); str = str.replace(/(&#)(\d{1,6});/gi, function ($0) { return String.fromCharCode(parseInt(escape($0).replace(/(%26%23)(\d{1,6})(%3B)/g, "$2"))); }); return str;
 }
 setInterval(() => {
-  if (t.time().s == 0 && t.time().m % 5 == 0) { 
+  if (t.time().s == 0 && t.time().m % 5 == 0) {
     let gadt = {}
     gadt.playname = "gassc"
     gadt.playdate = t.time().date + "期"
@@ -1653,7 +1654,7 @@ setInterval(() => {
     })
   }
   //----------------------------------fc3d---------------------------------
-  if (t.time().h = 20 && t.time().m == 50&&t.time().s==30) {
+  if (t.time().h = 20 && t.time().m == 50 && t.time().s == 30) {
     request("https://kjh.55128.cn/history_sd.aspx", function (err, data, body) {
       let $ = cheerio.load(body)
       //开奖号码获取

@@ -14,7 +14,8 @@ Date: 2019-09-02 21:32:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
+create database if not exists weinisi character set "utf8";
+use weinisi;
 -- ----------------------------
 -- Table structure for active
 -- ----------------------------
@@ -211,7 +212,7 @@ CREATE TABLE `shopcar` (
   `price` float(255,2) NOT NULL DEFAULT '0.00',
   `playgame` varchar(255) NOT NULL,
   `playmode` float(255,2) NOT NULL DEFAULT '1.00',
-  `playratel` int(255) NOT NULL DEFAULT '1',
+  `playratel` float(255,2) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=272 DEFAULT CHARSET=utf8;
 

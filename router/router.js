@@ -69,8 +69,6 @@ exports.inuser = function (req, res) {
     console.log(userinfo);
     
     db.finduser(userinfo, function (x) {
-        console.log(x,"000");
-        
         if (x.length > 0) { 
             res.json({ msg: "no" })
             return 
@@ -86,11 +84,13 @@ exports.inuser = function (req, res) {
 exports.fuser = function (req, res) {
     let userinfo = req.body
     db.fuser(userinfo, function (x) {
-        console.log(x);
+        console.log(x,"303030");
+        console.log(userinfo,"88888");
+        userinfo.name=userinfo.username
         if (x.length >= 1) {
             let usermsg = {}
             db.finduser(userinfo, function (x) {
-        console.log(x);
+        console.log(x,"9090");
         usermsg.userinfo = x[0];
                 usermsg.token = token.settoken(usermsg.userinfo.name, 3)
                 usermsg.msg = "ok"
