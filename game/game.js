@@ -1269,7 +1269,6 @@ io.on('connection', function (socket) {
             console.log(m.length + "条记录");
             if (m.length > 0) {
               for (let i = 0; i < m.length; i++) {
-                chek(m[i], x[0].playnum)
                 socket.emit(m[i].username, {
                   msg: "kj" 
                 })
