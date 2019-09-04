@@ -25,8 +25,6 @@ exports.findactive = function (fn) {
 }
 //-------------------------------查询用户余额
 exports.findbalance = function (data,fn) {
-  console.log(data);
-  
   let connext = mysql.createConnection(config)
   connext.query(`select balance from userinfo where name='${data.username}';`, (err, data, fled) => {
     if (err) { throw err }

@@ -41,6 +41,16 @@ exports.active = function (req, res) {
         res.json(x)
     })
 }
+//提现模块
+exports.cash=function(req,res){
+    db.set(
+        `select card from userinfo where name="${req.body.username}";`,
+        function(x){
+            console.log(x);
+            res.json(x)
+        }
+        )
+}
 //插入订单模块
 exports.shopcar=function(req,res){
     req.body.buytime=time.time().datetime
@@ -58,16 +68,12 @@ exports.shopcar=function(req,res){
             })
         }
     })
-    console.log(req.body)
-    
 }
 //插入用户信息模块
 exports.inuser = function (req, res) {
     let userinfo = req.body
     userinfo.level = 1
     userinfo.rigtime = time.time().datetime
-    console.log(userinfo);
-    
     db.finduser(userinfo, function (x) {
         if (x.length > 0) { 
             res.json({ msg: "no" })
@@ -84,13 +90,10 @@ exports.inuser = function (req, res) {
 exports.fuser = function (req, res) {
     let userinfo = req.body
     db.fuser(userinfo, function (x) {
-        console.log(x,"303030");
-        console.log(userinfo,"88888");
         userinfo.name=userinfo.username
         if (x.length >= 1) {
             let usermsg = {}
             db.finduser(userinfo, function (x) {
-        console.log(x,"9090");
         usermsg.userinfo = x[0];
                 usermsg.token = token.settoken(usermsg.userinfo.name, 3)
                 usermsg.msg = "ok"
