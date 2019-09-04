@@ -29,6 +29,7 @@ app.post("/inuser", router.inuser)
 app.post("/fuser", router.fuser)
 app.post("/shopcar", router.shopcar)
 app.post("/history", router.findhistory)
+app.post("/cash", router.cash)
 app.get("/active", router.active)
 
 //端口监听
