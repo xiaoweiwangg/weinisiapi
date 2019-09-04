@@ -64,14 +64,14 @@ function fname(x) {
     return "wx2mbdw"
   }
   if (x.includes("五") && x.includes("三码不定位")) {
-    return "wx3mbdw" 
+    return "wx3mbdw"
   }
 }
 function chek(x, kj) {
-  if (x.playname.includes("一星直选复式")) { 
+  if (x.playname.includes("一星直选复式")) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
-    console.log(obj, kj,"1234000");
+    console.log(obj, kj, "1234000");
     let n = 0;
     for (let i = 0; i < obj.length; i++) {
       if (obj[i].length > 0) {
@@ -1270,7 +1270,7 @@ io.on('connection', function (socket) {
             if (m.length > 0) {
               for (let i = 0; i < m.length; i++) {
                 socket.emit(m[i].username, {
-                  msg: "kj" 
+                  msg: "kj"
                 })
               }
             }
@@ -1448,7 +1448,7 @@ io.on('connection', function (socket) {
   socket.on("user", function (x) {
     console.log(x);
     db.findbalance(x, function (data) {
-      console.log(data,"7899");
+      console.log(data, "7899");
       socket.emit("balance", data)
 
     })
@@ -1464,196 +1464,205 @@ function tg(str) {
   str = str.replace(/(\\u)(\w{1,4})/gi, function ($0) { return (String.fromCharCode(parseInt((escape($0).replace(/(%5Cu)(\w{1,4})/g, "$2")), 16))); }); str = str.replace(/(&#x)(\w{1,4});/gi, function ($0) { return String.fromCharCode(parseInt(escape($0).replace(/(%26%23x)(\w{1,4})(%3B)/g, "$2"), 16)); }); str = str.replace(/(&#)(\d{1,6});/gi, function ($0) { return String.fromCharCode(parseInt(escape($0).replace(/(%26%23)(\d{1,6})(%3B)/g, "$2"))); }); return str;
 }
 setInterval(() => {
-  if (t.time().s == 0 && t.time().m % 5 == 0) {
-    let gadt = {}
-    gadt.playname = "gassc"
-    gadt.playdate = t.time().date + "期"
-    gadt.playnum = getssc(...config)
-    gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${_.random(0, 59)}`
+  if (t.time().h <= 23 && t.time().m <= 59 || t.time().h >= 8 && t.time().m >= 30) {
+    if (t.time().s == 0 && t.time().m % 5 == 0) {
+      let gadt = {}
+      gadt.playname = "gassc"
+      gadt.playdate = t.time().date + "期"
+      gadt.playnum = getssc(...config)
+      gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${_.random(0, 59)}`
 
-    db.insert("gassckjinfo", gadt, function (x) {
-      //这里设定查询用户中奖信息
-      db.fgalottor(function (x) {
-        db.set(
-          `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
-          function (m) {
-            let price = 0
-            console.log(m.length + "条记录");
-            if (m.length > 0) {
-              for (let i = 0; i < m.length; i++) {
-                price += m[i].price
-                chek(m[i], x[0].playnum)
+      db.insert("gassckjinfo", gadt, function (x) {
+        //这里设定查询用户中奖信息
+        db.fgalottor(function (x) {
+          db.set(
+            `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
+            function (m) {
+              let price = 0
+              console.log(m.length + "条记录");
+              if (m.length > 0) {
+                for (let i = 0; i < m.length; i++) {
+                  price += m[i].price
+                  chek(m[i], x[0].playnum)
+                }
+                console.log("合计投入" + price);
+
               }
-              console.log("合计投入" + price);
-
             }
-          }
-        )
+          )
+        })
       })
-    })
+    }
   }
 }, 1000)
 //*************************************cqssc****************************************** */
 setInterval(() => {
-  if (t.time().h > 7 && t.time().s == 30 && (t.time().m - 10) % 20 == 3) {
-    request("https://kjh.55128.cn/history_chongqingssc.aspx", function (err, data, body) {
-      let $ = cheerio.load(body)
-      //开奖号码获取 
-      let num = $(".kaij-cartoon span")
-      let str = ""
-      for (let i = 0; i < num.length; i++) {
-        str += num.eq(i).text()
-      }
-      let playnum = str
-      //开奖期数获取
-      let playdate = $(".kaij-qs").html();
-      // 开奖时间获取
-      let cqdt = {}
-      cqdt.playname = "cqssc"
-      cqdt.playdate = playdate + "期"
-      cqdt.playtime = t.time().datetime
-      cqdt.playnum = playnum
-      db.insert("cqssckjinfo", cqdt, function (x) {
-        db.fcqlottor(function (x) {
-          db.set(
-            `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
-            function (m) {
-              let price = 0
-              console.log(m.length + "条记录");
-              if (m.length > 0) {
-                for (let i = 0; i < m.length; i++) {
-                  price += m[i].price
-                  chek(m[i], x[0].playnum)
-                }
-                console.log("合计投入" + price);
+  if (t.time().h <= 23 && t.time().m <= 59 || t.time().h >= 8 && t.time().m >= 30) {
+    if (t.time().h > 7 && t.time().s == 30 && (t.time().m - 10) % 20 == 3) {
+      request("https://kjh.55128.cn/history_chongqingssc.aspx", function (err, data, body) {
+        let $ = cheerio.load(body)
+        //开奖号码获取 
+        let num = $(".kaij-cartoon span")
+        let str = ""
+        for (let i = 0; i < num.length; i++) {
+          str += num.eq(i).text()
+        }
+        let playnum = str
+        //开奖期数获取
+        let playdate = $(".kaij-qs").html();
+        // 开奖时间获取
+        let cqdt = {}
+        cqdt.playname = "cqssc"
+        cqdt.playdate = playdate + "期"
+        cqdt.playtime = t.time().datetime
+        cqdt.playnum = playnum
+        db.insert("cqssckjinfo", cqdt, function (x) {
+          db.fcqlottor(function (x) {
+            db.set(
+              `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
+              function (m) {
+                let price = 0
+                console.log(m.length + "条记录");
+                if (m.length > 0) {
+                  for (let i = 0; i < m.length; i++) {
+                    price += m[i].price
+                    chek(m[i], x[0].playnum)
+                  }
+                  console.log("合计投入" + price);
 
+                }
               }
-            }
-          )
+            )
+          })
         })
       })
-    })
+    }
   }
   //----------------------------------tjssc---------------------------------
-  if (t.time().h <= 23 && t.time().h >= 9 && t.time().s == 10 && t.time().m % 20 == 2) {
-    request("https://kjh.55128.cn/history_tjssc.aspx", function (err, data, body) {
-      let $ = cheerio.load(body)
-      //开奖号码获取
-      let num = $(".kaij-cartoon span")
-      let str = ""
-      for (let i = 0; i < num.length; i++) {
-        str += num.eq(i).text()
-      }
-      let playnum = str
-      //开奖期数获取
-      let playdate = $(".kaij-qs").html();
-      // 开奖时间获取
-      let cqdt = {}
-      cqdt.playname = "tjssc"
-      cqdt.playdate = playdate + "期"
-      cqdt.playtime = t.time().datetime
-      cqdt.playnum = playnum
-      db.insert("tjssckjinfo", cqdt, function (x) {
-        db.ftjlottor(function (x) {
-          db.set(
-            `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
-            function (m) {
-              let price = 0
-              console.log(m.length + "条记录");
-              if (m.length > 0) {
-                for (let i = 0; i < m.length; i++) {
-                  price += m[i].price
-                  chek(m[i], x[0].playnum)
-                }
-                console.log("合计投入" + price);
+  if (t.time().h <= 23 && t.time().m <= 59 || t.time().h >= 8 && t.time().m >= 30) {
+    if (t.time().s == 10 && t.time().m % 20 == 2) {
+      request("https://kjh.55128.cn/history_tjssc.aspx", function (err, data, body) {
+        let $ = cheerio.load(body)
+        //开奖号码获取
+        let num = $(".kaij-cartoon span")
+        let str = ""
+        for (let i = 0; i < num.length; i++) {
+          str += num.eq(i).text()
+        }
+        let playnum = str
+        //开奖期数获取
+        let playdate = $(".kaij-qs").html();
+        // 开奖时间获取
+        let cqdt = {}
+        cqdt.playname = "tjssc"
+        cqdt.playdate = playdate + "期"
+        cqdt.playtime = t.time().datetime
+        cqdt.playnum = playnum
+        db.insert("tjssckjinfo", cqdt, function (x) {
+          db.ftjlottor(function (x) {
+            db.set(
+              `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
+              function (m) {
+                let price = 0
+                console.log(m.length + "条记录");
+                if (m.length > 0) {
+                  for (let i = 0; i < m.length; i++) {
+                    price += m[i].price
+                    chek(m[i], x[0].playnum)
+                  }
+                  console.log("合计投入" + price);
 
+                }
               }
-            }
-          )
+            )
+          })
         })
       })
-    })
-    //----------------------------------ynssc---------------------
-    request("https://kjh.55128.cn/history_yunnanssc.aspx", function (err, data, body) {
-      let $ = cheerio.load(body)
-      //开奖号码获取
-      let num = $(".kaij-cartoon span")
-      let str = ""
-      for (let i = 0; i < num.length; i++) {
-        str += num.eq(i).text()
-      }
-      let playnum = str
-      //开奖期数获取
-      let playdate = $(".kaij-qs").html();
-      // 开奖时间获取
-      let cqdt = {}
-      cqdt.playname = "ynssc"
-      cqdt.playdate = playdate + "期"
-      cqdt.playtime = t.time().datetime
-      cqdt.playnum = playnum
-      db.insert("ynssckjinfo", cqdt, function (x) {
-        db.fynlottor(function (x) {
-          db.set(
-            `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
-            function (m) {
-              let price = 0
-              console.log(m.length + "条记录");
-              if (m.length > 0) {
-                for (let i = 0; i < m.length; i++) {
-                  price += m[i].price
-                  chek(m[i], x[0].playnum)
-                }
-                console.log("合计投入" + price);
+      //----------------------------------ynssc---------------------
+      request("https://kjh.55128.cn/history_yunnanssc.aspx", function (err, data, body) {
+        let $ = cheerio.load(body)
+        //开奖号码获取
+        let num = $(".kaij-cartoon span")
+        let str = ""
+        for (let i = 0; i < num.length; i++) {
+          str += num.eq(i).text()
+        }
+        let playnum = str
+        //开奖期数获取
+        let playdate = $(".kaij-qs").html();
+        // 开奖时间获取
+        let cqdt = {}
+        cqdt.playname = "ynssc"
+        cqdt.playdate = playdate + "期"
+        cqdt.playtime = t.time().datetime
+        cqdt.playnum = playnum
+        db.insert("ynssckjinfo", cqdt, function (x) {
+          db.fynlottor(function (x) {
+            db.set(
+              `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
+              function (m) {
+                let price = 0
+                console.log(m.length + "条记录");
+                if (m.length > 0) {
+                  for (let i = 0; i < m.length; i++) {
+                    price += m[i].price
+                    chek(m[i], x[0].playnum)
+                  }
+                  console.log("合计投入" + price);
 
+                }
               }
-            }
-          )
+            )
+          })
         })
       })
-    })
+    }
   }
-  //----------------------------------xjssc---------------------------------
-  if (t.time().h <= 23 && t.time().h >= 9 && t.time().s == 10 && t.time().m % 20 == 2) {
-    request("https://kjh.55128.cn/history_xjssc.aspx", function (err, data, body) {
-      let $ = cheerio.load(body)
-      //开奖号码获取
-      let num = $(".kaij-cartoon span")
-      let str = ""
-      for (let i = 0; i < num.length; i++) {
-        str += num.eq(i).text()
-      }
-      let playnum = str
-      //开奖期数获取
-      let playdate = $(".kaij-qs").html();
-      // 开奖时间获取
-      let cqdt = {}
-      cqdt.playname = "xjssc"
-      cqdt.playdate = playdate + "期"
-      cqdt.playtime = t.time().datetime
-      cqdt.playnum = playnum
-      db.insert("xjssckjinfo", cqdt, function (x) {
-        db.fxjlottor(function (x) {
-          db.set(
-            `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
-            function (m) {
-              let price = 0
-              console.log(m.length + "条记录");
-              if (m.length > 0) {
-                for (let i = 0; i < m.length; i++) {
-                  price += m[i].price
-                  chek(m[i], x[0].playnum)
-                }
-                console.log("合计投入" + price);
 
+  //----------------------------------xjssc---------------------------------
+  if (t.time().h <= 23 && t.time().m <= 59 || t.time().h >= 8 && t.time().m >= 30) {
+    if (t.time().h <= 23 && t.time().h >= 9 && t.time().s == 10 && t.time().m % 20 == 2) {
+      request("https://kjh.55128.cn/history_xjssc.aspx", function (err, data, body) {
+        let $ = cheerio.load(body)
+        //开奖号码获取
+        let num = $(".kaij-cartoon span")
+        let str = ""
+        for (let i = 0; i < num.length; i++) {
+          str += num.eq(i).text()
+        }
+        let playnum = str
+        //开奖期数获取
+        let playdate = $(".kaij-qs").html();
+        // 开奖时间获取
+        let cqdt = {}
+        cqdt.playname = "xjssc"
+        cqdt.playdate = playdate + "期"
+        cqdt.playtime = t.time().datetime
+        cqdt.playnum = playnum
+        db.insert("xjssckjinfo", cqdt, function (x) {
+          db.fxjlottor(function (x) {
+            db.set(
+              `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
+              function (m) {
+                let price = 0
+                console.log(m.length + "条记录");
+                if (m.length > 0) {
+                  for (let i = 0; i < m.length; i++) {
+                    price += m[i].price
+                    chek(m[i], x[0].playnum)
+                  }
+                  console.log("合计投入" + price);
+
+                }
               }
-            }
-          )
+            )
+          })
         })
       })
-    })
+    }
   }
   //----------------------------------fc3d---------------------------------
-  if (t.time().h = 20 && t.time().m == 50 && t.time().s == 30) {
+  if (t.time().h == 21 && t.time().m == 30 && t.time().s == 30) {
     request("https://kjh.55128.cn/history_sd.aspx", function (err, data, body) {
       let $ = cheerio.load(body)
       //开奖号码获取
@@ -1691,9 +1700,6 @@ setInterval(() => {
         })
       })
     })
-  }
-  //----------------------------------tcpl5/3---------------------------------
-  if (t.time().h >= 21 && t.time().h <= 22 && t.time().h == 20 && t.time().m == 50) {
     request("https://kjh.55128.cn/history_p5.aspx", function (err, data, body) {
       let $ = cheerio.load(body)
       //开奖号码获取
@@ -1732,4 +1738,5 @@ setInterval(() => {
       })
     })
   }
+  //----------------------------------tcpl5/3---------------------------------
 }, 1000)

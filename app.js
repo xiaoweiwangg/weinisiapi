@@ -29,6 +29,8 @@ app.post("/inuser", router.inuser)
 app.post("/fuser", router.fuser)
 app.post("/shopcar", router.shopcar)
 app.post("/history", router.findhistory)
+app.post("/incard", router.incard)
+app.post("/subcash", router.subcash)
 app.post("/cash", router.cash)
 app.get("/active", router.active)
 
