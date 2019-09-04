@@ -264,6 +264,9 @@ CREATE TABLE `userinfo` (
   `rigtime` datetime DEFAULT NULL,
   `level` int(10) NOT NULL,
   `phone` varchar(45) NOT NULL,
+  `realname` varchar(255),
+  `pwd` varchar(255) ,
+  `card` varchar(255) ,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;

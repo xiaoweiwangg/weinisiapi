@@ -64,14 +64,14 @@ function fname(x) {
     return "wx2mbdw"
   }
   if (x.includes("五") && x.includes("三码不定位")) {
-    return "wx3mbdw"
+    return "wx3mbdw" 
   }
 }
 function chek(x, kj) {
-  if (x.playname.includes("一星直选复式")) {
+  if (x.playname.includes("一星直选复式")) { 
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
-    console.log(obj, kj);
+    console.log(obj, kj,"1234000");
     let n = 0;
     for (let i = 0; i < obj.length; i++) {
       if (obj[i].length > 0) {
@@ -1269,9 +1269,9 @@ io.on('connection', function (socket) {
             console.log(m.length + "条记录");
             if (m.length > 0) {
               for (let i = 0; i < m.length; i++) {
-                // chek(m[i], x[0].playnum)
+                chek(m[i], x[0].playnum)
                 socket.emit(m[i].username, {
-                  msg: "kj"
+                  msg: "kj" 
                 })
               }
             }

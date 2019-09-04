@@ -98,7 +98,7 @@ exports.fynlottor = function (fn) {
   select * from ynssckjinfo where playtime=(select max(playtime) from ynssckjinfo);
   `;
   connext.query(sql, (err, data, fled) => {
-    if (err) { throw err }
+    // if (err) { throw err }
     fn(data)
   })
   connext.end()
