@@ -262,7 +262,6 @@ CREATE TABLE `userinfo` (
   `password` varchar(300) NOT NULL,
   `balance` decimal(65,2) DEFAULT '0.00',
   `rigtime` datetime DEFAULT NULL,
-  `card` varchar(255),
   `level` int(10) NOT NULL,
   `phone` varchar(45) NOT NULL,
   `realname` varchar(255),
