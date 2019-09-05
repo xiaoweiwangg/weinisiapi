@@ -209,6 +209,8 @@ CREATE TABLE `shopcar` (
   `buytime` datetime NOT NULL,
   `buydet` mediumtext NOT NULL,
   `iskj` tinyint(1) NOT NULL DEFAULT '0',
+  `iszk` varchar(25),
+  `kjnum` varchar(25),
   `price` float(255,2) NOT NULL DEFAULT '0.00',
   `playgame` varchar(255) NOT NULL,
   `playmode` float(255,2) NOT NULL DEFAULT '1.00',

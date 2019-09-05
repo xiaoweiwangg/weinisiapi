@@ -77,10 +77,10 @@ function chek(x, kj) {
       if (obj[i].length > 0) {
         if (obj[i].includes(kj[i])) {
           n++
+          db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "00")
         }
       }
     }
-    console.log("中了", x.playname, "00")
     db.set(
       `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
       function (v) {
@@ -102,7 +102,7 @@ function chek(x, kj) {
     let n = 0;
     if (obj[0].includes(kj[0]) && obj[1].includes(kj[1])) {
       n++
-      console.log("中了", x.playname, "01")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "01")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -122,7 +122,7 @@ function chek(x, kj) {
     let n = 0;
     if (obj[0].includes(kj[3]) && obj[1].includes(kj[4])) {
       n++
-      console.log("中了", x.playname, "02")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "02")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -144,7 +144,7 @@ function chek(x, kj) {
     console.log(obj, kj);
     if (obj[0].includes(kj[3] + kj[4])) {
       n++
-      console.log("中了", x.playname, "03")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "03")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -163,7 +163,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj[0].includes((kj[0] + kj[1]))) {
-      console.log("中了", x.playname, "04")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "04")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -182,7 +182,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj[0].includes(Math.abs(kj[0] - kj[1]))) {
-      console.log("中了", x.playname, "05")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "05")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -201,7 +201,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj[0].includes(Math.abs(kj[3] - kj[4]))) {
-      console.log("中了", x.playname, "05")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "05")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -220,7 +220,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj.includes((kj[0] + "" + kj[1]))) {
-      console.log("中了", x.playname, "06")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "06")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -239,7 +239,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj.includes(kj[0] + "" + kj[1]) || obj.includes(kj[1] + "" + kj[0])) {
-      console.log("中了", x.playname, "07")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "07")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -258,7 +258,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj.includes(kj[3] + "" + kj[4])) {
-      console.log("中了", x.playname, "08")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "08")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -277,7 +277,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj.includes(kj[3] + "" + kj[4]) || obj.includes(kj[4] + "" + kj[3])) {
-      console.log("中了", x.playname, "07")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "07")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -297,7 +297,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (kj[0] != kj[1] && obj[0].includes(kj[0]) && obj[0].includes(kj[1])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -316,7 +316,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (kj[3] != kj[4] && obj[0].includes(kj[3]) && obj[0].includes(kj[4])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -335,7 +335,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (kj[0] != kj[1] && obj[0].map(u => Number(u)).includes((kj[0] + kj[1]))) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -354,7 +354,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (kj[3] != kj[4] && obj[0].map(u => Number(u)).includes((kj[3] + kj[4]))) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -373,7 +373,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[0]) && obj[1].includes(kj[1]) && obj[2].includes(kj[2])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -392,7 +392,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[1]) && obj[1].includes(kj[2]) && obj[2].includes(kj[3])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -412,7 +412,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[2]) && obj[1].includes(kj[3]) && obj[2].includes(kj[4])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -431,7 +431,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].map(p => Number(p)).includes(kj[0] + kj[1] + kj[2])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -450,7 +450,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].map(p => Number(p)).includes(kj[1] + kj[2] + kj[3])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -469,7 +469,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[2] + kj[3] + kj[4])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -488,7 +488,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(Math.abs(Math.max(kj[0], kj[1], kj[2]) - Math.min(kj[0], kj[1], kj[2])))) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -507,7 +507,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(Math.abs(Math.max(kj[1], kj[2], kj[3]) - Math.min(kj[1], kj[2], kj[3])))) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -526,7 +526,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(Math.max(kj[2], kj[3], kj[4]) - Math.min(kj[2], kj[3], kj[4]))) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -545,7 +545,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj.includes(kj[0] + "" + kj[1] + "" + kj[2])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -564,7 +564,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj.includes(kj[1] + "" + kj[2] + "" + kj[3])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -583,7 +583,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj.includes(kj[2] + "" + kj[3] + "" + kj[4])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -603,7 +603,7 @@ function chek(x, kj) {
     console.log("obj:", obj[0], kj);
 
     if (obj[0].includes(kj[0]) && obj[0].includes(kj[1]) && obj[0].includes(kj[2])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -622,7 +622,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[1]) && obj[0].includes(kj[2]) && obj[0].includes(kj[3])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -641,7 +641,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[2]) && obj[0].includes(kj[3]) && obj[0].includes(kj[4])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -660,7 +660,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[0]) && obj[0].includes(kj[1]) && obj[0].includes(kj[2])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -679,7 +679,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[1]) && obj[0].includes(kj[2]) && obj[0].includes(kj[3])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -698,7 +698,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[2]) && obj[0].includes(kj[3]) && obj[0].includes(kj[4])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -722,7 +722,7 @@ function chek(x, kj) {
       nm = "sxzxz3"
     }
     if (obj.includes(kj[0] + "" + kj[1] + "" + kj[2]) || obj.includes(kj[0] + "" + kj[2] + "" + kj[1]) || obj.includes(kj[1] + "" + kj[2] + "" + kj[0]) || obj.includes(kj[1] + "" + kj[0] + "" + kj[2]) || obj.includes(kj[2] + "" + kj[1] + "" + kj[0]) || obj.includes(kj[2] + "" + kj[0] + "" + kj[1])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -745,7 +745,7 @@ function chek(x, kj) {
       nm = "sxzxz3"
     }
     if (obj.includes(kj[3] + "" + kj[1] + "" + kj[2]) || obj.includes(kj[3] + "" + kj[2] + "" + kj[1]) || obj.includes(kj[1] + "" + kj[2] + "" + kj[3]) || obj.includes(kj[1] + "" + kj[3] + "" + kj[2]) || obj.includes(kj[2] + "" + kj[1] + "" + kj[3]) || obj.includes(kj[2] + "" + kj[3] + "" + kj[1])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -768,7 +768,7 @@ function chek(x, kj) {
       nm = "sxzxz3"
     }
     if (obj.includes(kj[2] + "" + kj[3] + "" + kj[4]) || obj.includes(kj[2] + "" + kj[4] + "" + kj[3]) || obj.includes(kj[3] + "" + kj[2] + "" + kj[4]) || obj.includes(kj[3] + "" + kj[4] + "" + kj[2]) || obj.includes(kj[4] + "" + kj[3] + "" + kj[2]) || obj.includes(kj[4] + "" + kj[2] + "" + kj[3])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -792,7 +792,7 @@ function chek(x, kj) {
       nm = "sxzxz3"
     }
     if (obj[0].includes(kj[0] + kj[1] + kj[2])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -816,7 +816,7 @@ function chek(x, kj) {
       nm = "sxzxz3"
     }
     if (obj[0].includes(kj[3] + kj[1] + kj[2])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -839,7 +839,7 @@ function chek(x, kj) {
       nm = "sxzxz3"
     }
     if (obj[0].includes(kj[4] + kj[3] + kj[2])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -858,7 +858,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[0]) || obj[0].includes(kj[1]) || obj[0].includes(kj[2])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -877,7 +877,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[1]) || obj[0].includes(kj[2]) || obj[0].includes(kj[3])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -896,7 +896,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[2]) || obj[0].includes(kj[3]) || obj[0].includes(kj[4])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -920,7 +920,7 @@ function chek(x, kj) {
         n++
       }
       if (n >= 2) {
-        console.log("中了", x.playname, "09")
+        db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
         db.set(
           `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
           function (v) {
@@ -945,7 +945,7 @@ function chek(x, kj) {
         n++
       }
       if (n >= 2) {
-        console.log("中了", x.playname, "09")
+        db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
         db.set(
           `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
           function (v) {
@@ -970,7 +970,7 @@ function chek(x, kj) {
         n++
       }
       if (n >= 2) {
-        console.log("中了", x.playname, "09")
+        db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
         db.set(
           `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
           function (v) {
@@ -995,7 +995,7 @@ function chek(x, kj) {
         n++
       }
       if (n >= 2) {
-        console.log("中了", x.playname, "09")
+        db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
         db.set(
           `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
           function (v) {
@@ -1015,7 +1015,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[0]) && obj[1].includes(kj[1]) && obj[2].includes(kj[2]) && obj[3].includes(kj[3])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1034,7 +1034,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj.includes(kj[0] + "" + kj[1] + "" + kj[2] + "" + kj[3])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1053,7 +1053,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t)).splice(0, 4)
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[0]) || obj[0].includes(kj[1]) || obj[0].includes(kj[2]) || obj[0].includes(kj[3])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1078,7 +1078,7 @@ function chek(x, kj) {
       }
     }
     if (n >= 2) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1097,7 +1097,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[0]) && obj[1].includes(kj[1]) && obj[2].includes(kj[2]) && obj[3].includes(kj[3]) && obj[4].includes(kj[4])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1116,7 +1116,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj.includes(kj[0] + "" + kj[1] + "" + kj[2] + "" + kj[3] + "" + kj[4])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1135,7 +1135,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[0]) || obj[0].includes(kj[1]) || obj[0].includes(kj[2]) || obj[0].includes(kj[3]) || obj[0].includes(kj[4])) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1160,7 +1160,7 @@ function chek(x, kj) {
       }
     }
     if (n >= 2) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1186,7 +1186,7 @@ function chek(x, kj) {
       }
     }
     if (n >= 3) {
-      console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`,(k)=>{console.log(k)})     ;console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {

@@ -38,7 +38,7 @@ exports.incard = function (req, res) {
 //查询历史订单模块
 exports.findhistory = function (req, res) {
     db.set(
-        `select playgame,playname,playdate,buytime,buydet,userinput,price,iskj,playmode,playratel from shopcar where username="${req.body.username}" `,
+        `select playgame,playname,playdate,buytime,buydet,userinput,price,iskj,iszk,kjnum,playmode,playratel from shopcar where username="${req.body.username}" `,
         (x) => {
             res.json(x)
         })
