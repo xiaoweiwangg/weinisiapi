@@ -24,7 +24,7 @@ exports.use = function (req, res, next) {
 exports.fhistory=function(req,res){
 console.log(req.query.item);
 db.set(
-    `select * from ${req.query.item+"kjinfo"} desc limit 10;`  
+    `select * from ${req.query.item+"kjinfo"} order by playdate desc limit 10;`  
     ,function(x){
         res.json({data:x})
     }
