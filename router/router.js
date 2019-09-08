@@ -21,6 +21,16 @@ exports.use = function (req, res, next) {
         next()
     }
 }
+exports.fhistory=function(req,res){
+console.log(req.query.item);
+db.set(
+    `select * from ${req.query.item+"kjinfo"} order by playdate desc limit 10;`  
+    ,function(x){
+        res.json({data:x})
+    }
+)
+
+}
 //查询公告模块
 exports.gonggao = function (req, res) {
     db.findgg((x) => {

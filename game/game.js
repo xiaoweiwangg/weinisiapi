@@ -68,6 +68,9 @@ function fname(x) {
   }
 }
 function chek(x, kj) {
+  // if(){}
+  console.log(x);
+  
   if (x.playname.includes("一星直选复式")) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
@@ -1272,6 +1275,9 @@ io.on('connection', function (socket) {
       })
     }
     //----------------cqssc
+    if(t.time().h>=8&&t.time().m>=30){
+
+    }
     if (t.time().s == 40 && (t.time().m - 10) % 20 == 3) {
       db.fcqlottor(function (x) {
         db.set(
@@ -1315,7 +1321,7 @@ io.on('connection', function (socket) {
       })
     }
     //-----------------tjssc
-    if (t.time().s == 20 && t.time().m % 20 == 2) {
+    if (t.time().s == 10 && t.time().m % 20 == 3) {
       db.fxjlottor(function (x) {
         db.set(
           `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
