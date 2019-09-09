@@ -92,7 +92,7 @@ exports.cash = function (req, res) {
 }
 //插入订单模块
 exports.shopcar = function (req, res) {
-    req.body.buytime = time.time().datetime
+    req.body.buytime = (new Date()).getTime()+"";
     db.findbalance(req.body, function (x) {
         if (req.body.price > Number(x[0].balance)) {
             res.json({ msg: "余额不足" })
@@ -120,7 +120,8 @@ exports.inuser = function (req, res) {
         }
         db.inuser(userinfo, function (y) {
             delete userinfo.password
-            userinfo.balance = 0.00
+            userinfo.balance = 39.00;
+
             res.json({ msg: "ok", token: token.settoken(userinfo.name, 3), userinfo: userinfo })
         })
     })

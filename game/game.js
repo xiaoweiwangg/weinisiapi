@@ -70,19 +70,32 @@ function fname(x) {
 function chek(x, kj) {
   // if(){}
   console.log(x);
-  
+
   if (x.playname.includes("一星直选复式")) {
     let obj = JSON.parse(x.userinput).data
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj, "1234000");
     let n = 0;
-    for (let i = 0; i < obj.length; i++) {
-      if (obj[i].length > 0) {
-        if (obj[i].includes(kj[i])) {
-          n++
-          db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "00")
-        }
-      }
+    if (obj[0].includes(kj[0])) {
+      n++
+    }
+    if (obj[1].includes(kj[1])) {
+      n++
+    }
+    if (obj[2].includes(kj[2])) {
+      n++
+    }
+    if (obj[3].includes(kj[3])) {
+      n++
+    }
+    if (obj[4].includes(kj[4])) {
+      n++
+    }
+    console.log(x.userinput, "---------***********");
+    if (n == 0) {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "00")
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "00")
     }
     db.set(
       `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
@@ -105,7 +118,7 @@ function chek(x, kj) {
     let n = 0;
     if (obj[0].includes(kj[0]) && obj[1].includes(kj[1])) {
       n++
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "01")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "01")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -117,6 +130,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后二直选复式")) {
@@ -125,7 +140,7 @@ function chek(x, kj) {
     let n = 0;
     if (obj[0].includes(kj[3]) && obj[1].includes(kj[4])) {
       n++
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "02")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "02")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -138,6 +153,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后二") && x.playname.includes("直选和值")) {
@@ -147,7 +164,7 @@ function chek(x, kj) {
     console.log(obj, kj);
     if (obj[0].includes(kj[3] + kj[4])) {
       n++
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "03")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "03")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -159,6 +176,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("前二") && x.playname.includes("直选和值")) {
@@ -166,7 +185,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj[0].includes((kj[0] + kj[1]))) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "04")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "04")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -178,6 +197,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("前二") && x.playname.includes("直选跨度")) {
@@ -185,7 +206,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj[0].includes(Math.abs(kj[0] - kj[1]))) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "05")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "05")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -197,6 +218,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后二") && x.playname.includes("直选跨度")) {
@@ -204,7 +227,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj[0].includes(Math.abs(kj[3] - kj[4]))) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "05")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "05")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -216,6 +239,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("前二直选单式")) {
@@ -223,7 +248,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj.includes((kj[0] + "" + kj[1]))) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "06")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "06")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -235,6 +260,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("前二组选单式")) {
@@ -242,7 +269,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj.includes(kj[0] + "" + kj[1]) || obj.includes(kj[1] + "" + kj[0])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "07")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "07")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -254,6 +281,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后二直选单式")) {
@@ -261,7 +290,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj.includes(kj[3] + "" + kj[4])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "08")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "08")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -273,6 +302,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后二组选单式")) {
@@ -280,7 +311,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log(obj, kj);
     if (obj.includes(kj[3] + "" + kj[4]) || obj.includes(kj[4] + "" + kj[3])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "07")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "07")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -292,6 +323,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
 
@@ -300,7 +333,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (kj[0] != kj[1] && obj[0].includes(kj[0]) && obj[0].includes(kj[1])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -312,6 +345,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后二组选复式")) {
@@ -319,7 +354,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (kj[3] != kj[4] && obj[0].includes(kj[3]) && obj[0].includes(kj[4])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -331,6 +366,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("前二组选和值")) {
@@ -338,7 +375,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (kj[0] != kj[1] && obj[0].map(u => Number(u)).includes((kj[0] + kj[1]))) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -350,6 +387,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后二组选和值")) {
@@ -357,7 +396,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (kj[3] != kj[4] && obj[0].map(u => Number(u)).includes((kj[3] + kj[4]))) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -369,6 +408,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("前三直选复式")) {
@@ -376,7 +417,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[0]) && obj[1].includes(kj[1]) && obj[2].includes(kj[2])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -388,6 +429,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("中三直选复式")) {
@@ -395,7 +438,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[1]) && obj[1].includes(kj[2]) && obj[2].includes(kj[3])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -407,6 +450,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
 
@@ -415,7 +460,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[2]) && obj[1].includes(kj[3]) && obj[2].includes(kj[4])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -427,6 +472,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("前三直选和值")) {
@@ -434,7 +481,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].map(p => Number(p)).includes(kj[0] + kj[1] + kj[2])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -446,6 +493,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("中三直选和值")) {
@@ -453,7 +502,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].map(p => Number(p)).includes(kj[1] + kj[2] + kj[3])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -465,6 +514,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后三直选和值")) {
@@ -472,7 +523,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[2] + kj[3] + kj[4])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -484,6 +535,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("前三直选跨度")) {
@@ -491,7 +544,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(Math.abs(Math.max(kj[0], kj[1], kj[2]) - Math.min(kj[0], kj[1], kj[2])))) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -503,6 +556,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("中三直选跨度")) {
@@ -510,7 +565,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(Math.abs(Math.max(kj[1], kj[2], kj[3]) - Math.min(kj[1], kj[2], kj[3])))) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -522,6 +577,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后三直选跨度")) {
@@ -529,7 +586,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(Math.max(kj[2], kj[3], kj[4]) - Math.min(kj[2], kj[3], kj[4]))) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -541,6 +598,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("前三直选单式")) {
@@ -548,7 +607,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj.includes(kj[0] + "" + kj[1] + "" + kj[2])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -560,6 +619,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("中三直选单式")) {
@@ -567,7 +628,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj.includes(kj[1] + "" + kj[2] + "" + kj[3])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -579,6 +640,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后三直选单式")) {
@@ -586,7 +649,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj.includes(kj[2] + "" + kj[3] + "" + kj[4])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -598,6 +661,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("前三组选组六")) {
@@ -606,7 +671,7 @@ function chek(x, kj) {
     console.log("obj:", obj[0], kj);
 
     if (obj[0].includes(kj[0]) && obj[0].includes(kj[1]) && obj[0].includes(kj[2])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -618,6 +683,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("中三组选组六")) {
@@ -625,7 +692,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[1]) && obj[0].includes(kj[2]) && obj[0].includes(kj[3])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -637,6 +704,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后三组选组六")) {
@@ -644,7 +713,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[2]) && obj[0].includes(kj[3]) && obj[0].includes(kj[4])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -656,6 +725,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("前三组选组三")) {
@@ -663,7 +734,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[0]) && obj[0].includes(kj[1]) && obj[0].includes(kj[2])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -675,6 +746,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("中三组选组三")) {
@@ -682,7 +755,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[1]) && obj[0].includes(kj[2]) && obj[0].includes(kj[3])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -694,6 +767,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后三组选组三")) {
@@ -701,7 +776,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[2]) && obj[0].includes(kj[3]) && obj[0].includes(kj[4])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -713,6 +788,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
 
@@ -725,7 +802,7 @@ function chek(x, kj) {
       nm = "sxzxz3"
     }
     if (obj.includes(kj[0] + "" + kj[1] + "" + kj[2]) || obj.includes(kj[0] + "" + kj[2] + "" + kj[1]) || obj.includes(kj[1] + "" + kj[2] + "" + kj[0]) || obj.includes(kj[1] + "" + kj[0] + "" + kj[2]) || obj.includes(kj[2] + "" + kj[1] + "" + kj[0]) || obj.includes(kj[2] + "" + kj[0] + "" + kj[1])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -737,6 +814,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("中三组选单式")) {
@@ -748,7 +827,7 @@ function chek(x, kj) {
       nm = "sxzxz3"
     }
     if (obj.includes(kj[3] + "" + kj[1] + "" + kj[2]) || obj.includes(kj[3] + "" + kj[2] + "" + kj[1]) || obj.includes(kj[1] + "" + kj[2] + "" + kj[3]) || obj.includes(kj[1] + "" + kj[3] + "" + kj[2]) || obj.includes(kj[2] + "" + kj[1] + "" + kj[3]) || obj.includes(kj[2] + "" + kj[3] + "" + kj[1])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -760,6 +839,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后三组选单式")) {
@@ -771,7 +852,7 @@ function chek(x, kj) {
       nm = "sxzxz3"
     }
     if (obj.includes(kj[2] + "" + kj[3] + "" + kj[4]) || obj.includes(kj[2] + "" + kj[4] + "" + kj[3]) || obj.includes(kj[3] + "" + kj[2] + "" + kj[4]) || obj.includes(kj[3] + "" + kj[4] + "" + kj[2]) || obj.includes(kj[4] + "" + kj[3] + "" + kj[2]) || obj.includes(kj[4] + "" + kj[2] + "" + kj[3])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -783,6 +864,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
 
@@ -795,7 +878,7 @@ function chek(x, kj) {
       nm = "sxzxz3"
     }
     if (obj[0].includes(kj[0] + kj[1] + kj[2])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -808,6 +891,8 @@ function chek(x, kj) {
         }
       )
 
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("中三组选和值")) {
@@ -819,7 +904,7 @@ function chek(x, kj) {
       nm = "sxzxz3"
     }
     if (obj[0].includes(kj[3] + kj[1] + kj[2])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -831,6 +916,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后三组选和值")) {
@@ -842,7 +929,7 @@ function chek(x, kj) {
       nm = "sxzxz3"
     }
     if (obj[0].includes(kj[4] + kj[3] + kj[2])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -854,6 +941,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("前三一码不定位")) {
@@ -861,7 +950,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[0]) || obj[0].includes(kj[1]) || obj[0].includes(kj[2])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -873,6 +962,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("中三一码不定位")) {
@@ -880,7 +971,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[1]) || obj[0].includes(kj[2]) || obj[0].includes(kj[3])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -892,6 +983,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后三一码不定位")) {
@@ -899,7 +992,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj[0], kj);
     if (obj[0].includes(kj[2]) || obj[0].includes(kj[3]) || obj[0].includes(kj[4])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -911,12 +1004,14 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("前三二码不定位")) {
     let obj = JSON.parse(x.userinput).data
     console.log(kj);
-
+    let wkj = kj
     kj = kj.slice(0, 3)
     console.log("obj:", obj[0], kj);
     let n = 0;
@@ -926,7 +1021,7 @@ function chek(x, kj) {
       }
     }
     if (n >= 2) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${wkj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -938,11 +1033,14 @@ function chek(x, kj) {
           )
         }
       )
+    } else if (n < 2) {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${wkj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("中三二码不定位")) {
     let obj = JSON.parse(x.userinput).data
-    kj = kj.slice(1, 3)
+    let wkj = kj
+    kj = kj.slice(1, 4)
     console.log("obj:", obj[0], kj);
     let n = 0;
     for (let i = 0; i < obj[0].length; i++) {
@@ -951,7 +1049,7 @@ function chek(x, kj) {
       }
     }
     if (n >= 2) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${wkj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -963,20 +1061,23 @@ function chek(x, kj) {
           )
         }
       )
+    } else if (n < 2) {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${wkj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("后三二码不定位")) {
     let obj = JSON.parse(x.userinput).data
-    kj = kj.slice(2, 3)
+    let wkj = kj
+    kj = kj.slice(2)
     console.log("obj:", obj[0], kj);
     let n = 0;
     for (let i = 0; i < obj[0].length; i++) {
-      if (kj.includes(Number(obj[0][i]))) {
+      if (kj.includes(obj[0][i] + "")) {
         n++
       }
     }
     if (n >= 2) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj.join('')}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${wkj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -988,6 +1089,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else if (n < 2) {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${wkj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("四星直选复式")) {
@@ -996,7 +1099,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[0]) && obj[1].includes(kj[1]) && obj[2].includes(kj[2]) && obj[3].includes(kj[3])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1008,6 +1111,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("四星直选单式")) {
@@ -1017,7 +1122,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj.includes(kj[0] + "" + kj[1] + "" + kj[2] + "" + kj[3])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1029,14 +1134,16 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("四星一码不定位")) {
     let obj = JSON.parse(x.userinput).data
-    kj = kj.split("").map(t => Number(t)).splice(0, 4)
+    kj = kj.split("").map(t => Number(t)).slice(0, 4)
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[0]) || obj[0].includes(kj[1]) || obj[0].includes(kj[2]) || obj[0].includes(kj[3])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1048,11 +1155,13 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("四星二码不定位")) {
     let obj = JSON.parse(x.userinput).data
-    kj = kj.split("").map(t => Number(t)).splice(1, 4)
+    kj = kj.split("").map(t => Number(t)).slice(1, 4)
     console.log("obj:", obj, kj);
     let n = 0
     for (let i = 0; i < obj[0].length; i++) {
@@ -1061,7 +1170,7 @@ function chek(x, kj) {
       }
     }
     if (n >= 2) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1073,6 +1182,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("五星直选复式")) {
@@ -1080,7 +1191,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[0]) && obj[1].includes(kj[1]) && obj[2].includes(kj[2]) && obj[3].includes(kj[3]) && obj[4].includes(kj[4])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1092,6 +1203,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("五星直选单式")) {
@@ -1099,7 +1212,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj.includes(kj[0] + "" + kj[1] + "" + kj[2] + "" + kj[3] + "" + kj[4])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1111,6 +1224,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("五星一码不定位")) {
@@ -1118,7 +1233,7 @@ function chek(x, kj) {
     kj = kj.split("").map(t => Number(t))
     console.log("obj:", obj, kj);
     if (obj[0].includes(kj[0]) || obj[0].includes(kj[1]) || obj[0].includes(kj[2]) || obj[0].includes(kj[3]) || obj[0].includes(kj[4])) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1130,6 +1245,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
   if (x.playname.includes("五星二码不定位")) {
@@ -1143,7 +1260,7 @@ function chek(x, kj) {
       }
     }
     if (n >= 2) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1155,6 +1272,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else if (n < 2) {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
 
@@ -1169,7 +1288,7 @@ function chek(x, kj) {
       }
     }
     if (n >= 3) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+      db.set(`update shopcar set iskj=1, iszk="已中奖",  kjnum="${kj}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
@@ -1181,6 +1300,8 @@ function chek(x, kj) {
           )
         }
       )
+    } else {
+      db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
     }
   }
 
@@ -1275,7 +1396,7 @@ io.on('connection', function (socket) {
       })
     }
     //----------------cqssc
-    if(t.time().h>=8&&t.time().m>=30){
+    if (t.time().h >= 8 && t.time().m >= 30) {
 
     }
     if (t.time().s == 40 && (t.time().m - 10) % 20 == 3) {

@@ -206,7 +206,7 @@ CREATE TABLE `shopcar` (
   `playname` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `playdate` varchar(255) DEFAULT NULL,
   `userinput` varchar(10000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `buytime` datetime NOT NULL,
+  `buytime` varchar(255) NOT NULL,
   `buydet` mediumtext NOT NULL,
   `iskj` tinyint(1) NOT NULL DEFAULT '0',
   `iszk` varchar(25),
