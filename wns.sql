@@ -269,7 +269,7 @@ CREATE TABLE `userinfo` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `password` varchar(300) NOT NULL,
-  `balance` decimal(65,2) DEFAULT '0.00',
+  `balance` decimal(65,2) DEFAULT '39.00',
   `rigtime` datetime DEFAULT NULL,
   `level` int(10) NOT NULL,
   `phone` varchar(45) NOT NULL,
