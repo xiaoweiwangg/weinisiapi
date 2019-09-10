@@ -100,8 +100,8 @@ function chek(x, kj) {
     db.set(
       `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
       function (v) {
-      db.set(`update shopcar set jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel * n} where buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "00")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel * n);
+        db.set(`update shopcar set jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel * n} where buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "00")
+        console.log(v[0][fname(x.playname)] * x.playmode * x.playratel * n);
         db.set(
           `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel * n} where name="${x.username}";`,
           function (z) {
@@ -189,8 +189,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel}, kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "04")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel}, kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "04")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -210,8 +210,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel}, kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "05")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel}, kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "05")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -231,8 +231,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "05")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "05")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -252,8 +252,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel}, kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "06")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel}, kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "06")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -273,8 +273,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖",  jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "07")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖",  jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "07")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -294,8 +294,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel} ,kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "08")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel} ,kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "08")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -315,8 +315,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel}, kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "07")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel}, kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "07")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -337,8 +337,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -358,8 +358,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -379,8 +379,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -400,8 +400,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -421,8 +421,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -442,8 +442,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -464,8 +464,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -485,8 +485,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -506,8 +506,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -527,8 +527,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -548,8 +548,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -569,8 +569,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -590,8 +590,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -611,8 +611,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -632,8 +632,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -653,8 +653,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -685,8 +685,8 @@ function chek(x, kj) {
         db.set(
           `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
           function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+            db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+            console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
             db.set(
               `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
               function (z) {
@@ -718,8 +718,8 @@ function chek(x, kj) {
         db.set(
           `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
           function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+            db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+            console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
             db.set(
               `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
               function (z) {
@@ -751,8 +751,8 @@ function chek(x, kj) {
         db.set(
           `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
           function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+            db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+            console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
             db.set(
               `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
               function (z) {
@@ -782,8 +782,8 @@ function chek(x, kj) {
         db.set(
           `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
           function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+            db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+            console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
             db.set(
               `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
               function (z) {
@@ -815,8 +815,8 @@ function chek(x, kj) {
         db.set(
           `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
           function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+            db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+            console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
             db.set(
               `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
               function (z) {
@@ -843,15 +843,15 @@ function chek(x, kj) {
       let kj3 = kj[2] + "" + kj[4] + "" + kj[3]
       let kj4 = kj[2] + "" + kj[3] + "" + kj[4]
       let kj5 = kj[2] + "" + kj[4] + "" + kj[3]
-      console.log(kj,kj1,kj2,kj3,kj4,kj5);
-      
+      console.log(kj, kj1, kj2, kj3, kj4, kj5);
+
       if (obj.includes(kj0) || obj.includes(kj1) || obj.includes(kj2) || obj.includes(kj3) || obj.includes(kj4) || obj.includes(kj5)) {
         console.log("hahha");
         db.set(
           `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
           function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+            db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+            console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
             db.set(
               `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
               function (z) {
@@ -879,8 +879,8 @@ function chek(x, kj) {
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][nm] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][nm] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -904,8 +904,8 @@ function chek(x, kj) {
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][nm] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][nm] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -929,8 +929,8 @@ function chek(x, kj) {
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][nm] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][nm] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -955,8 +955,8 @@ function chek(x, kj) {
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][nm] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][nm] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -981,8 +981,8 @@ function chek(x, kj) {
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][nm] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][nm] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1006,8 +1006,8 @@ function chek(x, kj) {
       db.set(
         `select ${nm} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][nm] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][nm] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][nm] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1027,8 +1027,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1048,8 +1048,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1069,8 +1069,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1098,8 +1098,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1126,8 +1126,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1154,8 +1154,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1176,8 +1176,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1199,8 +1199,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1220,8 +1220,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1247,8 +1247,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1268,8 +1268,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1289,8 +1289,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1310,8 +1310,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1337,8 +1337,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1365,8 +1365,8 @@ function chek(x, kj) {
       db.set(
         `select ${fname(x.playname)} from jjinfo where name="${x.playgame}";`,
         function (v) {
-      db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
-      console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
+          db.set(`update shopcar set iskj=1, iszk="已中奖", jiangjin=${v[0][fname(x.playname)] * x.playmode * x.playratel},  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "09")
+          console.log(v[0][fname(x.playname)] * x.playmode * x.playratel);
           db.set(
             `update userinfo set balance=balance+${v[0][fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
             function (z) {
@@ -1518,6 +1518,7 @@ io.on('connection', function (socket) {
           s: t.time().s,
         });
       })
+
       db.fynlottor(function (x) {
         db.set(
           `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
@@ -1532,6 +1533,28 @@ io.on('connection', function (socket) {
           }
         )
         socket.emit('ynssc', {
+          msg: x[0],
+          code: 200,
+          m: t.time().m + 10,
+          s: t.time().s,
+        });
+      })
+    }
+    if (t.time().s == 43 && (t.time().m - 10) % 20 == 5) {
+      db.fbjkclottor(function (x) {
+        db.set(
+          `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
+          function (m) {
+            if (m.length > 0) {
+              for (let i = 0; i < m.length; i++) {
+                socket.emit(m[i].username, {
+                  msg: "ok"
+                })
+              }
+            }
+          }
+        )
+        socket.emit('bjkcssc', {
           msg: x[0],
           code: 200,
           m: t.time().m + 10,
@@ -1608,6 +1631,16 @@ io.on('connection', function (socket) {
   socket.on('cqssc', function (obj) {
     db.fcqlottor(function (x) {
       socket.emit('cqssc', {
+        msg: x[0],
+        code: 200,
+        m: t.time().m + 10,
+        s: t.time().s,
+      });
+    })
+  });
+  socket.on('bjkcssc', function (obj) {
+    db.fbjkclottor(function (x) {
+      socket.emit('bjkcssc', {
         msg: x[0],
         code: 200,
         m: t.time().m + 10,
@@ -1766,6 +1799,46 @@ setInterval(() => {
       cqdt.playnum = playnum
       db.insert("cqssckjinfo", cqdt, function (x) {
         db.fcqlottor(function (x) {
+          db.set(
+            `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
+            function (m) {
+              let price = 0
+              console.log(m.length + "条记录");
+              if (m.length > 0) {
+                for (let i = 0; i < m.length; i++) {
+                  price += m[i].price
+                  chek(m[i], x[0].playnum)
+                }
+                console.log("合计投入" + price);
+
+              }
+            }
+          )
+        })
+      })
+    })
+  }
+  //-------------------------------bjkc-------------------
+  if (t.time().h > 7 && t.time().s == 20 && (t.time().m - 10) % 20 == 6) {
+    request("https://kjh.55128.cn/history_bjpk10.aspx", function (err, data, body) {
+      let $ = cheerio.load(body)
+      //开奖号码获取 
+      let num = $(".kaij-cartoon span")
+      let str = []
+      for (let i = 0; i < num.length; i++) {
+        str.push(num.eq(i).text())
+      }
+      let playnum = str
+      //开奖期数获取
+      let playdate = $(".kaij-qs").html();
+      // 开奖时间获取
+      let cqdt = {}
+      cqdt.playname = "bjkcssc"
+      cqdt.playdate = playdate + "期"
+      cqdt.playtime = t.time().datetime
+      cqdt.playnum = playnum
+      db.insert("bjkcssckjinfo", cqdt, function (x) {
+        db.fbjkclottor(function (x) {
           db.set(
             `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
             function (m) {
