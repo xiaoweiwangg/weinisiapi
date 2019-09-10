@@ -57,6 +57,17 @@ exports.fgalottor = function (fn) {
   })
   connext.end()
 }
+exports.ftxlottor = function (fn) {
+  let connext = mysql.createConnection(config)
+  sql = `
+  select * from txffckjinfo where playtime=(select max(playtime) from txffckjinfo);
+  `;
+  connext.query(sql, (err, data, fled) => {
+    if (err) { throw err }
+    fn(data)
+  })
+  connext.end()
+}
 exports.fcqlottor = function (fn) {
   let connext = mysql.createConnection(config)
   sql = `

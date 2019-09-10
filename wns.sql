@@ -93,7 +93,13 @@ CREATE TABLE `gassckjinfo` (
   `playtime` datetime DEFAULT NULL,
   `playnum` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+DROP TABLE IF EXISTS `txffckjinfo`;
+CREATE TABLE `txffckjinfo` (
+  `playname` varchar(45) NOT NULL,
+  `playdate` varchar(45) NOT NULL,
+  `playtime` datetime DEFAULT NULL,
+  `playnum` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of gassckjinfo
 -- ----------------------------
@@ -215,6 +221,7 @@ CREATE TABLE `shopcar` (
   `playgame` varchar(255) NOT NULL,
   `playmode` float(255,2) NOT NULL DEFAULT '1.00',
   `playratel` float(255,2) NOT NULL DEFAULT '1',
+  `jiangjin` float(255,2) DEFAULT '0.00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=272 DEFAULT CHARSET=utf8;
 
