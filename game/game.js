@@ -18,10 +18,10 @@ io.on('connection', function (socket) {
     console.log(x);
     socket.emit(x.username, {
       type: "server",
-      msg: "欢迎来到威尼斯娱乐城!正在为您接通人工客服!请稍后....."
+      msg: "欢迎来到威尼斯娱乐城!正在为您接通人工客服!请稍后....."  
     })
   })
-  //定时发送数据
+  //定时发送数据 
   setInterval(() => {
     if (t.time().h = 20 && t.time().m == 50 && t.time().s == 30) {
       db.ffc3dlottor(function (x) {
