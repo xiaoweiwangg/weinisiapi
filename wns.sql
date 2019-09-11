@@ -47,7 +47,14 @@ CREATE TABLE `bjkcssckjinfo` (
   `playnum` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
+DROP TABLE IF EXISTS `wnspk10kjinfo`;
+CREATE TABLE `wnspk10kjinfo` (
+  `playname` varchar(45) NOT NULL,
+  `playdate` varchar(45) NOT NULL,
+  `playtime` datetime DEFAULT NULL,
+  `playnum` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+----------------------------
 -- Records of bjkcssckjinfo
 -- ----------------------------
 
