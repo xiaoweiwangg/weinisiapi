@@ -115,7 +115,7 @@ exports.chek = function (x, kj) {
                         `update userinfo set balance=balance+${v[0][name.fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
                         function (z) {
                         }
-                    )
+                    ) 
                 }
             )
         } else {

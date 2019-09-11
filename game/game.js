@@ -369,12 +369,11 @@ function getssc(a, b, c, d, e) {
   let ssc = ''
   return ssc += _.random(...a) + '' + _.random(...b) + '' + _.random(...c) + '' + _.random(...d) + '' + _.random(...e)
 }
-function getpk10(a, b, c, d, e, f, g, h, i, j) {
-  let arr=[]
-  for(let i=0;i<arguments.length;i++){
-    arr.push(_.random(...arguments[i]))
-  }
-  return arr
+console.log();
+console.log(_.shuffle(_.range(1,11)));
+ 
+function getpk10() {
+  return _.shuffle(_.range(1,11))
 }
 //转码Unicode
 function tg(str) {
@@ -445,7 +444,7 @@ setInterval(() => {
     let gadt = {}
     gadt.playname = "wnspk10"
     gadt.playdate = t.time().fdate + "期"
-    gadt.playnum = getpk10(...pkconfig)
+    gadt.playnum = getpk10()
     gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${_.random(0, 59)}`
     db.insert("wnspk10kjinfo", gadt, function (x) {
       //这里设定查询用户中奖信息
