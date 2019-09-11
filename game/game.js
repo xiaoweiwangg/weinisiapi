@@ -16,7 +16,6 @@ let pk=require("./pkgame")
 io.on('connection', function (socket) {
   socket.on("logoin", function (x) {
     console.log(x);
-
     socket.emit(x.username, {
       type: "server",
       msg: "欢迎来到威尼斯娱乐城!正在为您接通人工客服!请稍后....."
