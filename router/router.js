@@ -6,7 +6,7 @@ let token = require("../token/settoken")
 
 //全局路由中间件
 exports.use = function (req, res, next) {
-    // console.log(req.headers['user-agent']);
+    console.log(req.ip);
     if ((req.method.toLowerCase()) == "post") {
         if (req.url != "/fuser" && req.url != "/inuser") {
             if (!req.headers.token) {
