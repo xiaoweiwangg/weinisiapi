@@ -64,7 +64,7 @@ exports.subcash = function (req, res) {
     db.set(`
     select * from userinfo where name="${req.body.username}";
     `, function (x) {
-        console.log(x[0].balance < req.body.num);
+        console.log(x[0].balance < req.body.num); 
             if (x[0].balance < req.body.num) {
                 res.json({ msg: "余额不足" })
                 return 
