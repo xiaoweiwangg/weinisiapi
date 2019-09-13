@@ -46,13 +46,13 @@ io.on('connection', function (socket) {
         });
       })
       db.ftcpl5lottor(function (x) {
-        db.set(
+        db.set( 
           `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
           function (m) {
             if (m.length > 0) {
               for (let i = 0; i < m.length; i++) {
-                socket.emit(m[i].username, {
-                  msg: "ok"
+                socket.emit(m[i].username, {  
+                  msg: "ok" 
                 })
               }
             }
