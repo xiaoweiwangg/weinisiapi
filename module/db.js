@@ -37,7 +37,7 @@ exports.insert = function (tb,data, fn) {
   let connext = mysql.createConnection(config)
   sql = `
   insert into ${tb}(playname,playdate,playtime,playnum)
-  values("${data.playname}","${data.playdate}","${data.playtime}","${data.playnum}");
+  values("${data.playname}","${data.playdate}","${data.playtime}",'${data.playnum}');
   `;
   connext.query(sql, (err, data, fled) => {
     if (err) { throw err }
@@ -72,6 +72,17 @@ exports.fcqlottor = function (fn) {
   let connext = mysql.createConnection(config)
   sql = `
   select * from cqssckjinfo where playtime=(select max(playtime) from cqssckjinfo);
+  `;
+  connext.query(sql, (err, data, fled) => {
+    if (err) { throw err }
+    fn(data)
+  })
+  connext.end()
+}
+exports.fnnlottor = function (fn) {
+  let connext = mysql.createConnection(config)
+  sql = `
+  select * from nnkjinfo where playtime=(select max(playtime) from nnkjinfo);
   `;
   connext.query(sql, (err, data, fled) => {
     if (err) { throw err }

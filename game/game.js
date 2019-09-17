@@ -4,7 +4,7 @@ let _ = require('underscore')
 let db = require("../module/db")
 let t = require("../module/time")
 let config = [[0, 9], [0, 9], [0, 9], [0, 9], [0, 9]]
-let pkconfig = [[1, 10], [1, 10], [1, 10], [1, 10], [1, 10],[1, 10], [1, 10], [1, 10], [1, 10], [1, 10]]
+let pkconfig = [[1, 10], [1, 10], [1, 10], [1, 10], [1, 10], [1, 10], [1, 10], [1, 10], [1, 10], [1, 10]]
 let exp = require("express")
 let app = exp()
 let http = require("http").Server(app)
@@ -12,13 +12,13 @@ let io = require("socket.io")(http)
 //ssc玩法
 let game = require("./sscmethod")
 //pk玩法
-let pk=require("./pkgame")
+let pk = require("./pkgame")
 io.on('connection', function (socket) {
   socket.on("logoin", function (x) {
     console.log(x);
     socket.emit(x.username, {
       type: "server",
-      msg: "欢迎来到威尼斯娱乐城!正在为您接通人工客服!请稍后....."  
+      msg: "欢迎来到威尼斯娱乐城!正在为您接通人工客服!请稍后....."
     })
   })
   //定时发送数据 
@@ -46,13 +46,13 @@ io.on('connection', function (socket) {
         });
       })
       db.ftcpl5lottor(function (x) {
-        db.set( 
+        db.set(
           `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
           function (m) {
             if (m.length > 0) {
               for (let i = 0; i < m.length; i++) {
-                socket.emit(m[i].username, {  
-                  msg: "ok" 
+                socket.emit(m[i].username, {
+                  msg: "ok"
                 })
               }
             }
@@ -136,10 +136,28 @@ io.on('connection', function (socket) {
         });
       })
     }
-    //----------------cqssc
-    if (t.time().h >= 8 && t.time().m >= 30) {
-
-    }
+    // if ((t.time().s-20)%30==0 ) {
+    //   db.fnnlottor(function (x) {
+    //     db.set(
+    //       `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
+    //       function (m) {
+    //         if (m.length > 0) {
+    //           for (let i = 0; i < m.length; i++) {
+    //             socket.emit(m[i].username, {
+    //               msg: "ok"
+    //             })
+    //           }
+    //         }
+    //       }
+    //     )
+    //     socket.emit('niuniu', {
+    //       msg: x[0],
+    //       code: 200,
+    //       m: t.time().m,
+    //       s: t.time().s,
+    //     });
+    //   })
+    // }
     if (t.time().s == 40 && (t.time().m - 10) % 20 == 3) {
       db.fcqlottor(function (x) {
         db.set(
@@ -261,6 +279,26 @@ io.on('connection', function (socket) {
       });
     })
   });
+  socket.on('niuniu', function (obj) {
+    db.fnnlottor(function (x) {
+      socket.emit('niuniu', {
+        msg: x[0],
+        code: 200,
+        m: t.time().m,
+        s: t.time().s
+      });
+    })
+  });
+  socket.on('niuniu2', function (obj) {
+    db.fnnlottor(function (x) {
+      socket.emit('niuniu2', {
+        msg: x[0],
+        code: 200,
+        m: t.time().m,
+        s: t.time().s
+      });
+    })
+  });
   socket.on('txffc', function (obj) {
     db.ftxlottor(function (x) {
       socket.emit('txffc', {
@@ -363,23 +401,70 @@ io.on('connection', function (socket) {
   })
 });
 http.listen(88)//监听端口不能和主端口一致 
-//----------------------------------------gassc---------------------
+//获取时时彩
 function getssc(a, b, c, d, e) {
   let ssc = ''
   return ssc += _.random(...a) + '' + _.random(...b) + '' + _.random(...c) + '' + _.random(...d) + '' + _.random(...e)
 }
-console.log();
-console.log(_.shuffle(_.range(1,11)));
- 
+//获取pk时时彩
 function getpk10() {
-  return _.shuffle(_.range(1,11))
+  return _.shuffle(_.range(1, 11))
 }
-//转码Unicode
+//获取牛牛
+let puksize = _.range(1, 14)
+let pukhua = _.range(0, 4)
+let puklist = []
+let puk = {}
+for (let i = 0; i < pukhua.length; i++) {
+  for (let h = 0; h < puksize.length; h++) {
+    puklist.push({ num: puksize[h], hua: pukhua[i] })
+  }
+}
+function getnn() {
+  console.log();
+  let nn = _.shuffle(puklist).slice(0, 20)
+  k = 0
+  for (let v = 0; v < nn.length; v++) {
+    if (v % 5 == 0) {
+      k++
+    }
+    nn[v].type = k - 1
+  }  
+  return JSON.stringify(nn)   
+}   
+//转码Unicode 
 function tg(str) {
   str = str.replace(/(\\u)(\w{1,4})/gi, function ($0) { return (String.fromCharCode(parseInt((escape($0).replace(/(%5Cu)(\w{1,4})/g, "$2")), 16))); }); str = str.replace(/(&#x)(\w{1,4});/gi, function ($0) { return String.fromCharCode(parseInt(escape($0).replace(/(%26%23x)(\w{1,4})(%3B)/g, "$2"), 16)); }); str = str.replace(/(&#)(\d{1,6});/gi, function ($0) { return String.fromCharCode(parseInt(escape($0).replace(/(%26%23)(\d{1,6})(%3B)/g, "$2"))); }); return str;
 }
-
+//开奖集
 setInterval(() => {
+  if ((t.time().s-14) % 30 == 0) {
+    let gadt = {}
+    gadt.playname = "niuniu"
+    gadt.playdate = t.time().qdate + "期" 
+    gadt.playnum = getnn()
+    gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${_.random(0, 59)}`
+    db.insert("nnkjinfo", gadt, function (x) {
+      //这里设定查询用户中奖信息
+      // db.ftxlottor(function (x) {
+      //   db.set(
+      //     `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
+      //     function (m) {
+      //       let price = 0
+      //       console.log(m.length + "条记录");
+      //       if (m.length > 0) {
+      //         for (let i = 0; i < m.length; i++) {
+      //           price += m[i].price
+      //           game.chek(m[i], x[0].playnum)
+      //         }
+      //         console.log("合计投入" + price);
+
+      //       }
+      //     }
+      //   )  
+      // }) 
+    })
+  }
   if (t.time().s == 0 && t.time().m % 5 == 0) {
     let gadt = {}
     gadt.playname = "gassc"
@@ -406,9 +491,6 @@ setInterval(() => {
       })
     })
   }
-}, 1000)
-//**************************************txffc*********************** */
-setInterval(() => {
   if (t.time().s == 0 && t.time().m % 1 == 0) {
     let gadt = {}
     gadt.playname = "txffc"
@@ -436,9 +518,6 @@ setInterval(() => {
       })
     })
   }
-}, 1000)
-//**************************************wnspk10*********************** */
-setInterval(() => {
   if (t.time().s == 0 && t.time().m % 1 == 0) {
     let gadt = {}
     gadt.playname = "wnspk10"
@@ -466,9 +545,6 @@ setInterval(() => {
       })
     })
   }
-}, 1000)
-//*************************************cqssc****************************************** */
-setInterval(() => {
   if (t.time().h > 7 && t.time().s == 30 && (t.time().m - 10) % 20 == 3) {
     request("https://kjh.55128.cn/history_chongqingssc.aspx", function (err, data, body) {
       let $ = cheerio.load(body)
@@ -744,5 +820,4 @@ setInterval(() => {
       })
     })
   }
-  //----------------------------------tcpl5/3---------------------------------
 }, 1000)
