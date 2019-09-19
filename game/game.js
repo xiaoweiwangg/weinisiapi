@@ -294,8 +294,7 @@ io.on('connection', function (socket) {
       socket.emit('niuniu2', {
         msg: x[0],
         code: 200,
-        m: t.time().m,
-        s: t.time().s
+        // s: t.time().s
       });
     })
   });
@@ -333,8 +332,8 @@ io.on('connection', function (socket) {
     db.fbjkclottor(function (x) {
       socket.emit('bjkcssc', {
         msg: x[0],
-        code: 200,
-        m: t.time().m + 10,
+        code: 200, 
+        m: t.time().m + 10, 
         s: t.time().s,
       });
     })
@@ -428,7 +427,7 @@ function getnn() {
     if (v % 5 == 0) {
       k++
     }
-    nn[v].type = k - 1
+    nn[v].type = k - 1   
   }  
   return JSON.stringify(nn)   
 }   
@@ -438,13 +437,13 @@ function tg(str) {
 }
 //开奖集
 setInterval(() => {
-  if ((t.time().s-14) % 30 == 0) {
+  if ((t.time().s-9) % 30 == 0) {
     let gadt = {}
     gadt.playname = "niuniu"
     gadt.playdate = t.time().qdate + "期" 
     gadt.playnum = getnn()
     gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${_.random(0, 59)}`
-    db.insert("nnkjinfo", gadt, function (x) {
+    db.insert("nnkjinfo", gadt, function (x) { 
       //这里设定查询用户中奖信息
       // db.ftxlottor(function (x) {
       //   db.set(
