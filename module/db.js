@@ -87,7 +87,7 @@ exports.fnnlottor = function (fn) {
   connext.query(sql, (err, data, fled) => {
     if (err) { throw err }
     fn(data)
-  })
+  }) 
   connext.end()
 }
 exports.fbjkclottor = function (fn) {
@@ -232,7 +232,7 @@ exports.fuser=function(data,fn){
     fn(data)
     console.log(data,"2020");
      
-  })
+  }) 
   connext.end()
 }
 //-----------------常用操作封装
