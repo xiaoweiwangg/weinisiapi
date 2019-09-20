@@ -231,7 +231,7 @@ exports.fuser=function(data,fn){
     if (err) { throw err }
     fn(data)
     console.log(data,"2020");
-    
+     
   })
   connext.end()
 }
