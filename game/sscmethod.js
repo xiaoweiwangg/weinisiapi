@@ -2,6 +2,29 @@ let name=require("./fname")
 let db=require("../module/db")
 exports.chek=function(x, kj) {
     console.log(x);
+    // if (x.playname.includes("百人牛牛")) {
+    //   let obj = JSON.parse(x.userinput).data
+    //   kj = kj.split("").map(t => Number(t))
+    //   console.log(obj, kj,"2222222222222222222222");
+      // let n = 0; 
+      // if (obj[0].includes(kj[0]) && obj[1].includes(kj[1])) {
+      //   n++
+      //   db.set(
+      //     `select ${name.fname(x.playname)} from jjinfo where name="${x.playgame}";`,
+      //     function (v) {
+      //       db.set(`update shopcar set iskj=1, jiangjin=${v[0][name.fname(x.playname)] * x.playmode * x.playratel * n},iszk="已中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("中了", x.playname, "01")
+      //       console.log(v[0][name.fname(x.playname)] * x.playmode * x.playratel * n);
+      //       db.set(
+      //         `update userinfo set balance=balance+${v[0][name.fname(x.playname)] * x.playmode * x.playratel} where name="${x.username}";`,
+      //         function (z) {
+      //         }
+      //       )
+      //     }
+      //   )
+      // } else {
+      //   db.set(`update shopcar set iskj=1, iszk="未中奖",  kjnum="${kj.join('')}" where  buytime="${x.buytime}" and username="${x.username}" and playdate="${x.playdate}" and playgame="${x.playgame}" and playname="${x.playname}";`, (k) => { console.log(k) }); console.log("未中", x.playname, "09"); return;
+      // }
+    // }
     if (x.playname.includes("一星直选复式")) {
       let obj = JSON.parse(x.userinput).data
       kj = kj.split("").map(t => Number(t))

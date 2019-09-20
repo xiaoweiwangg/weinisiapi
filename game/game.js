@@ -13,7 +13,21 @@ let io = require("socket.io")(http)
 let game = require("./sscmethod")
 //pk玩法
 let pk = require("./pkgame")
+//nn
+let pnum = 0
+let group = []
+
 io.on('connection', function (socket) {
+  // console.log("socketid:"+socket.id);
+
+  group.push(socket.id)
+  socket.on('add', function (obj) {
+    for (let i = 0; i < group.length; i++) {
+      io.to(group[i]).emit('move', {
+        tz: obj.data
+      })
+    }
+  });
   socket.on("logoin", function (x) {
     console.log(x);
     socket.emit(x.username, {
@@ -279,16 +293,54 @@ io.on('connection', function (socket) {
       });
     })
   });
+  socket.on('qtniuniu', function (obj) {
+    pnum--
+    if (pnum < 0) {
+      pnum = 0
+    }
+    for (let i = 0; i < group.length; i++) {
+      io.to(group[i]).emit('qtniuniu', {
+        pm: pnum
+      })
+    }
+  })
   socket.on('niuniu', function (obj) {
+    pnum++
+    for (let i = 0; i < group.length; i++) {
+      io.to(group[i]).emit('qtniuniu', {
+        pm: pnum
+      })
+    }
     db.fnnlottor(function (x) {
       socket.emit('niuniu', {
         msg: x[0],
         code: 200,
+        pm: pnum,
         m: t.time().m,
         s: t.time().s
       });
     })
   });
+  socket.on('ks', function (obj) {
+    db.fnnlottor(function (x) {
+      db.set(
+        `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
+        function (m) {
+          let price = 0
+          console.log(m.length + "条记录");
+          if (m.length > 0) {
+            for (let i = 0; i < m.length; i++) {
+              price += m[i].price
+              game.chek(m[i], x[0].playnum)
+            }
+            console.log("合计投入" + price);
+
+          }
+        }
+      )  
+    }) 
+  });
+
   socket.on('niuniu2', function (obj) {
     db.fnnlottor(function (x) {
       socket.emit('niuniu2', {
@@ -332,8 +384,8 @@ io.on('connection', function (socket) {
     db.fbjkclottor(function (x) {
       socket.emit('bjkcssc', {
         msg: x[0],
-        code: 200, 
-        m: t.time().m + 10, 
+        code: 200,
+        m: t.time().m + 10,
         s: t.time().s,
       });
     })
@@ -427,41 +479,25 @@ function getnn() {
     if (v % 5 == 0) {
       k++
     }
-    nn[v].type = k - 1   
-  }  
-  return JSON.stringify(nn)   
-}   
+    nn[v].type = k - 1
+  }
+  return JSON.stringify(nn)
+}
 //转码Unicode 
 function tg(str) {
   str = str.replace(/(\\u)(\w{1,4})/gi, function ($0) { return (String.fromCharCode(parseInt((escape($0).replace(/(%5Cu)(\w{1,4})/g, "$2")), 16))); }); str = str.replace(/(&#x)(\w{1,4});/gi, function ($0) { return String.fromCharCode(parseInt(escape($0).replace(/(%26%23x)(\w{1,4})(%3B)/g, "$2"), 16)); }); str = str.replace(/(&#)(\d{1,6});/gi, function ($0) { return String.fromCharCode(parseInt(escape($0).replace(/(%26%23)(\d{1,6})(%3B)/g, "$2"))); }); return str;
 }
 //开奖集
 setInterval(() => {
-  if ((t.time().s-9) % 30 == 0) {
+  if ((t.time().s - 9) % 30 == 0) {
     let gadt = {}
     gadt.playname = "niuniu"
-    gadt.playdate = t.time().qdate + "期" 
+    gadt.playdate = t.time().qdate + "期"
     gadt.playnum = getnn()
     gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${_.random(0, 59)}`
-    db.insert("nnkjinfo", gadt, function (x) { 
-      //这里设定查询用户中奖信息
-      // db.ftxlottor(function (x) {
-      //   db.set(
-      //     `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
-      //     function (m) {
-      //       let price = 0
-      //       console.log(m.length + "条记录");
-      //       if (m.length > 0) {
-      //         for (let i = 0; i < m.length; i++) {
-      //           price += m[i].price
-      //           game.chek(m[i], x[0].playnum)
-      //         }
-      //         console.log("合计投入" + price);
-
-      //       }
-      //     }
-      //   )  
-      // }) 
+    db.insert("nnkjinfo", gadt, function (x) {
+      // 这里设定查询用户中奖信息
+      
     })
   }
   if (t.time().s == 0 && t.time().m % 5 == 0) {

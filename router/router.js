@@ -29,7 +29,6 @@ db.set(
         res.json({data:x})
     }
 )
-
 }
 //查询公告模块
 exports.gonggao = function (req, res) {
@@ -93,6 +92,8 @@ exports.cash = function (req, res) {
 //插入订单模块
 exports.shopcar = function (req, res) {
     req.body.buytime = (new Date()).getTime()+"";
+    console.log(req.body);
+    
     db.findbalance(req.body, function (x) {
         if (req.body.price > Number(x[0].balance)) {
             res.json({ msg: "余额不足" })
@@ -102,9 +103,9 @@ exports.shopcar = function (req, res) {
                     `update userinfo set balance=balance-${req.body.price} where name="${req.body.username}";`,
                     function (v) {
                         res.json({ msg: "ok" })
-                    }
-                )
-            })
+                    }  
+                )   
+            })  
         }
     })
 }
