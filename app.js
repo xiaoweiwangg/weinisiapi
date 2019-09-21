@@ -36,6 +36,6 @@ app.get("/active", router.active)
 app.get("/fhis", router.fhistory) 
 
 //端口监听
-app.listen(8080)
+app.listen(80)
 
 

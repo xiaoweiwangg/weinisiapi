@@ -14,7 +14,8 @@ Date: 2019-09-21 08:06:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
+create database if not exists weinisi character set "utf8";
+use weinisi;
 -- ----------------------------
 -- Table structure for active
 -- ----------------------------

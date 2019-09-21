@@ -24,8 +24,10 @@ exports.use = function (req, res, next) {
 exports.fhistory=function(req,res){
 console.log(req.query.item);
 db.set(
-    `select * from ${req.query.item+"kjinfo"} order by playtime desc limit 10;`  
+    `select * from ${req.query.item+"kjinfo"} where order by playtime desc limit 10;`  
     ,function(x){
+        console.log(x,".........................................");
+        
         res.json({data:x})
     }
 )
@@ -47,7 +49,7 @@ exports.incard = function (req, res) {
 //查询历史订单模块
 exports.findhistory = function (req, res) {
     db.set(
-        `select playgame,playname,playdate,buytime,buydet,userinput,price,iskj,iszk,kjnum,playmode,playratel from shopcar where username="${req.body.username}" `,
+        `select playgame,playname,playdate,buytime,buydet,userinput,price,iskj,iszk,kjnum,playmode,playratel from shopcar where username="${req.body.username}" and playgame!="niuniu" `,
         (x) => {
             res.json(x)
         })

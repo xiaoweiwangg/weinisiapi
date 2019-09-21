@@ -237,7 +237,14 @@ io.on('connection', function (socket) {
         });
       })
     }
-    //-----------------tjssc
+    if ((t.time().s - 15) % 30 == 0) {
+      db.fnnlottor(function (x) {
+        socket.emit('niuniu2', {
+          msg: x[0],
+          code: 200,
+        });
+      })
+    }
     if (t.time().s == 10 && t.time().m % 20 == 3) {
       db.fxjlottor(function (x) {
         db.set(
@@ -322,15 +329,9 @@ io.on('connection', function (socket) {
     })
   });
 
-  socket.on('niuniu2', function (obj) {
-    db.fnnlottor(function (x) {
-      socket.emit('niuniu2', {
-        msg: x[0],
-        code: 200,
-        // s: t.time().s
-      });
-    })
-  });
+  // socket.on('niuniu2', function (obj) {
+
+  // });
   socket.on('txffc', function (obj) {
     db.ftxlottor(function (x) {
       socket.emit('txffc', {
@@ -575,12 +576,16 @@ let size = [
 ].reverse();
 setInterval(() => {
   if ((t.time().s - 12) % 30 == 0) {
-    let gadt = {}
+    let gadt = {} 
     gadt.playname = "niuniu"
-    gadt.playdate = t.time().qdate + "期"
-    gadt.playnum = getnn()
-    gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${_.random(0, 59)}`
-    db.insert("nnkjinfo", gadt, function (x) {
+    gadt.playdate = t.time().qdate + "期" 
+    gadt.playnum = getnn() 
+    gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${t.time().s}`
+    // db.set(`delete from nnkjinfo where id=${parseInt(gadt.playdate)-50}期;`,x=>{
+    //   "删除完成"            
+    // }) 
+    db.insert("nnkjinfo", gadt, function (x) { 
+
       // 这里设定查询用户中奖信息
       // console.log();
       let arr = [1, 2, 3, 0];
@@ -645,33 +650,40 @@ setInterval(() => {
           }
         }
       }
-      console.log(vs);
-      db.set(
-        `
-        select * from shopcar where playgame="niuniu" and playdate="${gadt.playdate}";
-        `,
-        function (b) {
-          if (b.length > 0) {
-            let u = JSON.parse(b[0].buydet)
-            console.log(u);
-            for (let z = 0; z < u.length; z++) {
-              for (let t = 0; t < u[z].length; t++) {
-                if (u[z][t].playnum > 0 && (u[z][t].iswin == vs[z][t].iswin)) { 
-                  db.set(`update shopcar set jiangjin=${u[z][t].playnum*1.97}, iskj=1, iszk="已中奖",  kjnum='${JSON.stringify(vs)}' where buytime="${b[0].buytime}" and username="${b[0].username}" and playdate="${b[0].playdate}" and playgame="${b[0].playgame}" and playname="${b[0].playname}";`, (k) => { console.log(k) }); console.log("中了", b[0].playname, "00")
-                  db.set(
-                    `update userinfo set balance=balance+${u[z][t].playnum*1.97} where name="${x.username}";`,
-                    function (z) {
-                      console.log(z);
-                    }
-                  )
+      db.fnnlottor(function (l) {
+        db.set(`
+        select * from shopcar where playgame="niuniu" and playdate="${l[0].playdate}";`,
+          function (b) {
+            console.log(b,"+++++++++++++++++++++++++++++++++++++++++++++++++");
+            let jj = 0
+            if (b.length > 0) {
+              let u = JSON.parse(b[0].buydet)
+              for (let z = 0; z < u.length; z++) {
+                for (let t = 0; t < u[z].length; t++) {
+                  if (u[z][t].playnum > 0 && vs[z][t].iswin) {
+                    console.log("zhongle.-----------------", u[z][t].playnum * 1.97 + "元");
+                    jj += u[z][t].playnum * 1.97
+                    db.set(`update shopcar set jiangjin=${jj}, iskj=1, iszk="已中奖",  kjnum='${JSON.stringify(vs)}' where buytime="${b[0].buytime}" and username="${b[0].username}" and playdate="${b[0].playdate}" and playgame="${b[0].playgame}" and playname="${b[0].playname}";`, (k) => { console.log(k) }); console.log("中了", b[0].playname, "00")
+                    db.set(
+                      `update userinfo set balance=balance+${jj} where name="${b[0].username}";`,
+                      function (z) {
+                        console.log(z, "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+                        db.findbalance(x, function (data) {
+                          console.log(data, "7899");
+                          socket.emit("balance", data)
+                        })
+                      }
+                    )
+                  }
                 }
+
               }
+            };
 
-            }
-          };
+          }
 
-        }
-      )
+        )
+      })
       jieguo = []
     })
   }
