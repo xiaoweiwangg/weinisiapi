@@ -576,22 +576,22 @@ let size = [
 ].reverse();
 setInterval(() => {
   if ((t.time().s - 12) % 30 == 0) {
-    let gadt = {} 
+    let gadt = {}
     gadt.playname = "niuniu"
     gadt.playdate = t.time().qdate + "期" 
     gadt.playnum = getnn() 
     gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${t.time().s}`
     // db.set(`delete from nnkjinfo where id=${parseInt(gadt.playdate)-50}期;`,x=>{
-    //   "删除完成"            
-    // }) 
+    //   "删除完成"       
+    // })   
     db.insert("nnkjinfo", gadt, function (x) { 
-
-      // 这里设定查询用户中奖信息
-      // console.log();
-      let arr = [1, 2, 3, 0];
-
+     
+      // 这里设定查询用户中奖信息       
+      // console.log(); 
+      let arr = [1, 2, 3, 0];    
+  
       let vs = [
-        //对局列表
+        //对局列表     
         [
           { type: 0, playnum: 0, iswin: false },
           { type: 1, playnum: 0, iswin: false }
