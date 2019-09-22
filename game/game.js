@@ -588,7 +588,7 @@ setInterval(() => {
      
       // 这里设定查询用户中奖信息       
       // console.log(); 
-      let arr = [1, 2, 3, 0];    
+      let arr = [1, 2, 3, 0];      
   
       let vs = [
         //对局列表     
@@ -763,8 +763,8 @@ setInterval(() => {
 
             }
           }
-        )
-      })
+        ) 
+      })     
     })
   }
   if (t.time().h > 7 && t.time().s == 30 && (t.time().m - 10) % 20 == 3) {
@@ -784,7 +784,7 @@ setInterval(() => {
       cqdt.playname = "cqssc"
       cqdt.playdate = playdate + "期"
       cqdt.playtime = t.time().datetime
-      cqdt.playnum = playnum
+      cqdt.playnum = playnum         
       db.insert("cqssckjinfo", cqdt, function (x) {
         db.fcqlottor(function (x) {
           db.set(
@@ -792,7 +792,7 @@ setInterval(() => {
             function (m) {
               let price = 0
               console.log(m.length + "条记录");
-              if (m.length > 0) {
+              if (m.length > 0) {  
                 for (let i = 0; i < m.length; i++) {
                   price += m[i].price
                   game.chek(m[i], x[0].playnum)
