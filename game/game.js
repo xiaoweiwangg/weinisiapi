@@ -51,7 +51,7 @@ io.on('connection', function (socket) {
             }
           }
         )
-        socket.emit('fc3d', {
+        socket.emit('fc3d', { 
           msg: x[0],
           code: 200,
           h: 21,
@@ -188,7 +188,7 @@ io.on('connection', function (socket) {
         socket.emit('ynssc', {
           msg: x[0],
           code: 200,
-          m: t.time().m + 10,
+          m: t.time().m + 10, 
           s: t.time().s,
         });
       }) 
@@ -197,13 +197,13 @@ io.on('connection', function (socket) {
       db.fbjkclottor(function (x) { 
         console.log(x,"*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         
-        db.set( 
+        db.set(  
           `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
           function (m) {
             if (m.length > 0) {
               for (let i = 0; i < m.length; i++) {
                 socket.emit(m[i].username, {
-                  msg: "ok"
+                  msg: "ok"  
                 })
               } 
             }
@@ -240,7 +240,7 @@ io.on('connection', function (socket) {
           function (m) {
             if (m.length > 0) {
               for (let i = 0; i < m.length; i++) {
-                socket.emit(m[i].username, {
+                socket.emit(m[i].username, { 
                   msg: "ok"
                 })
               }

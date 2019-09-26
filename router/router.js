@@ -147,7 +147,7 @@ exports.fuser = function (req, res) {
             let usermsg = {}
             db.finduser(userinfo, function (x) {
                 usermsg.userinfo = x[0];
-                usermsg.token = token.settoken(usermsg.userinfo.name, 3)
+                usermsg.token = token.settoken(usermsg.userinfo.name, 3)   
                 usermsg.msg = "ok"
                 res.json(usermsg)
             })
