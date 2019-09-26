@@ -192,7 +192,21 @@ CREATE TABLE `levelchld` (
 -- ----------------------------
 -- Records of levelchld
 -- ----------------------------
+DROP TABLE IF EXISTS `nnkjinfo`;
+CREATE TABLE `nnkjinfo` (
+  `playname` varchar(45) NOT NULL,
+  `playdate` varchar(45) NOT NULL,
+  `playtime` datetime DEFAULT NULL,
+  `playnum` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `rbkjinfo`;
+CREATE TABLE `rbkjinfo` (
+  `playname` varchar(45) NOT NULL,
+  `playdate` varchar(45) NOT NULL,
+  `playtime` datetime DEFAULT NULL,
+  `playnum` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Table structure for playhistory
 -- ----------------------------

@@ -209,8 +209,8 @@ exports.inshop=function(data,fn){
 exports.inuser=function(data,fn){
   let connext = mysql.createConnection(config)
   sql = `
-  insert into userinfo(name,password,rigtime,level,phone)
-  values("${data.name}","${data.password}","${data.rigtime}","${data.level}","${data.phone}");
+  insert into userinfo(name,password,rigtime,level,phone,realname)
+  values("${data.name}","${data.password}","${data.rigtime}","${data.level}","${data.phone}","${data.realname}"); 
   `;
   connext.query(sql, (err, data, fled) => {
     if (err) { throw err }

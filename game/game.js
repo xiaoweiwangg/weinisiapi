@@ -191,11 +191,13 @@ io.on('connection', function (socket) {
           m: t.time().m + 10,
           s: t.time().s,
         });
-      })
+      }) 
     }
     if (t.time().s == 43 && (t.time().m - 10) % 20 == 5) {
-      db.fbjkclottor(function (x) {
-        db.set(
+      db.fbjkclottor(function (x) { 
+        console.log(x,"*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
+        
+        db.set( 
           `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
           function (m) {
             if (m.length > 0) {
@@ -203,7 +205,7 @@ io.on('connection', function (socket) {
                 socket.emit(m[i].username, {
                   msg: "ok"
                 })
-              }
+              } 
             }
           }
         )
