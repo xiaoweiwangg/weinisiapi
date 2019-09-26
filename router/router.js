@@ -3,7 +3,7 @@ let db = require("../module/db")
 let time = require("../module/time")
 //token模块
 let token = require("../token/settoken")
-
+let _=require("underscore")
 //全局路由中间件
 exports.use = function (req, res, next) {
     console.log(req.ip);
@@ -121,11 +121,12 @@ exports.inuser = function (req, res) {
     let userinfo = req.body
     userinfo.level = 1
     userinfo.rigtime = time.time().datetime
+    userinfo.img=_.random(0,28)+".jpg"
     db.finduser(userinfo, function (x) {
         if (x.length > 0) {
             res.json({ msg: "no" })
             return
-        }
+        } 
         db.inuser(userinfo, function (y) {
             delete userinfo.password
             userinfo.balance = 39.00;

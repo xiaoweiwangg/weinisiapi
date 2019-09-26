@@ -209,14 +209,14 @@ exports.inshop=function(data,fn){
 exports.inuser=function(data,fn){
   let connext = mysql.createConnection(config)
   sql = `
-  insert into userinfo(name,password,rigtime,level,phone,realname)
-  values("${data.name}","${data.password}","${data.rigtime}","${data.level}","${data.phone}","${data.realname}"); 
+  insert into userinfo(name,password,rigtime,level,phone,realname,img)
+  values("${data.name}","${data.password}","${data.rigtime}","${data.level}","${data.phone}","${data.realname}","${data.img}"); 
   `;
   connext.query(sql, (err, data, fled) => {
     if (err) { throw err }
     fn(data)
   })
-  connext.end()
+  connext.end() 
 }
 //******************** *****/查询用户数据
 exports.finduser=function(data,fn){
@@ -236,7 +236,7 @@ exports.fuser=function(data,fn){
   
   let connext = mysql.createConnection(config)
   sql = `
-  select name,phone from userinfo where name="${data.username}" and password="${data.password}";
+  select name,phone,img from userinfo where name="${data.username}" and password="${data.password}";
   `;
   connext.query(sql, (err, data, fled) => {
     if (err) { throw err }
