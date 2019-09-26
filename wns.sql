@@ -114,6 +114,14 @@ CREATE TABLE `nnkjinfo` (
   `playtime` datetime DEFAULT NULL,
   `playnum` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `rbkjinfo`;
+CREATE TABLE `rbkjinfo` (
+  `id` int AUTO_INCREMENT key,
+  `playname` varchar(45) NOT NULL,
+  `playdate` varchar(45) NOT NULL,
+  `playtime` datetime DEFAULT NULL,
+  `playnum` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of gassckjinfo
 -- ----------------------------

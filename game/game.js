@@ -150,28 +150,6 @@ io.on('connection', function (socket) {
         });
       })
     }
-    // if ((t.time().s-20)%30==0 ) {
-    //   db.fnnlottor(function (x) {
-    //     db.set(
-    //       `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
-    //       function (m) {
-    //         if (m.length > 0) {
-    //           for (let i = 0; i < m.length; i++) {
-    //             socket.emit(m[i].username, {
-    //               msg: "ok"
-    //             })
-    //           }
-    //         }
-    //       }
-    //     )
-    //     socket.emit('niuniu', {
-    //       msg: x[0],
-    //       code: 200,
-    //       m: t.time().m,
-    //       s: t.time().s,
-    //     });
-    //   })
-    // }
     if (t.time().s == 40 && (t.time().m - 10) % 20 == 3) {
       db.fcqlottor(function (x) {
         db.set(
@@ -245,7 +223,15 @@ io.on('connection', function (socket) {
         });
       })
     }
-    if (t.time().s == 10 && t.time().m % 20 == 3) {
+    if ((t.time().s - 15) % 30 == 0) {
+      db.frblottor(function (x) {
+        socket.emit('rb2', {
+          msg: x[0],  
+          code: 200,
+        });
+      })
+    }   
+    if (t.time().s == 10 && t.time().m % 20 == 3) { 
       db.fxjlottor(function (x) {
         db.set(
           `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
@@ -310,6 +296,17 @@ io.on('connection', function (socket) {
         pm: pnum
       })
     }
+  }) 
+  socket.on('qtrbwar', function (obj) {
+    pnum--
+    if (pnum < 0) {
+      pnum = 0
+    }
+    for (let i = 0; i < group.length; i++) {
+      io.to(group[i]).emit('qtrbwar', {
+        pm: pnum
+      })
+    }
   })
   socket.on('niuniu', function (obj) {
     pnum++
@@ -328,7 +325,23 @@ io.on('connection', function (socket) {
       });
     })
   });
-
+  socket.on('rbwar', function (obj) {
+    pnum++
+    for (let i = 0; i < group.length; i++) {
+      io.to(group[i]).emit('qtrbwar', {
+        pm: pnum
+      })
+    }
+    db.frblottor(function (x) {
+      socket.emit('rbwar', {
+        msg: x[0],
+        code: 200,
+        pm: pnum,
+        m: t.time().m,
+        s: t.time().s
+      });
+    })
+  });
   // socket.on('niuniu2', function (obj) {
 
   // });
@@ -453,10 +466,10 @@ for (let i = 0; i < pukhua.length; i++) {
     puklist.push({ num: puksize[h], hua: pukhua[i] })
   }
 }
-function getnn() {
+function getnn() {          
   console.log();
   let nn = _.shuffle(puklist).slice(0, 20)
-  k = 0
+  k = 0  
   for (let v = 0; v < nn.length; v++) {
     if (v % 5 == 0) {
       k++
@@ -465,6 +478,20 @@ function getnn() {
   }
   return JSON.stringify(nn)
 }
+function getrb() {
+  console.log();
+  let nn = _.shuffle(puklist).slice(0, 6)
+  k = 0
+  for (let v = 0; v < nn.length; v++) {
+    if (v % 3 == 0) {
+      k++
+    }
+    nn[v].type = k - 1
+  }
+  return JSON.stringify(nn)
+}
+console.log(getrb());
+
 //转码Unicode 
 function tg(str) {
   str = str.replace(/(\\u)(\w{1,4})/gi, function ($0) { return (String.fromCharCode(parseInt((escape($0).replace(/(%5Cu)(\w{1,4})/g, "$2")), 16))); }); str = str.replace(/(&#x)(\w{1,4});/gi, function ($0) { return String.fromCharCode(parseInt(escape($0).replace(/(%26%23x)(\w{1,4})(%3B)/g, "$2"), 16)); }); str = str.replace(/(&#)(\d{1,6});/gi, function ($0) { return String.fromCharCode(parseInt(escape($0).replace(/(%26%23)(\d{1,6})(%3B)/g, "$2"))); }); return str;
@@ -585,11 +612,8 @@ setInterval(() => {
     //   "删除完成"       
     // })   
     db.insert("nnkjinfo", gadt, function (x) { 
-     
       // 这里设定查询用户中奖信息       
-      // console.log(); 
       let arr = [1, 2, 3, 0];      
-  
       let vs = [
         //对局列表     
         [
@@ -650,10 +674,10 @@ setInterval(() => {
           }
         }
       }
-      db.fnnlottor(function (l) {
+      db.fnnlottor( (l)=> {
         db.set(`
         select * from shopcar where playgame="niuniu" and playdate="${l[0].playdate}";`,
-          function (b) {
+          (b) =>{
             console.log(b,"+++++++++++++++++++++++++++++++++++++++++++++++++");
             let jj = 0
             if (b.length > 0) {
@@ -666,29 +690,38 @@ setInterval(() => {
                     db.set(`update shopcar set jiangjin=${jj}, iskj=1, iszk="已中奖",  kjnum='${JSON.stringify(vs)}' where buytime="${b[0].buytime}" and username="${b[0].username}" and playdate="${b[0].playdate}" and playgame="${b[0].playgame}" and playname="${b[0].playname}";`, (k) => { console.log(k) }); console.log("中了", b[0].playname, "00")
                     db.set(
                       `update userinfo set balance=balance+${jj} where name="${b[0].username}";`,
-                      function (z) {
+                       (z) =>{
                         console.log(z, "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-                        db.findbalance(x, function (data) {
-                          console.log(data, "7899");
-                          socket.emit("balance", data)
-                        })
+                        // db.findbalance(x, (data)=> {
+                        //   console.log(data, "7899");
+                        //   socket.emit("balance", data)
+                        // })
                       }
                     )
                   }
                 }
-
               }
             };
-
           }
-
         )
       })
       jieguo = []
     })
   }
-  if (t.time().s == 0 && t.time().m % 5 == 0) {
+  if ((t.time().s - 12) % 30 == 0) {
     let gadt = {}
+    gadt.playname = "rbwar"
+    gadt.playdate = t.time().qdate + "期" 
+    gadt.playnum = getrb() 
+    gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${t.time().s}`
+    // db.set(`delete from nnkjinfo where id=${parseInt(gadt.playdate)-50}期;`,x=>{
+    //   "删除完成"       
+    // })   
+    db.insert("rbkjinfo", gadt, function (x) {  
+    })
+  }
+  if (t.time().s == 0 && t.time().m % 5 == 0) {
+    let gadt = {}  
     gadt.playname = "gassc"
     gadt.playdate = t.time().date + "期"
     gadt.playnum = getssc(...config)
@@ -758,9 +791,9 @@ setInterval(() => {
               for (let i = 0; i < m.length; i++) {
                 price += m[i].price
                 pk.chek(m[i], x[0].playnum)
-              }
-              console.log("合计投入" + price);
-
+              }  
+              console.log("合计投入" + price);  
+ 
             }
           }
         ) 
