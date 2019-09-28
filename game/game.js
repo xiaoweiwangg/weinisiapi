@@ -777,7 +777,7 @@ setInterval(() => {
   }
   if (t.time().s == 0 && t.time().m % 1 == 0) {
     let gadt = {}
-    gadt.playname = "wnspk10"
+    gadt.playname = "wnspk10" 
     gadt.playdate = t.time().fdate + "期"
     gadt.playnum = getpk10()
     gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${_.random(0, 59)}`

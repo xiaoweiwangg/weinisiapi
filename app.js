@@ -18,7 +18,6 @@ let game = require("./game/game")
 //处理路由
 let router = require("./router/router")
 app.use(router.use) 
-app.get("/img",router.getimg) 
 app.get("/gonggao", router.gonggao)
 app.post("/inuser", router.inuser)
 app.post("/fuser", router.fuser) 
