@@ -51,7 +51,7 @@ io.on('connection', function (socket) {
             }
           }
         )
-        socket.emit('fc3d', { 
+        socket.emit('fc3d', {
           msg: x[0],
           code: 200,
           h: 21,
@@ -188,24 +188,24 @@ io.on('connection', function (socket) {
         socket.emit('ynssc', {
           msg: x[0],
           code: 200,
-          m: t.time().m + 10, 
+          m: t.time().m + 10,
           s: t.time().s,
         });
-      }) 
+      })
     }
     if (t.time().s == 43 && (t.time().m - 10) % 20 == 5) {
-      db.fbjkclottor(function (x) { 
-        console.log(x,"*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
-        
-        db.set(  
+      db.fbjkclottor(function (x) {
+        console.log(x, "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
+
+        db.set(
           `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
           function (m) {
             if (m.length > 0) {
               for (let i = 0; i < m.length; i++) {
                 socket.emit(m[i].username, {
-                  msg: "ok"  
+                  msg: "ok"
                 })
-              } 
+              }
             }
           }
         )
@@ -228,19 +228,19 @@ io.on('connection', function (socket) {
     if ((t.time().s - 15) % 30 == 0) {
       db.frblottor(function (x) {
         socket.emit('rb2', {
-          msg: x[0],  
+          msg: x[0],
           code: 200,
         });
       })
-    }   
-    if (t.time().s == 10 && t.time().m % 20 == 3) { 
+    }
+    if (t.time().s == 10 && t.time().m % 20 == 3) {
       db.fxjlottor(function (x) {
         db.set(
           `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
           function (m) {
             if (m.length > 0) {
               for (let i = 0; i < m.length; i++) {
-                socket.emit(m[i].username, { 
+                socket.emit(m[i].username, {
                   msg: "ok"
                 })
               }
@@ -289,39 +289,26 @@ io.on('connection', function (socket) {
     })
   });
   socket.on('qtniuniu', function (obj) {
-    pnum--
-    if (pnum < 0) {
-      pnum = 0
-    }
-    for (let i = 0; i < group.length; i++) {
-      io.to(group[i]).emit('qtniuniu', {
-        pm: pnum
-      })
-    }
-  }) 
+    socket.emit('qtniuniu', {
+      pm: group.length
+    })
+  })
   socket.on('qtrbwar', function (obj) {
-    pnum--
-    if (pnum < 0) {
-      pnum = 0
-    }
-    for (let i = 0; i < group.length; i++) {
-      io.to(group[i]).emit('qtrbwar', {
-        pm: pnum
-      })
-    }
+    socket.emit('qtniuniu', {
+      pm: group.length
+    })
   })
   socket.on('niuniu', function (obj) {
-    pnum++
-    for (let i = 0; i < group.length; i++) {
-      io.to(group[i]).emit('qtniuniu', {
-        pm: pnum
-      })
-    }
+    console.log(group.length,"个数");
+    
+    socket.emit('qtniuniu', {
+      pm: group.length
+    })
     db.fnnlottor(function (x) {
       socket.emit('niuniu', {
         msg: x[0],
         code: 200,
-        pm: pnum,
+        pm: group.length,
         m: t.time().m,
         s: t.time().s
       });
@@ -444,8 +431,21 @@ io.on('connection', function (socket) {
     db.findbalance(x, function (data) {
       console.log(data, "7899");
       socket.emit("balance", data)
-
     })
+  })
+  socket.on("tb", function (x) {
+    console.log(x);
+    if (x.pri > 0) {
+      db.set(
+        `update userinfo set balance=balance+${x.pri} where name="${x.username}";`,
+        (z) => { 
+          console.log("成功");
+          db.findbalance(x, function (data) {
+            console.log(data, "7899");
+            socket.emit("balance", data)
+          })
+         })
+    }
   })
 });
 http.listen(88)//监听端口不能和主端口一致 
@@ -468,10 +468,10 @@ for (let i = 0; i < pukhua.length; i++) {
     puklist.push({ num: puksize[h], hua: pukhua[i] })
   }
 }
-function getnn() {          
+function getnn() {
   console.log();
   let nn = _.shuffle(puklist).slice(0, 20)
-  k = 0  
+  k = 0
   for (let v = 0; v < nn.length; v++) {
     if (v % 5 == 0) {
       k++
@@ -587,143 +587,143 @@ function dif(a, b) {
   }
   return a;
 }
-let size = [
-  "z4",
-  "whn",
-  "shn",
-  0,
-  9,
-  8,
-  7,
-  6,
-  5,
-  4,
-  3,
-  2,
-  1,
-  "-1"
-].reverse();
+// let size = [
+//   "z4",
+//   "whn",
+//   "shn",
+//   0,
+//   9,
+//   8,
+//   7,
+//   6,
+//   5,
+//   4,
+//   3,
+//   2,
+//   1,
+//   "-1"
+// ].reverse();
 setInterval(() => {
   if ((t.time().s - 12) % 30 == 0) {
     let gadt = {}
     gadt.playname = "niuniu"
-    gadt.playdate = t.time().qdate + "期" 
-    gadt.playnum = getnn() 
+    gadt.playdate = t.time().qdate + "期"
+    gadt.playnum = getnn()
     gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${t.time().s}`
     // db.set(`delete from nnkjinfo where id=${parseInt(gadt.playdate)-50}期;`,x=>{
     //   "删除完成"       
     // })   
-    db.insert("nnkjinfo", gadt, function (x) { 
-      // 这里设定查询用户中奖信息       
-      let arr = [1, 2, 3, 0];      
-      let vs = [
-        //对局列表     
-        [
-          { type: 0, playnum: 0, iswin: false },
-          { type: 1, playnum: 0, iswin: false }
-        ],
-        [
-          { type: 0, playnum: 0, iswin: false },
-          { type: 2, playnum: 0, iswin: false }
-        ],
-        [
-          { type: 0, playnum: 0, iswin: false },
-          { type: 3, playnum: 0, iswin: false }
-        ]
-      ]
-      for (let i = 0; i < 4; i++) {
-        nnme(JSON.parse(gadt.playnum).filter(x => x.type == arr[i]));
+    db.insert("nnkjinfo", gadt, function (x) {
+      //   // 这里设定查询用户中奖信息       
+      //   let arr = [1, 2, 3, 0];      
+      //   let vs = [
+      //     //对局列表     
+      //     [
+      //       { type: 0, playnum: 0, iswin: false },
+      //       { type: 1, playnum: 0, iswin: false }
+      //     ],
+      //     [
+      //       { type: 0, playnum: 0, iswin: false },
+      //       { type: 2, playnum: 0, iswin: false }
+      //     ],
+      //     [
+      //       { type: 0, playnum: 0, iswin: false },
+      //       { type: 3, playnum: 0, iswin: false }
+      //     ]
+      //   ]
+      //   for (let i = 0; i < 4; i++) {
+      //     nnme(JSON.parse(gadt.playnum).filter(x => x.type == arr[i]));
 
-      }
-      for (let i = 0; i < 3; i++) {
-        if (size.indexOf(jieguo[i].niu) == size.indexOf(jieguo[3].niu)) {
-          if (jieguo[i].niu == "z4") {
-            if (jieguo[i].z4k != jieguo[3].z4k) {
-              if (jieguo[i].z4k > jieguo[3].z4k) {
-                vs[i][1].iswin = true;
-              } else {
-                vs[i][0].iswin = true;
-              }
-            } else {
-              let hsize = [1, 0, 2, 3].reverse();
-              if (hsize.indexOf(jieguo[i].z4k) > hsize.indexOf(jieguo[3].z4k)) {
-                vs[i][1].iswin = true;
-              } else {
-                vs[i][0].iswin = true;
-              }
-            }
-          } else {
-            if (jieguo[i].maxnum != jieguo[3].maxnum) {
-              if (jieguo[i].maxnum > jieguo[3].maxnum) {
-                vs[i][1].iswin = true;
-              } else {
-                vs[i][0].iswin = true;
-              }
-            } else {
-              let hsize = [1, 0, 2, 3].reverse();
-              if (hsize.indexOf(jieguo[i].maxhua) > hsize.indexOf(jieguo[3].maxhua)) {
-                vs[i][1].iswin = true;
-              } else {
-                vs[i][0].iswin = true;
-              }
-            }
-          }
-        } else {
-          if (size.indexOf(jieguo[i].niu) > size.indexOf(jieguo[3].niu)) {
-            vs[i][1].iswin = true;
-          } else {
-            vs[i][0].iswin = true;
-          }
-        }
-      }
-      db.fnnlottor( (l)=> {
-        db.set(`
-        select * from shopcar where playgame="niuniu" and playdate="${l[0].playdate}";`,
-          (b) =>{
-            console.log(b,"+++++++++++++++++++++++++++++++++++++++++++++++++");
-            let jj = 0
-            if (b.length > 0) {
-              let u = JSON.parse(b[0].buydet)
-              for (let z = 0; z < u.length; z++) {
-                for (let t = 0; t < u[z].length; t++) {
-                  if (u[z][t].playnum > 0 && vs[z][t].iswin) {
-                    console.log("zhongle.-----------------", u[z][t].playnum * 1.97 + "元");
-                    jj += u[z][t].playnum * 1.97
-                    db.set(`update shopcar set jiangjin=${jj}, iskj=1, iszk="已中奖",  kjnum='${JSON.stringify(vs)}' where buytime="${b[0].buytime}" and username="${b[0].username}" and playdate="${b[0].playdate}" and playgame="${b[0].playgame}" and playname="${b[0].playname}";`, (k) => { console.log(k) }); console.log("中了", b[0].playname, "00")
-                    db.set(
-                      `update userinfo set balance=balance+${jj} where name="${b[0].username}";`,
-                       (z) =>{
-                        console.log(z, "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-                        // db.findbalance(x, (data)=> {
-                        //   console.log(data, "7899");
-                        //   socket.emit("balance", data)
-                        // })
-                      }
-                    )
-                  }
-                }
-              }
-            };
-          }
-        )
-      })
-      jieguo = []
+      //   }
+      //   for (let i = 0; i < 3; i++) {
+      //     if (size.indexOf(jieguo[i].niu) == size.indexOf(jieguo[3].niu)) {
+      //       if (jieguo[i].niu == "z4") {
+      //         if (jieguo[i].z4k != jieguo[3].z4k) {
+      //           if (jieguo[i].z4k > jieguo[3].z4k) {
+      //             vs[i][1].iswin = true;
+      //           } else {
+      //             vs[i][0].iswin = true;
+      //           }
+      //         } else {
+      //           let hsize = [1, 0, 2, 3].reverse();
+      //           if (hsize.indexOf(jieguo[i].z4k) > hsize.indexOf(jieguo[3].z4k)) {
+      //             vs[i][1].iswin = true;
+      //           } else {
+      //             vs[i][0].iswin = true;
+      //           }
+      //         }
+      //       } else {
+      //         if (jieguo[i].maxnum != jieguo[3].maxnum) {
+      //           if (jieguo[i].maxnum > jieguo[3].maxnum) {
+      //             vs[i][1].iswin = true;
+      //           } else {
+      //             vs[i][0].iswin = true;
+      //           }
+      //         } else {
+      //           let hsize = [1, 0, 2, 3].reverse();
+      //           if (hsize.indexOf(jieguo[i].maxhua) > hsize.indexOf(jieguo[3].maxhua)) {
+      //             vs[i][1].iswin = true;
+      //           } else {
+      //             vs[i][0].iswin = true;
+      //           }
+      //         }
+      //       }
+      //     } else {
+      //       if (size.indexOf(jieguo[i].niu) > size.indexOf(jieguo[3].niu)) {
+      //         vs[i][1].iswin = true;
+      //       } else {
+      //         vs[i][0].iswin = true;
+      //       }
+      //     }
+      //   }
+      //   db.fnnlottor( (l)=> {
+      //     db.set(`
+      //     select * from shopcar where playgame="niuniu" and playdate="${l[0].playdate}";`,
+      //       (b) =>{
+      //         console.log(b,"+++++++++++++++++++++++++++++++++++++++++++++++++");
+      //         let jj = 0
+      //         if (b.length > 0) {
+      //           let u = JSON.parse(b[0].buydet)
+      //           for (let z = 0; z < u.length; z++) {
+      //             for (let t = 0; t < u[z].length; t++) {
+      //               if (u[z][t].playnum > 0 && vs[z][t].iswin) {
+      //                 console.log("zhongle.-----------------", u[z][t].playnum * 1.97 + "元");
+      //                 jj += u[z][t].playnum * 1.97
+      //                 db.set(`update shopcar set jiangjin=${jj}, iskj=1, iszk="已中奖",  kjnum='${JSON.stringify(vs)}' where buytime="${b[0].buytime}" and username="${b[0].username}" and playdate="${b[0].playdate}" and playgame="${b[0].playgame}" and playname="${b[0].playname}";`, (k) => { console.log(k) }); console.log("中了", b[0].playname, "00")
+      //                 db.set(
+      //                   `update userinfo set balance=balance+${jj} where name="${b[0].username}";`,
+      //                    (z) =>{
+      //                     console.log(z, "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+      //                     // db.findbalance(x, (data)=> {
+      //                     //   console.log(data, "7899");
+      //                     //   socket.emit("balance", data)
+      //                     // })
+      //                   }
+      //                 )
+      //               }
+      //             }
+      //           }
+      //         };
+      //       }
+      //     )
+      //   })
+      //   jieguo = []
     })
   }
   if ((t.time().s - 12) % 30 == 0) {
     let gadt = {}
     gadt.playname = "rbwar"
-    gadt.playdate = t.time().qdate + "期" 
-    gadt.playnum = getrb() 
+    gadt.playdate = t.time().qdate + "期"
+    gadt.playnum = getrb()
     gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${t.time().s}`
     // db.set(`delete from nnkjinfo where id=${parseInt(gadt.playdate)-50}期;`,x=>{
     //   "删除完成"       
     // })   
-    db.insert("rbkjinfo", gadt, function (x) {  
+    db.insert("rbkjinfo", gadt, function (x) {
     })
   }
   if (t.time().s == 0 && t.time().m % 5 == 0) {
-    let gadt = {}  
+    let gadt = {}
     gadt.playname = "gassc"
     gadt.playdate = t.time().date + "期"
     gadt.playnum = getssc(...config)
@@ -777,7 +777,7 @@ setInterval(() => {
   }
   if (t.time().s == 0 && t.time().m % 1 == 0) {
     let gadt = {}
-    gadt.playname = "wnspk10" 
+    gadt.playname = "wnspk10"
     gadt.playdate = t.time().fdate + "期"
     gadt.playnum = getpk10()
     gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${_.random(0, 59)}`
@@ -793,13 +793,13 @@ setInterval(() => {
               for (let i = 0; i < m.length; i++) {
                 price += m[i].price
                 pk.chek(m[i], x[0].playnum)
-              }  
-              console.log("合计投入" + price);  
- 
+              }
+              console.log("合计投入" + price);
+
             }
           }
-        ) 
-      })     
+        )
+      })
     })
   }
   if (t.time().h > 7 && t.time().s == 30 && (t.time().m - 10) % 20 == 3) {
@@ -819,7 +819,7 @@ setInterval(() => {
       cqdt.playname = "cqssc"
       cqdt.playdate = playdate + "期"
       cqdt.playtime = t.time().datetime
-      cqdt.playnum = playnum         
+      cqdt.playnum = playnum
       db.insert("cqssckjinfo", cqdt, function (x) {
         db.fcqlottor(function (x) {
           db.set(
@@ -827,7 +827,7 @@ setInterval(() => {
             function (m) {
               let price = 0
               console.log(m.length + "条记录");
-              if (m.length > 0) {  
+              if (m.length > 0) {
                 for (let i = 0; i < m.length; i++) {
                   price += m[i].price
                   game.chek(m[i], x[0].playnum)

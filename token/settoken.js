@@ -8,6 +8,6 @@ exports.settoken=function(data,timer){
   config.name=data
   return jwt.encode(config,jwtpwd)
 }
-exports.gettoken=function(x){
+exports.gettoken=function(x){ 
   return jwt.decode(x,jwtpwd)
-}
+} 

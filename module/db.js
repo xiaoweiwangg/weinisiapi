@@ -41,7 +41,7 @@ exports.insert = function (tb,data, fn) {
   `;
   connext.query(sql, (err, data, fled) => {
     if (err) { throw err }
-    fn(data)
+    fn(data) 
   })
   connext.end()
 }
@@ -222,7 +222,7 @@ exports.inuser=function(data,fn){
 exports.finduser=function(data,fn){
   let connext = mysql.createConnection(config)
   sql = `
-  select name,rigtime,level,phone,balance from userinfo where name="${data.name}";
+  select name,rigtime,level,phone,balance,img from userinfo where name="${data.name}";
   `;
   connext.query(sql, (err, data, fled) => {
     if (err) { throw err }

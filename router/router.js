@@ -136,12 +136,8 @@ exports.inuser = function (req, res) {
     })
 }
 //用户登录模块
-exports.fuser = function (req, res) {
+exports.fuser = function (req, res) { 
     let userinfo = req.body
-    // if(userinfo.code!=str.toLowerCase()){
-    //     res.json({ msg: "codeno" })  
-    //     return
-    // }
     db.fuser(userinfo, function (x) {
         userinfo.name = userinfo.username
         if (x.length >= 1) {
