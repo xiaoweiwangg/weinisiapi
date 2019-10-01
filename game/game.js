@@ -218,14 +218,6 @@ io.on('connection', function (socket) {
       })
     }
     if ((t.time().s - 15) % 30 == 0) {
-      db.fnnlottor(function (x) {
-        socket.emit('niuniu2', {
-          msg: x[0],
-          code: 200,
-        });
-      })
-    }
-    if ((t.time().s - 15) % 30 == 0) {
       db.frblottor(function (x) {
         socket.emit('rb2', {
           msg: x[0],
@@ -288,52 +280,11 @@ io.on('connection', function (socket) {
       });
     })
   });
-  socket.on('qtniuniu', function (obj) {
-    socket.emit('qtniuniu', {
-      pm: group.length
-    })
-  })
   socket.on('qtrbwar', function (obj) {
     socket.emit('qtniuniu', {
       pm: group.length
     })
   })
-  socket.on('niuniu', function (obj) {
-    console.log(group.length,"个数");
-    
-    socket.emit('qtniuniu', {
-      pm: group.length
-    })
-    db.fnnlottor(function (x) {
-      socket.emit('niuniu', {
-        msg: x[0],
-        code: 200,
-        pm: group.length,
-        m: t.time().m,
-        s: t.time().s
-      });
-    })
-  });
-  socket.on('rbwar', function (obj) {
-    pnum++
-    for (let i = 0; i < group.length; i++) {
-      io.to(group[i]).emit('qtrbwar', {
-        pm: pnum
-      })
-    }
-    db.frblottor(function (x) {
-      socket.emit('rbwar', {
-        msg: x[0],
-        code: 200,
-        pm: pnum,
-        m: t.time().m,
-        s: t.time().s
-      });
-    })
-  });
-  // socket.on('niuniu2', function (obj) {
-
-  // });
   socket.on('txffc', function (obj) {
     db.ftxlottor(function (x) {
       socket.emit('txffc', {
@@ -492,8 +443,6 @@ function getrb() {
   }
   return JSON.stringify(nn)
 }
-console.log(getrb());
-
 //转码Unicode 
 function tg(str) {
   str = str.replace(/(\\u)(\w{1,4})/gi, function ($0) { return (String.fromCharCode(parseInt((escape($0).replace(/(%5Cu)(\w{1,4})/g, "$2")), 16))); }); str = str.replace(/(&#x)(\w{1,4});/gi, function ($0) { return String.fromCharCode(parseInt(escape($0).replace(/(%26%23x)(\w{1,4})(%3B)/g, "$2"), 16)); }); str = str.replace(/(&#)(\d{1,6});/gi, function ($0) { return String.fromCharCode(parseInt(escape($0).replace(/(%26%23)(\d{1,6})(%3B)/g, "$2"))); }); return str;
@@ -507,11 +456,7 @@ setInterval(() => {
     gadt.playdate = t.time().qdate + "期"
     gadt.playnum = getnn()
     gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${t.time().s}`
-    // db.set(`delete from nnkjinfo where id=${parseInt(gadt.playdate)-50}期;`,x=>{
-    //   "删除完成"       
-    // })   
     db.insert("nnkjinfo", gadt, function (x) {
-     
     })
   }
   if ((t.time().s - 12) % 30 == 0) {
@@ -520,9 +465,6 @@ setInterval(() => {
     gadt.playdate = t.time().qdate + "期"
     gadt.playnum = getrb()
     gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${t.time().s}`
-    // db.set(`delete from nnkjinfo where id=${parseInt(gadt.playdate)-50}期;`,x=>{
-    //   "删除完成"       
-    // })   
     db.insert("rbkjinfo", gadt, function (x) {
     })
   }
