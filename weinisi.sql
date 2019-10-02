@@ -1003,7 +1003,15 @@ CREATE TABLE `rbkjinfo` (
   `playnum` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1564 DEFAULT CHARSET=utf8;
-
+DROP TABLE IF EXISTS `lhkjinfo`;
+CREATE TABLE `lhkjinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `playname` varchar(45) NOT NULL,
+  `playdate` varchar(45) NOT NULL,
+  `playtime` datetime DEFAULT NULL,
+  `playnum` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1564 DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of rbkjinfo
 -- ----------------------------

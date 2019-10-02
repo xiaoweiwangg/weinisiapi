@@ -279,11 +279,8 @@ exports.fniuniu = function (req, res) {
         { type: 3, playnum: 0, iswin: false }
       ]
     ]
-    console.log(x);
-
     for (let i = 0; i < 4; i++) {
       nnme(JSON.parse(x[0].playnum).filter(x => x.type == arr[i]));
-
     }
     for (let i = 0; i < 3; i++) {
       if (size.indexOf(jieguo[i].niu) == size.indexOf(jieguo[3].niu)) {
@@ -326,27 +323,27 @@ exports.fniuniu = function (req, res) {
         }
       }
     }
-    console.log(x);
     db.fnnlottor((l) => {
       db.set(`
           select * from shopcar where playgame="niuniu" and playdate="${l[0].playdate}";`,
         (b) => {
-          console.log(b, "+++++++++++++++++++++++++++++++++++++++++++++++++");
           let jj = 0
           if (b.length > 0) {
-            let u = JSON.parse(b[0].buydet)
-            for (let z = 0; z < u.length; z++) {
-              for (let t = 0; t < u[z].length; t++) {
-                if (u[z][t].playnum > 0 && vs[z][t].iswin) {
-                  console.log("zhongle.-----------------", u[z][t].playnum * 1.97 + "元");
-                  jj += u[z][t].playnum * 1.97
-                  db.set(`update shopcar set jiangjin=${jj}, iskj=1, iszk="已中奖",  kjnum='${JSON.stringify(vs)}' where buytime="${b[0].buytime}" and username="${b[0].username}" and playdate="${b[0].playdate}" and playgame="${b[0].playgame}" and playname="${b[0].playname}";`, (k) => { console.log(k) }); console.log("中了", b[0].playname, "00")
-                  db.set(
-                    `update userinfo set balance=balance+${jj} where name="${b[0].username}";`,
-                    (z) => {
-                      console.log(z, "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-                    }
-                  )
+            for(let n=0;n<b.length;n++){
+              let u = JSON.parse(b[n].buydet)
+              for (let z = 0; z < u.length; z++) {
+                for (let t = 0; t < u[z].length; t++) {
+                  if (u[z][t].playnum > 0 && vs[z][t].iswin) {
+                    console.log("zhongle.-----------------", u[z][t].playnum * 1.97 + "元");
+                    jj += u[z][t].playnum * 1.97
+                    db.set(`update shopcar set jiangjin=${jj}, iskj=1, iszk="已中奖",  kjnum='${JSON.stringify(vs)}' where buytime="${b[0].buytime}" and username="${b[0].username}" and playdate="${b[0].playdate}" and playgame="${b[0].playgame}" and playname="${b[0].playname}";`, (k) => { console.log(k) }); console.log("中了", b[0].playname, "00")
+                    db.set(
+                      `update userinfo set balance=balance+${jj} where name="${b[0].username}";`,
+                      (z) => {
+                        console.log(z, "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+                      }
+                    )
+                  }
                 }
               }
             }
@@ -360,8 +357,6 @@ exports.fniuniu = function (req, res) {
 //查询红黑大战mo
 let rbjieguo = []
 function rbme(j) {
-  console.log(j);
-
   let s = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1];
   let guize = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1];
   let jg = {};
@@ -471,18 +466,20 @@ exports.frbwar = function (req, res) {
         console.log(b, "+++++++++++++++++++++++++++++++++++++++++++++++++");
         let jj = 0
         if (b.length > 0) {
-          let u = JSON.parse(b[0].buydet)
-          console.log(u);
-          for (let r = 0; r < u.length; r++) {
-            if (u[r].playnum > 0 && winlist[r].iswin) {
-              jj += u[r].playnum * 1.97
-              db.set(`update shopcar set jiangjin=${jj}, iskj=1, iszk="已中奖",  kjnum='${JSON.stringify(winlist)}' where buytime="${b[0].buytime}" and username="${b[0].username}" and playdate="${b[0].playdate}" and playgame="${b[0].playgame}" and playname="${b[0].playname}";`, (k) => { console.log(k) }); console.log("中了", b[0].playname, "00")
-              db.set(
-                `update userinfo set balance=balance+${jj} where name="${b[0].username}";`,
-                (z) => {
-                  console.log(z, "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-                }
-              )
+          for(let n=0;n<b.length;n++){
+            let u = JSON.parse(b[n].buydet)
+            console.log(u);
+            for (let r = 0; r < u.length; r++) {
+              if (u[r].playnum > 0 && winlist[r].iswin) {
+                jj += u[r].playnum * 1.97
+                db.set(`update shopcar set jiangjin=${jj}, iskj=1, iszk="已中奖",  kjnum='${JSON.stringify(winlist)}' where buytime="${b[0].buytime}" and username="${b[0].username}" and playdate="${b[0].playdate}" and playgame="${b[0].playgame}" and playname="${b[0].playname}";`, (k) => { console.log(k) }); console.log("中了", b[0].playname, "00")
+                db.set(
+                  `update userinfo set balance=balance+${jj} where name="${b[0].username}";`,
+                  (z) => {
+                    console.log(z, "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+                  }
+                )
+              }
             }
           }
         };
@@ -491,7 +488,11 @@ exports.frbwar = function (req, res) {
   })
 }
 
-
+exports.flhwar = function (req, res) {
+  db.flhlottor(function (y) {
+    res.json({ data: y, s: time.time().s })
+  })
+}
 
 
 

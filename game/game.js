@@ -389,13 +389,13 @@ io.on('connection', function (socket) {
     if (x.pri > 0) {
       db.set(
         `update userinfo set balance=balance+${x.pri} where name="${x.username}";`,
-        (z) => { 
+        (z) => {
           console.log("成功");
           db.findbalance(x, function (data) {
             console.log(data, "7899");
             socket.emit("balance", data)
           })
-         })
+        })
     }
   })
 });
@@ -419,8 +419,14 @@ for (let i = 0; i < pukhua.length; i++) {
     puklist.push({ num: puksize[h], hua: pukhua[i] })
   }
 }
+function getlh() {
+  let nn = _.shuffle(puklist).slice(0, 2)
+  nn[0].type=0;
+  nn[1].type=1;
+  return JSON.stringify(nn)
+}
+getlh()
 function getnn() {
-  console.log();
   let nn = _.shuffle(puklist).slice(0, 20)
   k = 0
   for (let v = 0; v < nn.length; v++) {
@@ -432,7 +438,6 @@ function getnn() {
   return JSON.stringify(nn)
 }
 function getrb() {
-  console.log();
   let nn = _.shuffle(puklist).slice(0, 6)
   k = 0
   for (let v = 0; v < nn.length; v++) {
@@ -466,6 +471,15 @@ setInterval(() => {
     gadt.playnum = getrb()
     gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${t.time().s}`
     db.insert("rbkjinfo", gadt, function (x) {
+    })
+  }
+  if ((t.time().s - 12) % 30 == 0) {
+    let gadt = {}
+    gadt.playname = "lhwar"
+    gadt.playdate = t.time().qdate + "期"
+    gadt.playnum = getlh()
+    gadt.playtime = `${t.time().y}/${t.time().o}/${t.time().d} ${t.time().h}:${t.time().m}:${t.time().s}`
+    db.insert("lhkjinfo", gadt, function (x) {
     })
   }
   if (t.time().s == 0 && t.time().m % 5 == 0) {

@@ -101,6 +101,17 @@ exports.frblottor = function (fn) {
   }) 
   connext.end()
 }
+exports.flhlottor = function (fn) {
+  let connext = mysql.createConnection(config)
+  sql = `
+  select * from lhkjinfo where playtime=(select max(playtime) from lhkjinfo);
+  `;
+  connext.query(sql, (err, data, fled) => {
+    if (err) { throw err }
+    fn(data)
+  }) 
+  connext.end()
+}
 exports.fbjkclottor = function (fn) {
   let connext = mysql.createConnection(config) 
   sql = `
