@@ -15,6 +15,7 @@ let game = require("./game/game")
 //设置允许跨域 
 
 // app.use(allowCrossDomain); 
+
 //处理路由
 let router = require("./router/router")
 app.use(router.use) 

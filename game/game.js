@@ -32,7 +32,7 @@ io.on('connection', function (socket) {
     console.log(x);
     socket.emit(x.username, {
       type: "server",
-      msg: "欢迎来到威尼斯娱乐城!正在为您接通人工客服!请稍后....."
+      msg: "欢迎来到威尼斯娱乐城!目前在线客服繁忙,请添加客服QQ88888888,将有专线客服为您提供服务。"
     })
   })
   //定时发送数据 

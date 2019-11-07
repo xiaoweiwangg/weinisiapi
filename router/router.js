@@ -62,6 +62,8 @@ exports.active = function (req, res) {
 }
 //提现模块
 exports.subcash = function (req, res) {
+  console.log(req.body);
+  
   db.set(`
     select * from userinfo where name="${req.body.username}";
     `, function (x) {
@@ -74,6 +76,13 @@ exports.subcash = function (req, res) {
       res.json({ msg: "no" })
       return
     } else {
+      console.log(time.time().datetime);
+      
+      db.set(`
+      insert into tixian(username,cashnum,time,card) values("${req.body.username}",${req.body.num},"${time.time().datetime}","${req.body.card}");
+            `, function (x) {
+        // res.json({ msg: "ok" })
+      })
       db.set(`
             update userinfo set balance=balance-${req.body.num} where name="${req.body.username}";
             `, function (x) {

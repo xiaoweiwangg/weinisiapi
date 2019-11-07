@@ -46,7 +46,13 @@ CREATE TABLE `bjkcssckjinfo` (
   `playtime` datetime DEFAULT NULL,
   `playnum` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+DROP TABLE IF EXISTS `tixian`;
+CREATE TABLE `tixian` (
+  `username` varchar(45) NOT NULL,
+  `cashnum` varchar(45) NOT NULL,
+  `time` datetime DEFAULT NULL,
+  `card` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of bjkcssckjinfo
 -- ----------------------------
