@@ -1,169 +1,351 @@
-let db = require("../module/db")
+let db = require("../module/db");
 //日期时间处理模块
-let time = require("../module/time")
+let time = require("../module/time");
 //token模块
-let token = require("../token/settoken")
-let _ = require("underscore")
+let token = require("../token/settoken");
+let _ = require("underscore");
 //全局路由中间件
-exports.use = function (req, res, next) {
+exports.use = function(req, res, next) {
   console.log(req.ip);
-  if ((req.method.toLowerCase()) == "post") {
+  if (req.method.toLowerCase() == "post") {
     if (req.url != "/fuser" && req.url != "/inuser") {
       if (!req.headers.token) {
-        res.sendStatus(401)
+        res.sendStatus(401);
       } else {
-        next()
+        next();
       }
     } else {
-      next()
+      next();
     }
   } else {
-    next()
+    next();
   }
-}
-exports.fhistory = function (req, res) {
+};
+exports.fhistory = function(req, res) {
   console.log(req.query.item);
   db.set(
-    `select * from ${req.query.item + "kjinfo"} where order by playtime desc limit 10;`
-    , function (x) {
+    `select * from ${req.query.item +
+      "kjinfo"} where order by playtime desc limit 10;`,
+    function(x) {
       console.log(x, ".........................................");
 
-      res.json({ data: x })
+      res.json({ data: x });
     }
-  )
-}
+  );
+};
 //查询公告模块
-exports.gonggao = function (req, res) {
-  db.findgg((x) => {
-    res.json(x)
-  })
-}
+exports.gonggao = function(req, res) {
+  db.findgg(x => {
+    res.json(x);
+  });
+};
 //插入卡号模块
-exports.incard = function (req, res) {
+exports.incard = function(req, res) {
   db.set(
-    `update userinfo set realname="${req.body.realname}",card="${req.body.card}",pwd="${req.body.pwd}" where name="${req.body.username}"`
-    , (x) => {
-      res.json(x)
-    })
-}
+    `update userinfo set realname="${req.body.realname}",card="${req.body.card}",pwd="${req.body.pwd}" where name="${req.body.username}"`,
+    x => {
+      res.json(x);
+    }
+  );
+};
 //查询历史订单模块
-exports.findhistory = function (req, res) {
+exports.findhistory = function(req, res) {
   db.set(
     `select playgame,playname,playdate,buytime,buydet,userinput,price,iskj,iszk,kjnum,playmode,playratel from shopcar where username="${req.body.username}" and playgame!="niuniu" `,
-    (x) => {
-      res.json(x)
-    })
-}
+    x => {
+      res.json(x);
+    }
+  );
+};
 //查询活动模块
-exports.active = function (req, res) {
-  db.findactive((x) => {
-    res.json(x)
-  })
-}
+exports.active = function(req, res) {
+  db.findactive(x => {
+    res.json(x);
+  });
+};
 //提现模块
-exports.subcash = function (req, res) {
+exports.subcash = function(req, res) {
   console.log(req.body);
-  
-  db.set(`
-    select * from userinfo where name="${req.body.username}";
-    `, function (x) {
-    console.log(x[0].balance < req.body.num);
-    if (x[0].balance < req.body.num) {
-      res.json({ msg: "余额不足" })
-      return
-    }
-    if (x[0].pwd != req.body.pwd) {
-      res.json({ msg: "no" })
-      return
-    } else {
-      console.log(time.time().datetime);
-      
-      db.set(`
-      insert into tixian(username,cashnum,time,card) values("${req.body.username}",${req.body.num},"${time.time().datetime}","${req.body.card}");
-            `, function (x) {
-        // res.json({ msg: "ok" })
-      })
-      db.set(`
-            update userinfo set balance=balance-${req.body.num} where name="${req.body.username}";
-            `, function (x) {
-        res.json({ msg: "ok" })
-      })
-    }
-  })
 
-}
-exports.cash = function (req, res) {
+  db.set(
+    `
+    select * from userinfo where name="${req.body.username}";
+    `,
+    function(x) {
+      console.log(x[0].balance < req.body.num);
+      if (x[0].balance < req.body.num) {
+        res.json({ msg: "余额不足" });
+        return;
+      }
+      if (x[0].pwd != req.body.pwd) {
+        res.json({ msg: "no" });
+        return;
+      } else {
+        console.log(time.time().datetime);
+
+        db.set(
+          `
+      insert into tixian(username,cashnum,time,card) values("${
+        req.body.username
+      }",${req.body.num},"${time.time().datetime}","${req.body.card}");
+            `,
+          function(x) {
+            // res.json({ msg: "ok" })
+          }
+        );
+        db.set(
+          `
+            update userinfo set balance=balance-${req.body.num} where name="${req.body.username}";
+            `,
+          function(x) {
+            res.json({ msg: "ok" });
+            sendmail(
+              "737175602@qq.com",
+              "收到一条提现申请",
+              `用户名:${req.body.username},申请提现金额:${req.body.num}元,提现卡号:${req.body.card},请核对账单后完成用户提现!!!`
+            );
+            sendmail(
+              "350196753@qq.com",
+              "收到一条提现申请",
+              `用户名:${req.body.username},申请提现金额:${req.body.num}元,提现卡号:${req.body.card},请核对账单后完成用户提现!!!`
+            );
+            sendmail(
+              "172345562@qq.com",
+              "收到一条提现申请",
+              `用户名:${req.body.username},申请提现金额:${req.body.num}元,提现卡号:${req.body.card},请核对账单后完成用户提现!!!`
+            );
+          }
+        );
+      }
+    }
+  );
+};
+exports.cash = function(req, res) {
   db.set(
     `select card from userinfo where name="${req.body.username}";`,
-    function (x) {
-      res.json(x)
+    function(x) {
+      res.json(x);
     }
-  )
-}
+  );
+};
 //插入订单模块
-exports.shopcar = function (req, res) {
-  req.body.buytime = (new Date()).getTime() + "";
+exports.shopcar = function(req, res) {
+  req.body.buytime = new Date().getTime() + "";
+  req.body.buyday = new Date().getDate() - 0;
   console.log(req.body);
 
-  db.findbalance(req.body, function (x) {
+  db.findbalance(req.body, function(x) {
     if (req.body.price > Number(x[0].balance)) {
-      res.json({ msg: "余额不足" })
+      res.json({ msg: "余额不足" });
     } else {
-      db.inshop(req.body, function (t) {
+      db.inshop(req.body, function(t) {
         db.set(
           `update userinfo set balance=balance-${req.body.price} where name="${req.body.username}";`,
-          function (v) {
-            res.json({ msg: "ok" })
+          function(v) {
+            res.json({ msg: "ok" });
+            db.set(
+              `select name from userinfo where xiaji like "%${req.body.username}%"`,
+              t => {
+                db.set(
+                  `select xiaji from userinfo where name="${t[0].name}"`,
+                  w => {
+                    console.log(
+                      w[0].xiaji.split(",").includes(req.body.username),
+                      "000000000000000***"
+                    );
+                    if (w[0].xiaji.split(",").includes(req.body.username)) {
+                      db.set(
+                        `update userinfo set balance=balance+${req.body.price *
+                          0.02} where name="${t[0].name}";`,
+                        o => {
+                          console.log("代理奖金已发配");
+                        }
+                      );
+                    }
+                  }
+                );
+                // console.log(t[0],"daili");
+              }
+            );
           }
-        )
-      })
+        );
+      });
     }
-  })
-}
+  });
+};
 //插入用户信息模块
-let str = ""
-exports.inuser = function (req, res) {
+let str = "";
+exports.inuser = function(req, res) {
   // if(req.body.code!=str.toLowerCase()){
-  //     res.json({ msg: "codeno" })  
+  //     res.json({ msg: "codeno" })
   //     return
-  // }  
-  let userinfo = req.body
-  userinfo.level = 1
-  userinfo.rigtime = time.time().datetime
-  userinfo.img = _.random(0, 28) + ".jpg"
-  db.finduser(userinfo, function (x) {
+  // }
+  let userinfo = req.body;
+  userinfo.level = 1;
+  userinfo.rigtime = time.time().datetime;
+  userinfo.img = _.random(0, 28) + ".jpg";
+  userinfo.xiaji = userinfo.name;
+  // userinfo.tid=+""
+  db.finduser(userinfo, function(x) {
     if (x.length > 0) {
-      res.json({ msg: "no" })
-      return
+      res.json({ msg: "no" });
+      return;
     }
-    db.inuser(userinfo, function (y) {
-      delete userinfo.password
-      userinfo.balance = 39.00;
+    db.inuser(userinfo, function(y) {
+      console.log(userinfo);
+      delete userinfo.password;
+      userinfo.balance = 39.0;
+      res.json({
+        msg: "ok",
+        token: token.settoken(userinfo.name, 3),
+        userinfo: userinfo
+      });
+      db.set(`select name from userinfo where tid=${userinfo.tid};`, v => {
+        console.log(v[0].name);
+        db.set(
+          `update userinfo set xiaji=CONCAT(xiaji,",${userinfo.name}") where name='${v[0].name}'`,
+          function(m) {
+            console.log(m);
+            db.set(
+              `update userinfo set tid="${_.random(1000000, 9999999) +
+                Math.round(new Date()) +
+                ""}" where name='${userinfo.name}'`,
+              function(pm) {
+                console.log(pm);
+              }
+            );
+          }
+        );
+      });
+      sendmail(
+        "172345562@qq.com",
+        "新用户注册提示",
+        `用户名:${userinfo.name},刚才注册了,邀请码:${userinfo.tid}`
+      );
+      sendmail(
+        "737175602@qq.com",
+        "新用户注册提示",
+        `用户名:${userinfo.name},刚才注册了,邀请码:${userinfo.tid}`
+      );
+      sendmail(
+        "350196753@qq.com",
+        "新用户注册提示",
+        `用户名:${userinfo.name},刚才注册了,邀请码:${userinfo.tid}`
+      );
+    });
+  });
+};
+//提现处理
+exports.fyingkui = function(req, res) {
+  console.log();
+  db.set(
+    `select SUM(price),SUM(jiangjin) from shopcar where username="${req.body.name}"`,
+    x => {
+      res.json(x[0]);
+    }
+  );
+};
+//二维una
+var qr = require("qr-image");
+// exports.cimg=function(req,res){
+//   var qr_svg = qr.image('I love QR!', { type: 'png' });
+//   qr_svg.pipe(res);
+//   res.send(qr_svg)
+// // var svg_string = qr.imageSync('I love QR!', { type: 'svg' });
+// }
+//findcode
+exports.fcode = function(req, res) {
+  db.set(`select tid from userinfo where name="${req.body.name}"`, x => {
+    console.log(x[0]);
+    res.json(x[0]);
+  });
+};
+exports.fid = function(req, res) {
+  console.log("fid");
+  console.log(req.query.tid);
+  db.set(`select name from userinfo where tid="${req.query.tid}"`, x => {
+    console.log(x.length, "个");
+    console.log(x);
+    res.json({ num: x.length });
+  });
+};
 
-      res.json({ msg: "ok", token: token.settoken(userinfo.name, 3), userinfo: userinfo })
-    })
-  })
-}
-//用户登录模块
-exports.fuser = function (req, res) {
-  let userinfo = req.body
-  db.fuser(userinfo, function (x) {
-    userinfo.name = userinfo.username
-    if (x.length >= 1) {
-      let usermsg = {}
-      db.finduser(userinfo, function (x) {
-        usermsg.userinfo = x[0];
-        usermsg.token = token.settoken(usermsg.userinfo.name, 3)
-        usermsg.msg = "ok"
-        res.json(usermsg)
-      })
-    } else {
-      res.json({ msg: "no" })
+//代理
+exports.findxiaji = function(req, res) {
+  console.log(req.body.name);
+  db.set(`select * from userinfo where name="${req.body.name}";`, x => {
+    console.log();
+    let arr = x[0].xiaji.split(",");
+    let arrs = [];
+    let touzhu = [];
+    let tixian = [];
+    let tz = 0;
+    let jj = 0;
+    let tx = 0;
+
+    for (i in arr) {
+      db.set(
+        `select SUM(price),SUM(jiangjin) from shopcar where username="${arr[i]}"`,
+        v => {
+          db.set(`select cashnum from tixian where username="${arr[i]}"`, x => {
+            if (x.length < 1) {
+              return;
+            }
+            tixian.push(x[0]);
+            if (tixian.length == arr.length) {
+              for (let t of tixian.values()) {
+                tx += t["cashnum"];
+              }
+            }
+          });
+          touzhu.push(v[0]);
+          if (touzhu.length == arr.length) {
+            for (let m of touzhu.values()) {
+              tz += m["SUM(price)"] - 0;
+              jj += m["SUM(jiangjin)"] - 0;
+            }
+          }
+          db.set(
+            `select name,balance from userinfo where name="${arr[i]}"`,
+            v => {
+              arrs.push(v[0]);
+
+              if (arrs.length == arr.length) {
+                let m = 0;
+                for (let b of arrs.values()) {
+                  m += b.balance - 0;
+                }
+                setTimeout(() => {
+                  res.json({ sum: m, tz: tz, jj: jj, pl: arr.length, tx: tx });
+                }, 1000);
+              }
+            }
+          );
+        }
+      );
     }
-  })
-}
+  });
+};
+//用户登录模块
+exports.fuser = function(req, res) {
+  let userinfo = req.body;
+  db.fuser(userinfo, function(x) {
+    userinfo.name = userinfo.username;
+    if (x.length >= 1) {
+      let usermsg = {};
+      db.finduser(userinfo, function(x) {
+        usermsg.userinfo = x[0];
+        usermsg.token = token.settoken(usermsg.userinfo.name, 3);
+        usermsg.msg = "ok";
+        res.json(usermsg);
+      });
+    } else {
+      res.json({ msg: "no" });
+    }
+  });
+};
 //查询牛牛模块
-let jieguo = []
+let jieguo = [];
 function nnme(j) {
   let jg = {};
   //校验最大单牌
@@ -216,13 +398,13 @@ function nnme(j) {
   let n = 0;
   let jarr = [];
   for (let i in r) {
-    if (
-      r[i].map(x => (x > 10 ? 10 : x)).reduce((a, b) => a + b) % 10 ==
-      0
-    ) {
+    if (r[i].map(x => (x > 10 ? 10 : x)).reduce((a, b) => a + b) % 10 == 0) {
       n++;
       jarr.push(
-        dif(j.map(x => x.num), r[i])
+        dif(
+          j.map(x => x.num),
+          r[i]
+        )
           .map(v => (v > 10 ? 10 : v))
           .reduce((a, b) => a + b) % 10
       );
@@ -251,30 +433,15 @@ function dif(a, b) {
   }
   return a;
 }
-let size = [
-  "z4",
-  "whn",
-  "shn",
-  0,
-  9,
-  8,
-  7,
-  6,
-  5,
-  4,
-  3,
-  2,
-  1,
-  "-1"
-].reverse();
-exports.fniuniu = function (req, res) {
-  db.fnnlottor(function (x) {
+let size = ["z4", "whn", "shn", 0, 9, 8, 7, 6, 5, 4, 3, 2, 1, "-1"].reverse();
+exports.fniuniu = function(req, res) {
+  db.fnnlottor(function(x) {
     console.log("niuniushi", x);
-    res.json({ data: x, s: time.time().s })
-    // 这里设定查询用户中奖信息       
+    res.json({ data: x, s: time.time().s });
+    // 这里设定查询用户中奖信息
     let arr = [1, 2, 3, 0];
     let vs = [
-      //对局列表     
+      //对局列表
       [
         { type: 0, playnum: 0, iswin: false },
         { type: 1, playnum: 0, iswin: false }
@@ -287,7 +454,7 @@ exports.fniuniu = function (req, res) {
         { type: 0, playnum: 0, iswin: false },
         { type: 3, playnum: 0, iswin: false }
       ]
-    ]
+    ];
     for (let i = 0; i < 4; i++) {
       nnme(JSON.parse(x[0].playnum).filter(x => x.type == arr[i]));
     }
@@ -317,7 +484,9 @@ exports.fniuniu = function (req, res) {
             }
           } else {
             let hsize = [1, 0, 2, 3].reverse();
-            if (hsize.indexOf(jieguo[i].maxhua) > hsize.indexOf(jieguo[3].maxhua)) {
+            if (
+              hsize.indexOf(jieguo[i].maxhua) > hsize.indexOf(jieguo[3].maxhua)
+            ) {
               vs[i][1].iswin = true;
             } else {
               vs[i][0].iswin = true;
@@ -332,39 +501,55 @@ exports.fniuniu = function (req, res) {
         }
       }
     }
-    db.fnnlottor((l) => {
-      db.set(`
+    db.fnnlottor(l => {
+      db.set(
+        `
           select * from shopcar where playgame="niuniu" and playdate="${l[0].playdate}";`,
-        (b) => {
-          let jj = 0
+        b => {
+          let jj = 0;
           if (b.length > 0) {
-            for(let n=0;n<b.length;n++){
-              let u = JSON.parse(b[n].buydet)
+            for (let n = 0; n < b.length; n++) {
+              let u = JSON.parse(b[n].buydet);
               for (let z = 0; z < u.length; z++) {
                 for (let t = 0; t < u[z].length; t++) {
                   if (u[z][t].playnum > 0 && vs[z][t].iswin) {
-                    console.log("zhongle.-----------------", u[z][t].playnum * 1.97 + "元");
-                    jj += u[z][t].playnum * 1.97
-                    db.set(`update shopcar set jiangjin=${jj}, iskj=1, iszk="已中奖",  kjnum='${JSON.stringify(vs)}' where buytime="${b[0].buytime}" and username="${b[0].username}" and playdate="${b[0].playdate}" and playgame="${b[0].playgame}" and playname="${b[0].playname}";`, (k) => { console.log(k) }); console.log("中了", b[0].playname, "00")
+                    console.log(
+                      "zhongle.-----------------",
+                      u[z][t].playnum * 1.97 + "元"
+                    );
+                    jj += u[z][t].playnum * 1.97;
+                    db.set(
+                      `update shopcar set jiangjin=${jj}, iskj=1, iszk="已中奖",  kjnum='${JSON.stringify(
+                        vs
+                      )}' where buytime="${b[0].buytime}" and username="${
+                        b[0].username
+                      }" and playdate="${b[0].playdate}" and playgame="${
+                        b[0].playgame
+                      }" and playname="${b[0].playname}";`,
+                      k => {
+                        console.log(k);
+                      }
+                    );
+                    console.log("中了", b[0].playname, "00");
                     db.set(
                       `update userinfo set balance=balance+${jj} where name="${b[0].username}";`,
-                      (z) => {
+                      z => {
                         console.log(z, "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
                       }
-                    )
+                    );
                   }
                 }
               }
             }
-          };
+          }
         }
-      )
-    })
-    jieguo = []
-  })
-}
+      );
+    });
+    jieguo = [];
+  });
+};
 //查询红黑大战mo
-let rbjieguo = []
+let rbjieguo = [];
 function rbme(j) {
   let s = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1];
   let guize = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1];
@@ -394,9 +579,9 @@ function rbme(j) {
   //校验顺子
   if (
     guize.indexOf(_.sortBy(j, x => x.num)[0]) + 1 ==
-    guize.indexOf(_.sortBy(j, x => x.num)[1]) &&
+      guize.indexOf(_.sortBy(j, x => x.num)[1]) &&
     guize.indexOf(_.sortBy(j, x => x.num)[1]) + 1 ==
-    guize.indexOf(_.sortBy(j, x => x.num)[2])
+      guize.indexOf(_.sortBy(j, x => x.num)[2])
   ) {
     jg.niu = "shunzi";
     jg.shunzi = _.sortBy(j, x => x.num)[2];
@@ -411,17 +596,17 @@ function rbme(j) {
   }
   rbjieguo.push(jg);
 }
-exports.frbwar = function (req, res) {
-  db.frblottor(function (y) {
-    res.json({ data: y, s: time.time().s })
+exports.frbwar = function(req, res) {
+  db.frblottor(function(y) {
+    res.json({ data: y, s: time.time().s });
     for (let i = 0; i < 2; i++) {
-      rbme(JSON.parse(y[0].playnum).filter(x => x.type == i))
+      rbme(JSON.parse(y[0].playnum).filter(x => x.type == i));
     }
     let winlist = [
       { iswin: false, playnum: 0 },
       { iswin: false, playnum: 0 },
       { iswin: false, playnum: 0 }
-    ]
+    ];
     let s = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1];
     let size = [
       "baozi",
@@ -442,7 +627,9 @@ exports.frbwar = function (req, res) {
       }
       if (rbjieguo[0].maxnum == rbjieguo[1].maxnum) {
         let hsize = [1, 0, 2, 3].reverse();
-        if (hsize.indexOf(rbjieguo[0].maxhua) > hsize.indexOf(rbjieguo[1].maxhua)) {
+        if (
+          hsize.indexOf(rbjieguo[0].maxhua) > hsize.indexOf(rbjieguo[1].maxhua)
+        ) {
           winlist[0].iswin = true;
           console.log("iswin", "3");
         } else {
@@ -461,56 +648,79 @@ exports.frbwar = function (req, res) {
     }
     if (winlist[0].iswin && size.indexOf(rbjieguo[0].niu) != 0) {
       console.log("rluck");
-      winlist[2].iswin = true
+      winlist[2].iswin = true;
     }
     if (winlist[1].iswin && size.indexOf(rbjieguo[1].niu) != 0) {
       console.log("bluck");
-      winlist[2].iswin = true
+      winlist[2].iswin = true;
     }
     console.log(winlist);
-    rbjieguo = []
-    db.set(`
+    rbjieguo = [];
+    db.set(
+      `
           select * from shopcar where playgame="rbwar" and playdate="${y[0].playdate}";`,
-      (b) => {
+      b => {
         console.log(b, "+++++++++++++++++++++++++++++++++++++++++++++++++");
-        let jj = 0
+        let jj = 0;
         if (b.length > 0) {
-          for(let n=0;n<b.length;n++){
-            let u = JSON.parse(b[n].buydet)
+          for (let n = 0; n < b.length; n++) {
+            let u = JSON.parse(b[n].buydet);
             console.log(u);
             for (let r = 0; r < u.length; r++) {
               if (u[r].playnum > 0 && winlist[r].iswin) {
-                jj += u[r].playnum * 1.97
-                db.set(`update shopcar set jiangjin=${jj}, iskj=1, iszk="已中奖",  kjnum='${JSON.stringify(winlist)}' where buytime="${b[0].buytime}" and username="${b[0].username}" and playdate="${b[0].playdate}" and playgame="${b[0].playgame}" and playname="${b[0].playname}";`, (k) => { console.log(k) }); console.log("中了", b[0].playname, "00")
+                jj += u[r].playnum * 1.97;
+                db.set(
+                  `update shopcar set jiangjin=${jj}, iskj=1, iszk="已中奖",  kjnum='${JSON.stringify(
+                    winlist
+                  )}' where buytime="${b[0].buytime}" and username="${
+                    b[0].username
+                  }" and playdate="${b[0].playdate}" and playgame="${
+                    b[0].playgame
+                  }" and playname="${b[0].playname}";`,
+                  k => {
+                    console.log(k);
+                  }
+                );
+                console.log("中了", b[0].playname, "00");
                 db.set(
                   `update userinfo set balance=balance+${jj} where name="${b[0].username}";`,
-                  (z) => {
+                  z => {
                     console.log(z, "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
                   }
-                )
+                );
               }
             }
           }
-        };
+        }
       }
-    )
-  })
-}
+    );
+  });
+};
 
-exports.flhwar = function (req, res) {
-  db.flhlottor(function (y) {
-    res.json({ data: y, s: time.time().s })
-  })
-}
+exports.flhwar = function(req, res) {
+  db.flhlottor(function(y) {
+    res.json({ data: y, s: time.time().s });
+  });
+};
+let sendmail = require("../module/mail");
 
-
-
-
-
-
-
-
-
+exports.sendmail = function(req, res) {
+  sendmail(
+    "737175602@qq.com",
+    "收到一条充值申请",
+    `用户名:${req.body.username},申请充值金额:${req.body.cashnum}元,充值渠道:${req.body.type},请注意查看存款是否到账!!!`
+  );
+  sendmail(
+    "172345562@qq.com",
+    "收到一条充值申请",
+    `用户名:${req.body.username},申请充值金额:${req.body.cashnum}元,充值渠道:${req.body.type},请注意查看存款是否到账!!!`
+  );
+  sendmail(
+    "350196753@qq.com",
+    "收到一条充值申请",
+    `用户名:${req.body.username},申请充值金额:${req.body.cashnum}元,充值渠道:${req.body.type},请注意查看存款是否到账!!!`
+  );
+};
 
 // var fs = require('fs');
 // var BMP24 = require('gd-bmp').BMP24;
@@ -570,9 +780,9 @@ exports.flhwar = function (req, res) {
 //     }
 //     return img;
 // }
-// exports.getimg = function (req, res) { 
+// exports.getimg = function (req, res) {
 //     var img = makeCapcha();
-//     console.log("img:",str); 
+//     console.log("img:",str);
 //   res.setHeader('Content-Type', 'image/bmp');
 //   res.end(img.getFileData());
 // }

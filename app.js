@@ -32,7 +32,11 @@ app.post("/subcash", router.subcash)
 app.post("/cash", router.cash)
 app.get("/active", router.active) 
 app.get("/fhis", router.fhistory)  
-
+app.post("/send",router.sendmail)
+app.post("/findxiaji",router.findxiaji)
+app.post("/yingkui",router.fyingkui)
+app.post("/findcode",router.fcode)
+app.get("/fcid",router.fid)
 //端口监听
 app.listen(8088)  
 

@@ -207,8 +207,8 @@ exports.gg=function(tb,data, fn) {
 exports.inshop=function(data,fn){
   let connext = mysql.createConnection(config)
   sql = `
-  insert into shopcar(username,playgame,playname,playdate,userinput,buytime,buydet,price,iskj,playmode,playratel)
-  values("${data.username}","${data.playgame}","${data.playname}","${data.playdate}",'${data.userinput}',"${data.buytime}",'${data.buydet}',"${data.price}","${data.iskj}","${data.playmode}","${data.playratel}");
+  insert into shopcar(username,playgame,playname,playdate,userinput,buytime,buydet,price,iskj,playmode,playratel,buyday)
+  values("${data.username}","${data.playgame}","${data.playname}","${data.playdate}",'${data.userinput}',"${data.buytime}",'${data.buydet}',"${data.price}","${data.iskj}","${data.playmode}","${data.playratel}",${data.buyday});
   `;
   connext.query(sql, (err, data, fled) => { 
     if (err) { throw err }
@@ -218,10 +218,12 @@ exports.inshop=function(data,fn){
 }
 //---------------------------插入用户数据
 exports.inuser=function(data,fn){
+  console.log(data);
+  
   let connext = mysql.createConnection(config)
   sql = `
-  insert into userinfo(name,password,rigtime,level,phone,realname,img)
-  values("${data.name}","${data.password}","${data.rigtime}","${data.level}","${data.phone}","${data.realname}","${data.img}"); 
+  insert into userinfo(name,password,rigtime,level,phone,realname,img,xiaji)
+  values("${data.name}","${data.password}","${data.rigtime}","${data.level}","${data.phone}","${data.realname}","${data.img}","${data.xiaji}"); 
   `;
   connext.query(sql, (err, data, fled) => {
     if (err) { throw err }
