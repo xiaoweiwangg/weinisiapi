@@ -128,6 +128,28 @@ exports.cash = function(req, res) {
     }
   );
 };
+exports.fallx = function(req, res) {
+  db.set(
+    `select xiaji from userinfo where name="${req.body.name}";`,
+    function(x) {
+      let arr=[]
+      let per=x[0].xiaji.split(",")
+      for(let i of per){
+        console.log(i)
+        db.set(
+          `select name,balance from userinfo where name="${i}";`,
+          function(b) {
+            arr.push(b[0])
+            if(arr.length==per.length){
+              res.json({per:arr})
+              console.log(arr);
+            }
+          }
+        );
+      }
+    }
+  );
+};
 //插入订单模块
 exports.shopcar = function(req, res) {
   req.body.buytime = new Date().getTime() + "";
