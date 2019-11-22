@@ -55,7 +55,6 @@ io.on("connection", function(socket) {
   });
   //定时发送数据
   setInterval(() => {
-    if (t.time().h >= 9 && t.time().h <= 21) {
       if ((t.time().h = 20 && t.time().m == 50 && t.time().s == 30)) {
         db.ffc3dlottor(function(x) {
           db.set(
@@ -100,6 +99,7 @@ io.on("connection", function(socket) {
           });
         });
       }
+
       //---------------gassc
       if (t.time().s == 10 && t.time().m % 5 == 0) {
         db.fgalottor(function(x) {
@@ -169,7 +169,7 @@ io.on("connection", function(socket) {
           });
         });
       }
-      if (t.time().s == 40 && (t.time().m - 10) % 20 == 3) {
+       if (t.time().s == 40 && (t.time().m - 10) % 20 == 3) {
         db.fcqlottor(function(x) {
           db.set(
             `select * from shopcar where playgame="${x[0].playname}" AND playdate="${x[0].playdate}";`,
@@ -211,7 +211,6 @@ io.on("connection", function(socket) {
             s: t.time().s
           });
         });
-      }
       if (t.time().s == 43 && (t.time().m - 10) % 20 == 5) {
         db.fbjkclottor(function(x) {
           console.log(x, "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
@@ -498,7 +497,6 @@ function tg(str) {
 }
 //开奖集----------------------------------------
 setInterval(() => {
-  if (t.time().h >= 9 && t.time().h <= 21) {
     if ((t.time().s - 12) % 30 == 0) {
       let gadt = {};
       gadt.playname = "niuniu";
@@ -914,5 +912,4 @@ setInterval(() => {
         });
       });
     }
-  }
 }, 1000);

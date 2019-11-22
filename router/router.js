@@ -216,7 +216,7 @@ exports.inuser = function(req, res) {
     db.inuser(userinfo, function(y) {
       console.log(userinfo);
       delete userinfo.password;
-      userinfo.balance = 39.0;
+      userinfo.balance = 0;
       res.json({
         msg: "ok",
         token: token.settoken(userinfo.name, 3),
@@ -335,7 +335,9 @@ exports.findxiaji = function(req, res) {
               if (arrs.length == arr.length) {
                 let m = 0;
                 for (let b of arrs.values()) {
-                  m += b.balance - 0;
+                  if(!b.balance){
+                    m += b.balance - 0;
+                  }
                 }
                 setTimeout(() => {
                   res.json({ sum: m, tz: tz, jj: jj, pl: arr.length, tx: tx });
