@@ -105,12 +105,17 @@ exports.subcash = function(req, res) {
               `用户名:${req.body.username},申请提现金额:${req.body.num}元,提现卡号:${req.body.card},请核对账单后完成用户提现!!!`
             );
             sendmail(
+              "yu1244093688@163.com",
+              "收到一条提现申请",
+              `用户名:${req.body.username},申请提现金额:${req.body.num}元,提现卡号:${req.body.card},请核对账单后完成用户提现!!!`
+            );
+            sendmail(
               "350196753@qq.com",
               "收到一条提现申请",
               `用户名:${req.body.username},申请提现金额:${req.body.num}元,提现卡号:${req.body.card},请核对账单后完成用户提现!!!`
             );
             sendmail(
-              "172345562@qq.com",
+              "18322299421@139.com",
               "收到一条提现申请",
               `用户名:${req.body.username},申请提现金额:${req.body.num}元,提现卡号:${req.body.card},请核对账单后完成用户提现!!!`
             );
@@ -240,7 +245,12 @@ exports.inuser = function(req, res) {
         );
       });
       sendmail(
-        "172345562@qq.com",
+        "18322299421@139.com",
+        "新用户注册提示",
+        `用户名:${userinfo.name},刚才注册了,邀请码:${userinfo.tid}`
+      );
+      sendmail(
+        "yu1244093688@163.com",
         "新用户注册提示",
         `用户名:${userinfo.name},刚才注册了,邀请码:${userinfo.tid}`
       );
@@ -731,11 +741,16 @@ let sendmail = require("../module/mail");
 exports.sendmail = function(req, res) {
   sendmail(
     "737175602@qq.com",
-    "收到一条充值申请",
+    "收到一条充值申请", "yu1244093688@163.com",
     `用户名:${req.body.username},申请充值金额:${req.body.cashnum}元,充值渠道:${req.body.type},请注意查看存款是否到账!!!`
   );
   sendmail(
-    "172345562@qq.com",
+    "yu1244093688@163.com",
+    "收到一条充值申请", 
+    `用户名:${req.body.username},申请充值金额:${req.body.cashnum}元,充值渠道:${req.body.type},请注意查看存款是否到账!!!`
+  );
+  sendmail(
+    "18322299421@139.com",
     "收到一条充值申请",
     `用户名:${req.body.username},申请充值金额:${req.body.cashnum}元,充值渠道:${req.body.type},请注意查看存款是否到账!!!`
   );
