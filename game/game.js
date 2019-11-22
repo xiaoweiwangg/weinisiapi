@@ -453,9 +453,8 @@ function getlh() {
   nn[1].type = 1;
   return JSON.stringify(nn);
 }
-getlh();
 function getnn() {
-  let nn = _.shuffle(puklist).slice(0, 20);
+  let nn = _.shuffle(_.shuffle(_.shuffle(puklist).slice(0, 20)));
   k = 0;
   for (let v = 0; v < nn.length; v++) {
     if (v % 5 == 0) {
