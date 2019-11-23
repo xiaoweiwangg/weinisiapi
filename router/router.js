@@ -133,6 +133,9 @@ exports.cash = function(req, res) {
     }
   );
 };
+// exports.download = function(req, res) {
+//   res.download("/dist/vinisi.apk")
+// };
 exports.fallx = function(req, res) {
   db.set(
     `select xiaji from userinfo where name="${req.body.name}";`,

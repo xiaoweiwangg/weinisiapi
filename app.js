@@ -38,6 +38,7 @@ app.post("/yingkui",router.fyingkui)
 app.post("/findcode",router.fcode)
 app.post("/fallx",router.fallx)
 app.get("/fcid",router.fid)
+// app.get("/download",router.download)
 //端口监听
 app.listen(8088)  
 
