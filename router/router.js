@@ -304,7 +304,45 @@ exports.fid = function(req, res) {
     res.json({ num: x.length });
   });
 };
-
+exports.red = function(req, res) {
+  db.set(`select balance from userinfo where name="${req.body.name}"`,(t)=>{
+    console.log(t[0].balance,"元");
+    if(t[0].balance<req.body.wuli){
+      res.json({msg:-1})
+    }else{
+      console.log(req.body);
+      let arr=_.range(0,10)
+      let index=_.random(0,9)
+      let l=10-req.body.luck/10//------------------------------
+      let r=(_.random(190,196)/100)
+      for (let i =0;i<l;i++){[
+        arr.splice(_.random(0,9),1)
+      ]}
+      console.log(index,"----",arr);
+      if(arr.includes(index)){
+        console.log(req.body.wuli/(req.body.luck/100*2)*r);
+        db.set(`update userinfo set balance=balance+${(req.body.wuli/(req.body.luck/100*2)*r)-req.body.wuli} where name="${req.body.name}"`,(x)=>{
+  db.set(`select balance from userinfo where name="${req.body.name}"`,(v)=>{
+    res.json({
+      balance:v[0].balance,
+            msg:"ok",
+            jj:req.body.wuli/(req.body.luck/100*2)*r
+          })
+        })
+  })
+      }else{
+        db.set(`update userinfo set balance=balance-${req.body.wuli} where name="${req.body.name}"`,(x)=>{
+          db.set(`select balance from userinfo where name="${req.body.name}"`,(v)=>{
+            res.json({
+              balance:v[0].balance,
+                    msg:"no",
+                  })
+                })
+        })
+      }
+    }
+  })
+};
 //代理
 exports.findxiaji = function(req, res) {
   console.log(req.body.name);
